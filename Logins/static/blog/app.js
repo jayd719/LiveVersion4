@@ -2,9 +2,13 @@ function InvalidForm() {
   alert("Invalid Form");
 }
 
-let rememberMe = document.getElementById("remember-me");
 
-rememberMe.style.opacity = 0;
-document.getElementById("floatingPassword").addEventListener("focus", () => {
-  rememberMe.style.opacity = 100;
-});
+function ChangeCSS(from, to, class_) {
+  let var1 = $(from);
+
+  if (class_) {
+    var1.removeClass(from.slice(1)).addClass(to.slice(1));
+  } else {
+    var1.removeClass(to.slice(1)).addClass(from.slice(1));
+  }
+}

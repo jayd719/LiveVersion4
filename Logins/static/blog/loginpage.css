@@ -83,3 +83,12 @@ input:hover {
   }
 }
 
+.hidden{
+  opacity: 0%;
+  transition: 2s;
+}
+
+.viv{
+  opacity: 100%;
+  transition: 2s;
+}
