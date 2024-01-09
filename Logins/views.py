@@ -19,3 +19,6 @@ def signUpPage(requests):
                
     return render(requests,'login/registar.html',context)
 
+
+def signIn(requests):
+    return render(requests,'login/signIn.html')
