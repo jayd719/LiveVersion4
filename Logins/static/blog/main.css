@@ -1,6 +1,11 @@
 @import url(https://db.onlinewebfonts.com/c/97658e799f620405131c144d04a5f3b4?family=AbadiMTStd);
-
-body{
+label{
+  color: #23c483;
+  text-shadow:  0px 8px 15px rgba(0, 0, 0, 0.1);;
+  font-weight: bolder;
+}
+body {
+  background-color: #e0e0e0;
   font-family: "AbadiMTStd";
 }
 
@@ -32,30 +37,31 @@ button:active {
 }
 
 input {
-  width: 100%;
-  padding: 10px;
-  outline: none;
-  border: none;
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
   color: #000;
-  font-size: 1em;
-  background: transparent;
-  border-left: 2px solid #000;
-  border-bottom: 2px solid #000;
-  transition: 0.1s;
-  border-bottom-left-radius: 8px;
+  background-color: #fff;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: 1s ease;
+  cursor: pointer;
+  outline: none;
 }
 
-input:focus-within {
-  box-shadow: 0px 15px 20px #23c483;
-  transform: translateY(-7px);
+input:focus-within {  
+  transform: translateY(-5px) scale(1.2);
+  outline: 0px 15px 20px rgba(0, 0, 0, 0.4);
+  transition: 1s ease;
 }
-
 input:hover {
   box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
   transform: translateY(-5px);
-  transition: all 1s ease 0s;
+  transition: 1s ease;
 }
-
 
 .card {
   margin-left: auto;
@@ -65,6 +71,18 @@ input:hover {
   background: #ffffff;
   box-shadow: 0px 7.5px 10px rgba(46, 229, 157, 0.4);
   border-radius: 8px;
-  padding:2%;
+  padding: 2%;
   margin-bottom: 10%;
+  opacity: 0;
+  animation: appear 1s forwards;
+}
+
+@keyframes appear {
+  from{
+    transform: translateY(500px);
+  }
+  to{
+    transform: translateY(0px) scale(1);
+    opacity: 100%;
+  }
 }

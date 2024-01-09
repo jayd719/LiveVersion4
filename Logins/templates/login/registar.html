@@ -4,13 +4,13 @@
   <legend class="border-bottom mb-4">Create Account</legend>
   <div class="container">
     {% if messages %} {% for message in messages%}
-    <div class="alert alert-{{ message.tags }}">{{message}}</div>
+    <div class="alert alert-{{ message.tags }}" id="message">{{message}}</div>
     <script type="text/javascript">
       InvalidForm();
     </script>
     {% endfor%} {% endif%}
   </div>
-  <div class="card">
+  <div class="card" id="card">
     <form method="POST">
       {% csrf_token %}
       <fieldset class="form-group">{{form|crispy}}</fieldset>

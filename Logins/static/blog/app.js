@@ -1,4 +1,4 @@
 function InvalidForm() {
-  alert('Invalid Form')
-
+  alert("Invalid Form");
 }
+
