@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'homepage.apps.HomepageConfig',
+    'workOrderReports.apps.WorkorderreportsConfig',
+
     'Logins.apps.LoginsConfig',
     'crispy_forms',
     'crispy_bootstrap4',

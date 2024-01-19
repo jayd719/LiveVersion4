@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from homepage.views import home
 from Logins.views import signUpPage, signIn
+from workOrderReports.views import workOrderReport
 # from django.views.generic.base import RedirectView
 # RedirectView.as_view(pattern_name='signIn', permanent=True)
 
@@ -26,6 +27,7 @@ urlpatterns = [
     path('', home,name='home-main'),
     path('sign-up/',signUpPage,name='signUpPage'),
     path('sign-in/', signIn, name='signIn'),
+    path('workorder', workOrderReport, name='workOrderReport'),
     
     # path('w/', homepage2,name='home-main2'),
 ]

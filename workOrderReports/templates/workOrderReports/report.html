@@ -1,0 +1,39 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'workOrderReports/workOrder.css' %}" />
+
+    <link rel="icon" type="image/x-icon"  href="{% static 'workOrderReports/lgo.ico' %}">
+
+    {% if title%}
+        <title>Job Details: {{title}}</title>
+    {% else %}
+        <title>Sreach Work Order</title>
+    {% endif%}
+   
+    
+  </head>
+  <body>
+
+    <!-- Example Code -->
+    
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid" style="padding-left: 8%; padding-right: 8%;">
+        <a class="navbar-brand">CBB LIVE</a>
+        <form action="{% url 'workOrderReport' %}" method="get" class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="workOrderBar">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+    
+
+    <!-- End Example Code -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
