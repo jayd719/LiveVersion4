@@ -1,39 +1,74 @@
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'workOrderReports/workOrder.css' %}" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'workOrderReports/workOrder.css' %}"
+    />
 
-    <link rel="icon" type="image/x-icon"  href="{% static 'workOrderReports/lgo.ico' %}">
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'workOrderReports/lgo.ico' %}"
+    />
 
     {% if title%}
-        <title>Job Details: {{title}}</title>
+    <title>Job Details: {{title}}</title>
+    {% elif message%}
+    <title>Invalid Work Order</title>
     {% else %}
-        <title>Sreach Work Order</title>
+    <title>CBB Live</title>
     {% endif%}
-   
-    
   </head>
   <body>
-
     <!-- Example Code -->
-    
+
     <nav class="navbar bg-body-tertiary">
-      <div class="container-fluid" style="padding-left: 8%; padding-right: 8%;">
+      <div class="container-fluid" style="padding-left: 8%; padding-right: 8%">
         <a class="navbar-brand">CBB LIVE</a>
-        <form action="{% url 'workOrderReport' %}" method="get" class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="workOrderBar">
+        <form
+          action="{% url 'workOrderReport' %}"
+          method="get"
+          class="d-flex"
+          role="search"
+        >
+          <div class="search-box">
+            <div class="src-row">
+              <input
+                class="form-control me-2"
+                type="text"
+                id="sreachbox"
+                placeholder="Search For A Work Order"
+                autocomplete="off"
+                name="search-for-work-order"
+              />
+            </div>
+            <div class="result-box"></div>
+          </div>
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div>
     </nav>
-    
+
+    {% if message %}
+    <div class="container alert alert-danger" role="alert">{{message}}</div>
+    {% endif %} {% if workOrder %}
+    <h1>{{workOrder}}</h1>
+    {% endif %}
 
     <!-- End Example Code -->
+    <script src="{% static 'workOrderReports/autocomplete.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
