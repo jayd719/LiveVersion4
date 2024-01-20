@@ -17,8 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from homepage.views import home
-from Logins.views import signUpPage, signIn
+from Logins.views import signUpPage
 from workOrderReports.views import workOrderReport
+from django.contrib.auth.views import LoginView, LogoutView
 # from django.views.generic.base import RedirectView
 # RedirectView.as_view(pattern_name='signIn', permanent=True)
 
@@ -26,8 +27,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home,name='home-main'),
     path('sign-up/',signUpPage,name='signUpPage'),
-    path('sign-in/', signIn, name='signIn'),
-    path('workorder', workOrderReport, name='workOrderReport'),
+    path('sign-in/',LoginView.as_view(template_name="login/signIn.html",redirect_authenticated_user=True),name='signIn'),
+    path('live/', workOrderReport, name='workOrderReport'),
+    path('logout/',LogoutView.as_view(template_name="login/logout.html"),name='logout')
     
     # path('w/', homepage2,name='home-main2'),
 ]

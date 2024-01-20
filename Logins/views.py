@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import CBBLiveUserReg
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
 
 def signUpPage(requests):
     context = {'form':CBBLiveUserReg(),'title':'Create Account'}
@@ -20,5 +21,13 @@ def signUpPage(requests):
     return render(requests,'login/registar.html',context)
 
 
-def signIn(requests):
-    return render(requests,'login/signIn.html')
+# def signIn(requests):
+#     if requests.method=="POST":
+#         username = requests.POST["Username"]
+#         password = requests.POST["password"]
+#         user = authenticate(requests, username=username, password=password)
+#         if user is not None:
+#             login(requests, user)
+#             return redirect('home-main')
+            
+#     return render(requests,'login/signIn.html')

@@ -131,5 +131,5 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = ''
+LOGIN_REDIRECT_URL = 'home-main'
 LOGIN_URL='signIn'
