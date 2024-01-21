@@ -5,7 +5,11 @@
 <div class="container-fluid image-container">
 </div>
 
+
 <div class="card" id="card">
+  {% if message %}
+    <div class="container alert alert-danger" role="alert">{{message}}</div>
+{% endif %} 
   <legend class="border-bottom mb-4">Create Account</legend>
   <form method="POST">
     {% csrf_token %}

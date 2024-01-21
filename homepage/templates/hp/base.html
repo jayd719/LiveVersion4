@@ -104,17 +104,36 @@
       {% endif%}
       <!-- <div style="display: flex; align-items: center;"> <img src="modules/hp/profile-user.png" alt="" style="width: 30px;"><span class="ml-1">USERNAME</span></div> -->
     </nav>
-    
-    {% if message %}
-    <div class="container alert alert-danger" role="alert">{{message}}</div>
-    {% endif %} 
-    {% block contentlogout %} 
-    {% endblock %} 
 
+    {% if messages %} {% for message in messages%}
+    <div
+      class="toast-container position-fixed bottom-10 end-0 p-3 tc"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+      id="toast"
+    >
+      <div class="toast-header">
+        <img src="{% static 'hp/lgo.ico' %}" style="width: 20px;" class="rounded me-2" alt="..." />
+        <strong class="me-auto">Live</strong>
+        <small>{{ message.time}}</small>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+          id="toastclose"
+        ></button>
+      </div>
+      <div class="toast-body">
+        <div class="alert alert-{{ message.tags }}">{{message}}</div>
+      </div>
+    </div>
 
+    {% endfor%} {% endif%} {% block contentlogout %} {% endblock %} 
     {% if user.is_authenticated %}
     <div class="continer main">
-      <a href="/live/?search-for-work-order=18716-01"  method="get">df</a>
+      <a href="/live/?search-for-work-order=18716-01" method="get">df</a>
       <!-- <h1 class="displ">
         Live <br />
         V4
@@ -155,7 +174,8 @@
       </div>
       <div class="offcanvas-body">
         <h1>
-          <small style="font-size: 14px;">Logged In User <br /></small>{{user.username}}
+          <small style="font-size: 14px">Logged In User <br /></small
+          >{{user.username}}
         </h1>
 
         <button class="btn btn-outline-primary" type="submit">Home</button
@@ -174,10 +194,7 @@
       </div>
     </div>
 
-    {% else %} 
-      {% block login %} 
-      {% endblock %} 
-    {% endif%}
+    {% else %} {% block login %} {% endblock %} {% endif%}
     <footer class="d-flex justify-content-center footer">
       <a href="http://jashandeep.co.uk"
         >© 2024. All rights reserved jashandeep.co.uk</a
@@ -185,6 +202,15 @@
     </footer>
     <!-- form container -->
     <script src="{% static 'workOrderReports/autocomplete.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const toastTrigger = document.getElementById("toastclose");
+      const toastLiveExample = document.getElementById("toast");
+
+      toastTrigger.addEventListener("click",()=>{
+        document.body.removeChild(toastLiveExample);
+      })
+    </script>
   </body>
 </html>
 <!--  -->

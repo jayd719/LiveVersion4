@@ -8,17 +8,14 @@ def signUpPage(requests):
     if requests.method=="POST":
             form = CBBLiveUserReg(requests.POST)
             if form.is_valid():
-                try:
-                    form.save()
-                except:
-                    messages.info(requests,'User With Similar Username Or Email ID Already Exists, Try Again With Different Credentials')
+                form.save()
                 username=form.cleaned_data.get('username')
                 messages.success(requests,f'Account Created For {username}!')
                 return redirect('home-main')
-            else:
-                messages.info(requests,'Provided Information Did Meet The Required Enctyption Standard, Try Again')
-               
-    return render(requests,'login/registar.html',context)
+                
+    else:
+        form = CBBLiveUserReg()
+    return render(requests,'login/registar.html',{'form':form,'title':'Create Account'})
 
 
 # def signIn(requests):

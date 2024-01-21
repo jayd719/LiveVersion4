@@ -76,3 +76,11 @@ footer p {
   width: 100%;
   margin: 1%;
 }
+
+.tc{
+  z-index: 300;
+  border-radius: 20px;
+  margin-right: 20px;
+  position: absolute;
+  padding: 0%;
+}

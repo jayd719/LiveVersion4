@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .getData import isWorkOrderValid, getWorkOrderDetails
 from LiveVersion4.functions import writeStatus
+from django.contrib import messages
 
 @login_required
 def workOrderReport(requests):
@@ -16,7 +17,8 @@ def workOrderReport(requests):
             return render(requests, 'workOrderReports/reportdata.html', context=data)
         
         else:
-            data ={'message':f'{workOrder} is Not a Valid Work Order Number',}
+            data ={'message':'null'}
+            messages.warning(requests,f'{workOrder} Is Not A Valid Number!')
 
     writeStatus("0:Job Detial: Invalid WO")    
     return render(requests, 'workOrderReports/report.html', context=data)
