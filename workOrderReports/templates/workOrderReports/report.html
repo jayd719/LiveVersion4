@@ -1,49 +1,46 @@
-{% extends 'hp/base.html' %} 
-{% load static %} 
-{% block content %}
-
+{% extends 'hp/base.html' %} {% load static %} {% block content %} 
 {% if workOrder %}
-<div class="container">
-  <h2 class="display-5">{{workOrder.jobNumber}}</h2>
-  <div class="container">
-    <table class="table" style="text-align: center;">
-      <thead>
-        <th>Job Number</th>
-        <th>Customer</th>
-        <th>QTY</th>
-        <th>Due Date</th>
-        <th>Due In</th>
-        <th>TA</th>
-        <th>Status</th>
-        <th>Unit</th>
-      </thead>
+<!-- <h2 class="display-5">{{workOrder.jobNumber}}</h2> -->
 
-      <tbody>
-        <tr>
-          <td id="jobNumber">
-            {{workOrder.jobNumber}}
-            <div id="Details">
-              <pre>{{workOrder.des}}</pre>
-            </div>
-          </td>
-          <td>{{workOrder.customer}}</td>
-          <td>{{workOrder.qty}}</td>
-          <td>{{workOrder.dueDate}}</td>
-          <td>NA</td>
-          <td>{{workOrder.TA}}</td>
-          <td>{{workOrder.status}}</td>
-          <td>{{workOrder.unit}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<table
+  class="table"
+  style="text-align: center; margin-top: 0px; position: fixed"
+>
+<thead class="table-dark">
+    <th>Job Number</th>
+    <th>Customer</th>
+    <th>QTY</th>
+    <th>Due Date</th>
+    <th>Due In</th>
+    <th>TA</th>
+    <th>Status</th>
+    <th>Unit</th>
+  </thead>
 
-  <h2 class="display-1" style="height: 100vh;">{{workOrder.jobNumber}}</h2>
+  <tbody>
+    <tr>
+      <td id="jobNumber">
+        {{workOrder.jobNumber}}
+        <div id="Details">
+          <pre>{{workOrder.des}}</pre>
+        </div>
+      </td>
+      <td>{{workOrder.customer}}</td>
+      <td>{{workOrder.qty}}</td>
+      <td>{{workOrder.dueDate}}</td>
+      <td>NA</td>
+      <td>{{workOrder.TA}}</td>
+      <td>{{workOrder.status}}</td>
+      <td>{{workOrder.unit}}</td>
+    </tr>
+  </tbody>
+</table>
 
-  <h2 class="display-1" style="height: 100vh;">{{workOrder.jobNumber}}</h2>
+<h2 class="display-1" style="height: 100vh">{{workOrder.jobNumber}}</h2>
 
-  <h2 class="display-1" style="height: 100vh;">{{workOrder.jobNumber}}</h2>
-</div>
+<h2 class="display-1" style="height: 100vh">{{workOrder.jobNumber}}</h2>
+
+<h2 class="display-1" style="height: 100vh">{{workOrder.jobNumber}}</h2>
 
 <script>
   let details = document.getElementById("Details");
@@ -63,5 +60,4 @@
   });
 </script>
 
-{% endif %}
-{% endblock%}
+{% endif %} {% endblock%}
