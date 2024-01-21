@@ -28,3 +28,7 @@
   transition: 0.4s;
   text-align: left;
 }
+
+#jobNumber:hover{
+  cursor:pointer;
+}

@@ -97,7 +97,7 @@ input {
   } */
 
 .card {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat";
   margin-left: auto;
   margin-right: auto;
   border-radius: 15px;

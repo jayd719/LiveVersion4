@@ -104,18 +104,17 @@
       {% endif%}
       <!-- <div style="display: flex; align-items: center;"> <img src="modules/hp/profile-user.png" alt="" style="width: 30px;"><span class="ml-1">USERNAME</span></div> -->
     </nav>
-
+    
     {% if message %}
     <div class="container alert alert-danger" role="alert">{{message}}</div>
     {% endif %} 
     {% block contentlogout %} 
-    {% endblock %}
+    {% endblock %} 
 
 
     {% if user.is_authenticated %}
-   
-
     <div class="continer main">
+      <a href="/live/?search-for-work-order=18716-01"  method="get">df</a>
       <!-- <h1 class="displ">
         Live <br />
         V4
@@ -147,7 +146,7 @@
       >
         <button
           type="button"
-          class="btn btn-outline-primary"
+          class="btn btn-outline-secondary"
           data-bs-dismiss="offcanvas"
           aria-label="Close"
         >
@@ -155,9 +154,9 @@
         </button>
       </div>
       <div class="offcanvas-body">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">
-          <h1>{{user.username}}</h1>
-        </h5>
+        <h1>
+          <small style="font-size: 14px;">Logged In User <br /></small>{{user.username}}
+        </h1>
 
         <button class="btn btn-outline-primary" type="submit">Home</button
         ><br />
@@ -175,9 +174,14 @@
       </div>
     </div>
 
-    {% else%} {% block login %} {% endblock %} {% endif%}
-    <footer class="d-flex justify-content-center">
-      <p>© 2024. All rights reserved pbx65.com<br /></p>
+    {% else %} 
+      {% block login %} 
+      {% endblock %} 
+    {% endif%}
+    <footer class="d-flex justify-content-center footer">
+      <a href="http://jashandeep.co.uk"
+        >© 2024. All rights reserved jashandeep.co.uk</a
+      >
     </footer>
     <!-- form container -->
     <script src="{% static 'workOrderReports/autocomplete.js' %}"></script>
