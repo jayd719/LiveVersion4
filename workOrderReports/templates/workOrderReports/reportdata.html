@@ -1,0 +1,58 @@
+{% extends "workOrderReports/report.html" %} {% block workOrderReport %}
+
+<div class="container">
+  <h1>{{workOrder.jobNumber}}</h1>
+  <div class="container">
+    <table class="table">
+      <thead>
+        <th>Job Number</th>
+        <th>Customer</th>
+        <th>QTY</th>
+        <th>Due Date</th>
+        <th>Due In</th>
+        <th>TA</th>
+        <th>Status</th>
+        <th>Unit</th>
+       
+      </thead>
+
+      <tbody>
+        <tr>
+          <td id="jobNumber">
+            {{workOrder.jobNumber}}
+            <div id="Details">
+              <pre>{{workOrder.des}}</pre>
+            </div>
+          </td>
+          <td>{{workOrder.customer}}</td>
+          <td>{{workOrder.qty}}</td>
+          <td>{{workOrder.dueDate}}</td>
+          <td>NA</td>
+          <td>{{workOrder.TA}}</td>
+          <td>{{workOrder.status}}</td>
+          <td>{{workOrder.unit}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  let details = document.getElementById("Details");
+  let jobNumber = document.getElementById("jobNumber");
+
+  details.style.visibility = "hidden";
+  details.style.display = "none";
+
+  jobNumber.addEventListener("mouseenter", () => {
+    details.style.visibility = "visible";
+    details.style.display = "block";
+  });
+
+  jobNumber.addEventListener("mouseleave", () => {
+    details.style.visibility = "hidden";
+    details.style.display = "none";
+  });
+</script>
+
+{% endblock%}

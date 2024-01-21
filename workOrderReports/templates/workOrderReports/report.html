@@ -4,6 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -70,12 +71,14 @@
 
     {% if message %}
     <div class="container alert alert-danger" role="alert">{{message}}</div>
-    {% endif %} {% if workOrder %}
-    <h1>{{workOrder}}</h1>
-    {% endif %}
+    {% endif %} 
+    {% block workOrderReport%}
+
+    {% endblock%}
+    
 
     <!-- End Example Code -->
     <script src="{% static 'workOrderReports/autocomplete.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
   </body>
 </html>

@@ -7,7 +7,6 @@ body {
   background-color: #e6e6e6;
 }
 
-
 .result-box {
   position: absolute;
   background-color: aliceblue;
@@ -27,4 +26,15 @@ body {
 .result-box ul li:hover {
   background-color: rgba(64, 67, 67, 0.783);
   color: white;
+}
+
+#Details {
+  position: absolute;
+  z-index: 100;
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+  border-radius: 10px;
+  background: #ffff45;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  transition: .4s;
 }
