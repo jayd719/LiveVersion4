@@ -2,11 +2,11 @@
   padding: 0;
   margin: 0;
 }
+
 body {
   /* background: radial-gradient(circle, yellow, orange); */
   background-color: #e0e0e0;
   font-family: "Montserrat", sans-serif;
-  
 }
 
 nav {
