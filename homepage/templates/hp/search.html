@@ -1,0 +1,21 @@
+<form
+  action="{% url 'workOrderReport' %}"
+  method="get"
+  class="d-flex"
+  role="search"
+>
+  <div class="search-box">
+    <div class="src-row">
+      <input
+        class="form-control me-2"
+        type="text"
+        id="sreachbox"
+        placeholder="Search For A Work Order"
+        autocomplete="off"
+        name="search-for-work-order"
+      />
+    </div>
+    <div class="result-box"></div>
+  </div>
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</form>

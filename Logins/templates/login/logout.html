@@ -1,6 +1,18 @@
-<div class="content">
-    <h1>you have been logged out</h1>
-    <div class="border-top tp-3">
-        <small class="text-muted">Log in again <a class="ml-2" href="{% url 'signIn' %}">Sign In</a></small>
-    </div>
+{% extends 'hp/base.html' %} 
+
+{% block contentlogout %}
+<style>
+    nav{
+        display: none;
+        visibility: hidden;
+    }
+</style>
+<div class="content" style="text-align: center; margin-top: 15%;">
+  <h1>you have been logged out</h1>
+  <div class="border-top tp-3">
+    <small class="text-muted"
+      >Log in again <a class="ml-2" href="{% url 'signIn' %}">Sign In</a></small
+    >
+  </div>
 </div>
+{% endblock%}

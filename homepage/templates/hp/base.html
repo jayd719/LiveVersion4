@@ -4,46 +4,183 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{title}}</title>
+    <!-- <title>{{title}}</title> -->
+    {% if title%}
+    <title>Job Details: {{title}}</title>
+    {% elif message%}
+    <title>Invalid Work Order</title>
+    {% else %}
+    <title>Live</title>
+    {% endif%}
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'hp/main.css' %}" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
+      href="{% static 'workOrderReports/workOrder.css' %}"
     />
-    <script src="{% static 'blog/app.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'hp/main.css' %}" />
+
+    <link rel="icon" type="image/x-icon" href="{% static 'hp/lgo.ico' %}" />
+
+    <!-- <link rel="stylesheet" href="base.css" /> -->
   </head>
   <body>
     <!-- nav bar -->
-    <nav class="navbar fixed-top bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand">Navbar</a>
-        <form class="d-flex" role="search">
-          <a class="button" href="{% url 'home-main' %}">Sign In</a>
+    <nav class="d-flex justify-content-between navbar">
+      <div class="d-flex justify-content-between" style="align-items: center">
+        <a
+          data-bs-toggle="offcanvas"
+          href="#offcanvasExample"
+          role="button"
+          aria-controls="offcanvasExample"
+        >
+          <img
+            src="{% static 'hp/logo.jpg' %}"
+            alt="Logo"
+            class="d-inline-block align-text-top"
+        /></a>
+        <!-- <span style="font-size: 20px">LIVE</span> -->
+      </div>
+      <div class="d-flex justify-content-center">
+        <!-- <ul
+          class="nav justify-content-center"
+          style="visibility: visible; justify-content: end"
+        >
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Active</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>
+        </ul> -->
+      </div>
+
+      {% if user.is_authenticated %}
+      <div
+        class="d-flex justify-content-center search-container"
+        style="align-items: center"
+      >
+        <form
+          action="{% url 'workOrderReport' %}"
+          method="get"
+          class="d-flex"
+          role="search"
+        >
+          <div class="search-box">
+            <div class="src-row">
+              <input
+                class="form-control me-2"
+                type="text"
+                id="sreachbox"
+                placeholder="Search For A Work Order"
+                autocomplete="off"
+                name="search-for-work-order"
+              />
+            </div>
+            <div class="result-box"></div>
+          </div>
+          <button class="btn btn-outline-primary" type="submit">Search</button>
         </form>
       </div>
+      {% endif%}
+      <!-- <div style="display: flex; align-items: center;"> <img src="modules/hp/profile-user.png" alt="" style="width: 30px;"><span class="ml-1">USERNAME</span></div> -->
     </nav>
 
-    <div class="container-fluid" style="margin-top: 75px">
-      <!-- messages -->
-      <div class="container">
-        {% if messages %} {% for message in messages%}
-        <div class="alert alert-{{ message.tags }}" id="message">
-          {{message}}
-        </div>
-        <script type="text/javascript">
-          InvalidForm();
-        </script>
-        {% endfor%} {% endif%}
-      </div>
-      
+    {% if message %}
+    <div class="container alert alert-danger" role="alert">{{message}}</div>
+    {% endif %} 
+    {% block contentlogout %} 
+    {% endblock %}
 
-      <!-- form container -->
+
+    {% if user.is_authenticated %}
+   
+
+    <div class="continer main">
+      <!-- <h1 class="displ">
+        Live <br />
+        V4
+      </h1>
+      <div class="container d-flex justify-content-center" style="height: 55vh">
+        <a href="https://moderntemplate.site" target="_blank" rel="noopener"
+          >WebSite</a
+        >
+        <a href="https://moderntemplate.site" target="_blank" rel="noopener"
+          >WebSite1</a
+        >
+      </div>
+
+      <h1>s</h1>
+    </div> -->
+
       {% block content %} {% endblock %}
     </div>
+
+    <div
+      class="offcanvas offcanvas-start"
+      tabindex="-1"
+      id="offcanvasExample"
+      aria-labelledby="offcanvasExampleLabel"
+    >
+      <div
+        class="offcanvas-header"
+        style="display: flex; justify-content: end; margin: 0"
+      >
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        >
+          X
+        </button>
+      </div>
+      <div class="offcanvas-body">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+          <h1>{{user.username}}</h1>
+        </h5>
+
+        <button class="btn btn-outline-primary" type="submit">Home</button
+        ><br />
+        <button class="btn btn-outline-primary" type="submit">
+          Live Tracker
+        </button>
+        <br />
+        <button class="btn btn-outline-primary" type="submit">
+          Schedule Board
+        </button>
+        <form method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button class="btn btn-outline-danger" type="submit">logout</button>
+        </form>
+      </div>
+    </div>
+
+    {% else%} {% block login %} {% endblock %} {% endif%}
+    <footer class="d-flex justify-content-center">
+      <p>© 2024. All rights reserved pbx65.com<br /></p>
+    </footer>
+    <!-- form container -->
+    <script src="{% static 'workOrderReports/autocomplete.js' %}"></script>
   </body>
 </html>
+<!--  -->

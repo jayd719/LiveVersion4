@@ -222,9 +222,9 @@ inputbox.onkeyup=function(){
 
 function display(result){
     const content = result.map((list)=>{
-       return "<div onclick=selectInput(this)>"+list+"</div>";
+       return "<li onclick=selectInput(this)>"+list+"</li>";
     })
-    resultbox.innerHTML="<div>"+content+"</div>";
+    resultbox.innerHTML="<ul>"+content+"<ul>";
 }
 
 
