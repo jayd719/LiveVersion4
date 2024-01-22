@@ -682,3 +682,88 @@ jj,2024-01-21 22:49:32.564197
 0:Job Detial: Invalid WO,2024-01-21 22:50:11.312812
 0:Job Detial: Invalid WO,2024-01-21 22:50:14.770293
 0:Job Detial: Invalid WO,2024-01-21 22:50:23.727389
+jj,2024-01-21 22:51:22.099578
+0:Job Detial: Invalid WO,2024-01-21 22:51:40.142897
+0:Job Detial: Invalid WO,2024-01-21 22:52:01.177812
+jj,2024-01-21 22:53:35.103816
+0:Job Detial: Invalid WO,2024-01-21 22:53:37.433834
+1:Job Detial: 18914-03:printed,2024-01-21 22:53:43.457131
+1:Job Detial: 19301-01:printed,2024-01-21 22:54:30.315935
+1:Job Detial: 19090-01:printed,2024-01-21 22:55:57.582442
+1:Job Detial: 18821-08:printed,2024-01-21 22:56:12.290390
+1:Job Detial: 19042-01:printed,2024-01-21 22:57:00.067549
+1:Job Detial: 18716-01:printed,2024-01-21 22:58:51.458731
+1:Job Detial: 19130-01:printed,2024-01-21 22:59:08.179760
+0:Job Detial: Invalid WO,2024-01-21 23:06:33.844969
+1:Job Detial: 19036-05:printed,2024-01-21 23:06:39.323013
+1:Job Detial: 19129-01:printed,2024-01-21 23:08:47.141432
+1:Job Detial: 19057-01:printed,2024-01-21 23:10:30.659893
+1:Job Detial: 19020-01:printed,2024-01-21 23:10:43.330473
+jj,2024-01-22 01:39:51.549628
+0:Job Detial: Invalid WO,2024-01-22 01:39:56.225522
+0:Job Detial: Invalid WO,2024-01-22 01:41:43.131343
+0:Job Detial: Invalid WO,2024-01-22 01:41:50.651489
+0:Job Detial: Invalid WO,2024-01-22 01:41:59.142047
+0:Job Detial: Invalid WO,2024-01-22 01:43:04.059961
+0:Job Detial: Invalid WO,2024-01-22 01:43:05.152529
+0:Job Detial: Invalid WO,2024-01-22 01:43:05.608930
+0:Job Detial: Invalid WO,2024-01-22 01:43:05.772187
+0:Job Detial: Invalid WO,2024-01-22 01:43:08.643710
+0:Job Detial: Invalid WO,2024-01-22 01:43:27.598850
+0:Job Detial: Invalid WO,2024-01-22 01:43:28.459221
+0:Job Detial: Invalid WO,2024-01-22 01:43:28.896428
+0:Job Detial: Invalid WO,2024-01-22 01:43:31.701644
+0:Job Detial: Invalid WO,2024-01-22 01:43:51.275849
+0:Job Detial: Invalid WO,2024-01-22 01:43:52.078226
+0:Job Detial: Invalid WO,2024-01-22 01:43:52.266587
+0:Job Detial: Invalid WO,2024-01-22 01:43:52.424403
+0:Job Detial: Invalid WO,2024-01-22 01:43:52.584687
+0:Job Detial: Invalid WO,2024-01-22 01:44:09.250196
+0:Job Detial: Invalid WO,2024-01-22 01:44:10.816318
+0:Job Detial: Invalid WO,2024-01-22 01:44:18.146469
+0:Job Detial: Invalid WO,2024-01-22 01:44:33.981426
+0:Job Detial: Invalid WO,2024-01-22 01:44:35.514983
+0:Job Detial: Invalid WO,2024-01-22 01:44:48.961654
+0:Job Detial: Invalid WO,2024-01-22 01:44:49.862609
+0:Job Detial: Invalid WO,2024-01-22 01:44:54.359044
+0:Job Detial: Invalid WO,2024-01-22 01:44:59.388583
+0:Job Detial: Invalid WO,2024-01-22 01:45:04.394434
+0:Job Detial: Invalid WO,2024-01-22 01:45:08.700567
+0:Job Detial: Invalid WO,2024-01-22 01:45:16.009088
+0:Job Detial: Invalid WO,2024-01-22 01:45:17.081147
+0:Job Detial: Invalid WO,2024-01-22 01:45:17.304106
+0:Job Detial: Invalid WO,2024-01-22 01:45:17.486388
+0:Job Detial: Invalid WO,2024-01-22 01:45:17.640931
+0:Job Detial: Invalid WO,2024-01-22 01:45:17.777208
+0:Job Detial: Invalid WO,2024-01-22 01:45:18.068309
+0:Job Detial: Invalid WO,2024-01-22 01:45:18.216245
+0:Job Detial: Invalid WO,2024-01-22 01:45:18.414298
+0:Job Detial: Invalid WO,2024-01-22 01:45:18.548752
+0:Job Detial: Invalid WO,2024-01-22 01:45:18.693465
+0:Job Detial: Invalid WO,2024-01-22 01:45:18.848280
+0:Job Detial: Invalid WO,2024-01-22 01:45:18.988448
+0:Job Detial: Invalid WO,2024-01-22 01:45:23.319354
+0:Job Detial: Invalid WO,2024-01-22 01:45:26.641882
+0:Job Detial: Invalid WO,2024-01-22 01:45:30.413415
+0:Job Detial: Invalid WO,2024-01-22 01:45:38.802482
+0:Job Detial: Invalid WO,2024-01-22 01:45:43.350392
+0:Job Detial: Invalid WO,2024-01-22 01:45:47.345037
+0:Job Detial: Invalid WO,2024-01-22 01:45:51.389917
+0:Job Detial: Invalid WO,2024-01-22 01:45:55.052367
+0:Job Detial: Invalid WO,2024-01-22 01:45:59.226903
+0:Job Detial: Invalid WO,2024-01-22 01:46:03.842819
+0:Job Detial: Invalid WO,2024-01-22 01:46:08.422524
+0:Job Detial: Invalid WO,2024-01-22 01:46:22.339781
+0:Job Detial: Invalid WO,2024-01-22 01:46:25.084858
+0:Job Detial: Invalid WO,2024-01-22 01:46:28.590708
+0:Job Detial: Invalid WO,2024-01-22 01:46:33.924747
+0:Job Detial: Invalid WO,2024-01-22 01:46:39.950681
+0:Job Detial: Invalid WO,2024-01-22 01:46:43.743186
+0:Job Detial: Invalid WO,2024-01-22 01:46:52.771828
+0:Job Detial: Invalid WO,2024-01-22 01:46:56.566732
+0:Job Detial: Invalid WO,2024-01-22 01:46:58.438284
+0:Job Detial: Invalid WO,2024-01-22 01:46:59.383722
+0:Job Detial: Invalid WO,2024-01-22 01:47:00.197601
+0:Job Detial: Invalid WO,2024-01-22 01:47:00.993604
+0:Job Detial: Invalid WO,2024-01-22 01:47:06.011444
+0:Job Detial: Invalid WO,2024-01-22 01:47:10.023447
