@@ -3,14 +3,19 @@ from .forms import CBBLiveUserReg
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 
+
+ERROR="Please note that as we're in the development stage, accounts are valid for 15 days. If your account expires, feel free to create another one. We appreciate your understanding and look forward to your continued involvement in our project!"
+
 def signUpPage(requests):
     context = {'form':CBBLiveUserReg(),'title':'Create Account'}
+    messages.info(requests,ERROR)
     if requests.method=="POST":
             form = CBBLiveUserReg(requests.POST)
             if form.is_valid():
                 form.save()
                 username=form.cleaned_data.get('username')
                 messages.success(requests,f'Account Created For {username}!')
+                
                 return redirect('home-main')
                 
     else:

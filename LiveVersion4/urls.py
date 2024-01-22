@@ -19,13 +19,14 @@ from django.urls import path
 from homepage.views import home
 from Logins.views import signUpPage
 from workOrderReports.views import workOrderReport
+from worderTracker.views import monthly_forcast
 from django.contrib.auth.views import LoginView, LogoutView
 # from django.views.generic.base import RedirectView
 # RedirectView.as_view(pattern_name='signIn', permanent=True)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',workOrderReport,name='home-main'),
+    path('',monthly_forcast,name='home-main'),
     path('sign-up/',signUpPage,name='signUpPage'),
     path('sign-in/',LoginView.as_view(template_name="login/signIn.html",redirect_authenticated_user=True),name='signIn'),
     path('live/', workOrderReport, name='workOrderReport'),

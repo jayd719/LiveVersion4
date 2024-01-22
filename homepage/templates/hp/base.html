@@ -42,7 +42,10 @@
     <nav class="navbar d-flex justify-content-between navbar">
       <div class="d-flex justify-content-between" style="align-items: center">
         <a
-          data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop" style="cursor: pointer;"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#staticBackdrop"
+          aria-controls="staticBackdrop"
+          style="cursor: pointer"
         >
           <img
             src="{% static 'hp/logo.jpg' %}"
@@ -107,44 +110,27 @@
       <div class="toast-header">
         <img
           src="{% static 'hp/lgo.png' %}"
-          style="width: 30px;filter: brightness(0);"
+          style="width: 30px; filter: brightness(0)"
           class="rounded me-2"
           alt="..."
         />
         <strong class="message-heading">Live Alerts</strong>
         <small>{{ message.time}}</small>
-        <button type="button" class="exit-button" onclick="mclose();">X</button>
+        <p type="button" class="exit-button" onclick="mclose();">X</p>
       </div>
       <div class="toast-body">
         <div class="message-para">{{message}}</div>
       </div>
     </div>
-    {% endfor%} {% endif%} {% block contentlogout %} {% endblock %} 
+    {% endfor%} {% endif%} 
     {% if user.is_authenticated %}
-    <div class="continer-fluid main">
-      <!-- <h1 class="displ">
-        Live <br />
-        V4
-      </h1>
-      <div class="container d-flex justify-content-center" style="height: 55vh">
-        <a href="https://moderntemplate.site" target="_blank" rel="noopener"
-          >WebSite</a
-        >
-        <a href="https://moderntemplate.site" target="_blank" rel="noopener"
-          >WebSite1</a
-        >
-      </div>
-
-      <h1>s</h1>
-    </div> -->
-
-      {% block content %} {% endblock %}
-    </div>
-
     <div
       class="offcanvas offcanvas-start"
       style="width: 175px"
-      data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel"
+      data-bs-backdrop="static"
+      tabindex="-1"
+      id="staticBackdrop"
+      aria-labelledby="staticBackdropLabel"
     >
       <div
         class="offcanvas-header"
@@ -166,22 +152,48 @@
         </h1>
 
         <div>
-        <button class="btn btn-outline-dark" type="submit">Home</button
-        ><br />
-        <button class="btn btn-outline-dark" type="submit">
-          Live Tracker
-        </button>
-        <br />
-        <button class="btn btn-outline-dark" type="submit">Schedules</button>
-      </div>
-        <form method="post" action="{% url 'logout' %}">
-          {% csrf_token %}
-          <button class="btn btn-outline-danger" type="submit">logout</button>
-        </form>
+          <button class="btn btn-outline-dark" type="submit">Upate</button>
+          <button class="btn btn-outline-dark" type="submit">Home</button><br />
+          <button class="btn btn-outline-dark" type="submit">
+            Live Tracker
+          </button>
+          <br />
+          <button class="btn btn-outline-dark" type="submit">Schedules</button>
+          <button class="btn btn-outline-dark" type="submit">FUNCTIONK</button>
+          <button class="btn btn-outline-dark" type="submit">FUNCTION!</button>
+        </div>
+        <div>
+          <button class="btn btn-outline-warning" type="submit">About Live</button>
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button class="btn btn-outline-danger" type="submit">logout</button>
+          </form>
+        </div>
       </div>
     </div>
 
     {% else %} {% block login %} {% endblock %} {% endif%}
+
+    <div class="continer-fluid main">
+      <!-- <h1 class="displ">
+        Live <br />
+        V4
+      </h1>
+      <div class="container d-flex justify-content-center" style="height: 55vh">
+        <a href="https://moderntemplate.site" target="_blank" rel="noopener"
+          >WebSite</a
+        >
+        <a href="https://moderntemplate.site" target="_blank" rel="noopener"
+          >WebSite1</a
+        >
+      </div>
+
+      <h1>s</h1>
+    </div> -->
+    {% block contentlogout %} {% endblock %} 
+      {% block content %} {% endblock %}
+      {% block contentt %} {% endblock %}
+    </div>
     <footer class="d-flex justify-content-center footer">
       <a href="http://jashandeep.co.uk"
         >© 2024. All rights reserved jashandeep.co.uk</a
