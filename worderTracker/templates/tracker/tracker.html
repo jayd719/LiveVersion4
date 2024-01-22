@@ -1,22 +1,21 @@
 {% extends 'hp/base.html' %} {% load static %} {%block content %}
 <link rel="stylesheet" href="{% static 'trackercss/tracker.css' %}" />
+
 <table class="table">
-    <thead class="table-dark">
-        <th>Open Work Orders</th>
-        <th>In Work Currently</th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>10</td>
-            <td>3</td>
-        </tr>
-    </tbody>
+  <thead class="table-dark">
+    <th>Open Work Orders</th>
+    <th>In Work Currently</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>10</td>
+      <td>3</td>
+    </tr>
+  </tbody>
 </table>
-<section class="container-fluid" id="chart" style="height:250px">
+<section class="container" id="chart" style="height: 250px">
   <canvas></canvas>
 </section>
-
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.1.1/Chart.min.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -89,6 +88,5 @@
     };
   })(jQuery);
 </script>
-
 
 {% endblock%}
