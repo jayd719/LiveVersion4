@@ -33,9 +33,25 @@
   cursor:pointer;
 }
 
-section {
+section{
   margin-top: 100px;
   border-radius: 10px;
   background: #ffffff;
   box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+}
+
+
+pre{
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.critical{
+  color:#ffbf36;
+}
+
+
+.late{
+  color: #ea868f;
+  background-color: #ea868f;
 }

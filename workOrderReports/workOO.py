@@ -1,11 +1,8 @@
 
 from datetime import datetime
-
-
 class WorkOrder:
     
     class Opertaion:
-
         def __init__(self, dataSetOne, tickets):
             self.workCenter = dataSetOne['workCenter']
             if self.workCenter is None:
@@ -14,22 +11,28 @@ class WorkOrder:
             self.status = dataSetOne['status']
             self.stepNumber = dataSetOne['stepNumber']
             self.estimatedHours = dataSetOne['totalEstimatedHours']
-            self.actualHours = dataSetOne['totalActualHours']
+            self.actualHours = round(float(dataSetOne['totalActualHours']),2)
             self.des = dataSetOne['description']
             self.timeTickets = tickets
 
-            self.displayTicket = ''
+            self.displayTicket1 = ''
+            self.displayTicket2 = ''
+            self.displayTicket3 = ''
+            self.displayTicket4 = ''
 
     class TimeTicket:
+        def __convertDate(self, x):
+            x = (x.split('T')[0]).split('-')
+            return datetime(int(x[0]), int(x[1]), int(x[2])).strftime("%d-%B-%Y")
 
         def __init__(self, f):
             self.empCode = f['employeeCode']
             self.empName = f['employeeName']
             self.cycleTime = f['cycleTime']
-            self.date = f['ticketDate']
+            self.date = self.__convertDate(f['ticketDate'])
 
         def htmlTag(self):
-            return f'<pre>{self.empCode}    {self.empName} {self.cycleTime}{self.date}<pre>'
+            return f'{self.empCode:4d}  {self.empName:25s}  {round(self.cycleTime,2):5f}    {self.date}\n'
 
     def __init__(self, lineHeader, woHeader, router, rawTickets):
         
@@ -49,7 +52,6 @@ class WorkOrder:
         self.totalEstimatedHours = lineHeader['totalEstimatedHours']
         self.dueDate = self.__convertDate(lineHeader['dueDate'])
         self.qty = ''
-        
         self.router = self.createRouter(router, self.processTickets(rawTickets))
 
         self.__updateQty()
@@ -61,7 +63,7 @@ class WorkOrder:
             
     def __convertDate(self, x):
         x = (x.split('T')[0]).split('-')
-        return datetime(int(x[0]), int(x[1]), int(x[2])).strftime("%d-%B-%Y")
+        return datetime(int(x[0]), int(x[1]), int(x[2]))
 
     def createRouter(self, router, tickets):
         newRouter = []
@@ -85,21 +87,49 @@ class WorkOrder:
 
 class WorkOrderFormated(WorkOrder):
 
+    def daystat(self,days):
+        status = 'table-success'
+        if days < 7:
+            status='table-warning'
+        if days< 0:
+            status='table-danger'
+        return status
+
     def __init__(self, lineHeader, woHeader, router, rawTickets):
         super().__init__(lineHeader, woHeader, router, rawTickets)
 
         self.qoutedList = []
         self.actualList = []
         self.actualColors = []
+        self.operationList =[]
+
+        self.completedHours = 0
+
+        self.dueIn =''
+        self.daysStat =''
+        if self.status =='Open':
+            self.dueIn = (self.dueDate - datetime.today()).days
+            self.daysStat = self.daystat(self.dueIn)
 
         for operation in self.router:
             self.actualList.append(operation.actualHours)
             self.qoutedList.append(operation.estimatedHours)
-
+            self.operationList.append(operation.stepNumber)
             if operation.actualHours > operation.estimatedHours:
-                self.actualColors.append('red')
+                self.actualColors.append(f'rgba{(151,187,205,0.5)}')
             else:
-                self.actualColors.append('green')
+                self.actualColors.append(f'rgba{(255,0,0,0.5)}')
+
+
+            if operation.status == 'Finished':
+                self.completedHours +=operation.estimatedHours
             
             for ticket in operation.timeTickets:
-                operation.displayTicket += ticket.htmlTag()
+                operation.displayTicket1 += str(ticket.empCode)+'\n'
+                operation.displayTicket2 += ticket.empName+'\n'
+                operation.displayTicket3 += ticket.date+'\n'
+                operation.displayTicket4 += str(round(ticket.cycleTime,2))+'\n'
+
+
+
+
