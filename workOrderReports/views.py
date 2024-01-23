@@ -11,7 +11,7 @@ def workOrderReport(requests):
         workOrder = requests.GET.get('search-for-work-order')        
         if(isWorkOrderValid(workOrder)):
             data = {'title':workOrder,
-                    'workOrder':"33"}#getWorkOrderDetails(workOrder)}
+                    'workOrder':getWorkOrderDetails(workOrder)}
             writeStatus(f"1:Job Detial: {workOrder}:printed")  
             return render(requests, 'workOrderReports/reportdata.html', context=data)
         
