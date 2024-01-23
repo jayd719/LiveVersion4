@@ -1,6 +1,9 @@
 .image-container {
   /* background-image: url("{% static 'blog/img1.png' %}"); */
-  background-image: url("https://images.unsplash.com/photo-1593106410288-caf65eca7c9d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  /* background-image: url("https://images.unsplash.com/photo-1593106410288-caf65eca7c9d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); */
+  background-image: url('https://claroty.com/img/asset/YXNzZXRzL29pbC1hbmQtZ2FzLmpwZw==?fm=webp&fit=crop&s=1c1f5b543c619f19ef03e3212bcdeab5');
+
+  zoom: 125%;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -34,14 +37,14 @@ nav{
   position: fixed;
 }
 nav img {
-  width: 150px;
+  width: 120px;
   margin-left: 20px;
   filter: brightness(1);
 }
 label{
   margin: 2%;
 }
-button {
+/* button {
   padding: 1.3em 3em;
   font-size: 12px;
   text-transform: uppercase;
@@ -66,25 +69,23 @@ button:hover {
   box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
   color: #fff;
   transform: translateY(-7px);
-}
+} */
 /*
   button:active {
     transform: translateY(-1px);
   } */
-
+form{
+  color: #3a3a3a;
+  font-weight: 600;
+}
 input {
-  width: 100%;
-  height: 40px;
   line-height: 28px;
   padding: 0 1rem;
   padding-left: 2.5rem;
-  border: 2px solid transparent;
   border-radius: 8px;
   outline: none;
-  background-color: #f3f3f4;
-  color: #0d0c22;
+  background-color: #f3f3f442;
   transition: 0.3s ease;
-  opacity: 60%;
 }
 
 /* input:focus-within {
@@ -101,7 +102,7 @@ input {
   margin-left: auto;
   margin-right: auto;
   border-radius: 15px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(226, 224, 224, 0.753);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -109,12 +110,12 @@ input {
   margin-bottom: 4%;
   opacity: 0;
   animation: appear 1s forwards;
-  padding: 2%;
-  max-width: 450px;
+  padding: 1%;
+  max-width: 350px;
   z-index: 10;
   color: #000000;
   font-weight: 600;
-  scale: .8;
+  z-index: 80%;
 }
 
 @keyframes appear {

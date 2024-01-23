@@ -1,21 +1,21 @@
 {% extends 'hp/base.html' %} {% load static %} {% load crispy_forms_tags %} 
 {% block contentlogout%}
 
-<link rel="stylesheet" href="{% static 'blog/loginpage.css' %}">
-<div class="container-fluid image-container">
-</div>
+<link rel="stylesheet" href="{% static 'blog/loginpage.css' %}" />
+<div class="container-fluid image-container"></div>
 
-
-<div class="card" id="card">
+<div class="card" id="card" style="zoom: 85%;">
   <legend class="border-bottom mb-4">Create Account</legend>
   <form method="POST">
     {% csrf_token %}
     <fieldset class="form-group">{{form|crispy}}</fieldset>
-    <!-- <div class="form-group">
-      <button class="button type1" type="submit">
-        <span class="btn-txt">Sign Up</span>
-      </button>
-    </div> -->
+    <button
+      type="submit"
+      class="btn btn-outline-dark"
+      style="margin-top: 20px; margin-bottom: 20px; width: 100%"
+    >
+      <span class="btn-txt">Sign up</span>
+    </button>
   </form>
 
   <div class="border-top tp-3" style="text-align: right; opacity: 80%">
@@ -25,4 +25,5 @@
     >
   </div>
 </div>
+
 {% endblock %}
