@@ -14,7 +14,7 @@
           {{form|crispy}}
         </fieldset>
 
-        <!-- <div class="form-check hidden" id="remember-me">
+         <!-- <div class="form-check hidden" id="remember-me">
           <label class="form-check-label" for="defaultCheck1"
             ><input
               class="form-check-input"
@@ -23,9 +23,9 @@
               id="defaultCheck1"
             />
             Remember Me</label
-          >
-        </div> -->
-        <br />
+        > -->
+        </div> 
+<br />
         <button type="submit">
           <span class="btn-txt">Sign In</span>
         </button>
@@ -51,5 +51,36 @@
     ChangeCSS(".viv", ".hidden", true);
   });
 </script>
+
+<!-- <link rel="stylesheet" href="{% static 'blog/signInpage.css' %}" />
+<-- <link rel="stylesheet" href="{% static 'blog/loginpage.css' %}" /> -->
+<!-- <link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css"
+/><link rel="stylesheet" href="./style.css" />
+
+<div class="d-flex justify-content-center" id="container" style="z-index: 10;">
+  <form method="POST">
+    {% csrf_token %}
+    <h1>Sign in</h1>
+    <div class="social-container">
+      <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+      <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <span>or use your account</span>
+    <fieldset class="form-group">
+      {{form|crispy}}
+  
+    </fieldset>
+    <a href="#">Forgot your password?</a>
+    <button>Sign In</button>
+  </form>
+</div> -->
+<!-- <script src="{static blog/login.js}"></script> -->
 
 {% endblock%}

@@ -7,18 +7,15 @@
 
 
 <div class="card" id="card">
-  {% if message %}
-    <div class="container alert alert-danger" role="alert">{{message}}</div>
-{% endif %} 
   <legend class="border-bottom mb-4">Create Account</legend>
   <form method="POST">
     {% csrf_token %}
     <fieldset class="form-group">{{form|crispy}}</fieldset>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <button class="button type1" type="submit">
         <span class="btn-txt">Sign Up</span>
       </button>
-    </div>
+    </div> -->
   </form>
 
   <div class="border-top tp-3" style="text-align: right; opacity: 80%">

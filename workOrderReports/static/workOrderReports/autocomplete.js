@@ -232,5 +232,3 @@ function selectInput(list){
     inputbox.value= list.innerHTML;
     resultbox.innerHTML=''
 }
-
-
