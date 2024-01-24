@@ -34,7 +34,7 @@
 }
 
 section{
-  margin-top: 100px;
+  margin-top: 120px;
   border-radius: 10px;
   background: #ffffff;
   box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
@@ -53,5 +53,4 @@ pre{
 
 .late{
   color: #ea868f;
-  background-color: #ea868f;
 }

@@ -4,7 +4,7 @@
 
 <table
   class="table"
-  style="text-align: center; margin-top: 0px; position: fixed"
+  style="text-align: center; margin-top: 0px; position: fixed; z-index: 10;"
 >
   <thead class="table-dark">
     <th>Job Number</th>
@@ -28,7 +28,7 @@
       <td>{{workOrder.customer}}</td>
       <td>{{workOrder.qty}}</td>
       <td>{{workOrder.dueDate}}</td>
-      <td class="{{workOrder.daysStat}}">{{workOrder.dueIn}}</td>
+      <td><p class="{{workOrder.daysStat}}">{{workOrder.dueIn}}</p></td>
       <td>{{workOrder.TA}}</td>
       <td>{{workOrder.status}}</td>
       <td>{{workOrder.unit}}</td>
@@ -40,9 +40,9 @@
   <canvas id="myChart" height="80%"></canvas>
 </section>
 
-<div class="container" style="margin-top: 30px; font-size: 14px;">
-  <table class="table table-hover" style=" box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;">
-    <thead class="table-dark">
+<div class="container" style="margin-top: 30px; font-size: 14px; height: 60vh; overflow-y: scroll;" >
+  <table class="table table-hover">
+    <thead class="table-dark" style="position: sticky; top: 0; z-index: 9;">
       <tr>
         <th width="55">OP</th>
         <th width="150">Work Center</th>
@@ -78,7 +78,7 @@
   </table>
 </div>
 
-<h2 class="display-1" style="height: 50vh">{{workOrder.jobNumber}}</h2>
+<h2 class="display-1" style="height: 50vh"></h2>
 
 <script>
   let details = document.getElementById("Details");
@@ -99,6 +99,20 @@
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script>
+
+  let qouted = {{workOrder.qoutedList}}
+  let actual = {{workOrder.actualList}}
+
+  let colors =[]
+
+  for(let i =0; i< qouted.length; i++){
+    if (qouted[i]>actual[i]){
+      colors.push('rgba(58, 207, 61, 0.43)')
+    }else{
+      colors.push('rgba(255,0,0,0.4)')
+    }
+  }
+
   var ctx = document.getElementById("myChart").getContext("2d");
   var myChart = new Chart(ctx, {
     type: "bar",
@@ -107,13 +121,13 @@
       datasets: [
         {
           label: "Quoted",
-          data: {{workOrder.qoutedList}},
-          backgroundColor: "rgba(255,0,0,0.4)",
+          data: qouted,
+          backgroundColor: "rgba(20, 20, 20, 0.51)",
         },
         {
           label: "Actual",
-          data: {{workOrder.actualList}},
-          backgroundColor: "rgba(151,158,205,.5)",
+          data: actual,
+          backgroundColor: colors,
         },
       ],
     },

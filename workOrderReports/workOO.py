@@ -10,7 +10,7 @@ class WorkOrder:
 
             self.status = dataSetOne['status']
             self.stepNumber = dataSetOne['stepNumber']
-            self.estimatedHours = dataSetOne['totalEstimatedHours']
+            self.estimatedHours = round(float(dataSetOne['totalEstimatedHours']),2)
             self.actualHours = round(float(dataSetOne['totalActualHours']),2)
             self.des = dataSetOne['description']
             self.timeTickets = tickets
@@ -30,6 +30,9 @@ class WorkOrder:
             self.empName = f['employeeName']
             self.cycleTime = f['cycleTime']
             self.date = self.__convertDate(f['ticketDate'])
+            
+            if self.cycleTime is None:
+                self.cycleTime =0
 
         def htmlTag(self):
             return f'{self.empCode:4d}  {self.empName:25s}  {round(self.cycleTime,2):5f}    {self.date}\n'
@@ -88,11 +91,11 @@ class WorkOrder:
 class WorkOrderFormated(WorkOrder):
 
     def daystat(self,days):
-        status = 'table-success'
+        status = 'ontime'
         if days < 7:
-            status='table-warning'
+            status='critical'
         if days< 0:
-            status='table-danger'
+            status='late'
         return status
 
     def __init__(self, lineHeader, woHeader, router, rawTickets):
@@ -110,6 +113,8 @@ class WorkOrderFormated(WorkOrder):
         if self.status =='Open':
             self.dueIn = (self.dueDate - datetime.today()).days
             self.daysStat = self.daystat(self.dueIn)
+            
+        self.dueDate = self.dueDate.strftime("%d-%B-%Y")
 
         for operation in self.router:
             self.actualList.append(operation.actualHours)
