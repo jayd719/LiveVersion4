@@ -53,6 +53,7 @@ class WorkOrder:
         self.qtyForStock = lineHeader['quantityToStock']
         self.forcur = lineHeader['unitPriceForeign']
         self.totalEstimatedHours = lineHeader['totalEstimatedHours']
+        self.totalActualHours =0
         self.dueDate = self.__convertDate(lineHeader['dueDate'])
         self.qty = ''
         self.router = self.createRouter(router, self.processTickets(rawTickets))
@@ -120,6 +121,8 @@ class WorkOrderFormated(WorkOrder):
             self.actualList.append(operation.actualHours)
             self.qoutedList.append(operation.estimatedHours)
             self.operationList.append(operation.stepNumber)
+
+            self.totalActualHours+=operation.actualHours
             if operation.actualHours > operation.estimatedHours:
                 self.actualColors.append(f'rgba{(151,187,205,0.5)}')
             else:
@@ -135,6 +138,6 @@ class WorkOrderFormated(WorkOrder):
                 operation.displayTicket3 += ticket.date+'\n'
                 operation.displayTicket4 += str(round(ticket.cycleTime,2))+'\n'
 
-
-
+        self.totalActualHours = round(self.totalActualHours,2)
+        self.totalEstimatedHours = round(self.totalEstimatedHours,2)
 
