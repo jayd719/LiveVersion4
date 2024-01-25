@@ -142,4 +142,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'home-main'
 LOGIN_URL='signIn'
 
-# SESSION_COOKIE_AGE = 60 # for 60 seconds timestamp 
+SESSION_COOKIE_AGE = 10000 # for 60 seconds timestamp 
