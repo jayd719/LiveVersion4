@@ -6,7 +6,7 @@
 body {
   /* background: radial-gradient(circle, yellow, orange); */
   background-color: #e0e0e0;
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
   overflow-y: hidden;
 }
 .container::-webkit-scrollbar {
@@ -15,9 +15,7 @@ body {
 
 nav {
   height: 8vh;
-  align-items: center;
-  background-color: rgb(255, 254, 254);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  background-color: white;
   position: static;
 }
 

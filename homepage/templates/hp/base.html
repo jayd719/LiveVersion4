@@ -27,6 +27,7 @@
       href="https://fonts.googleapis.com/css?family=Montserrat"
       rel="stylesheet"
     />
+    <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/cosmo/bootstrap.css">
     <link rel="stylesheet" href="{% static 'hp/main.css' %}" />
     <link
       rel="stylesheet"
@@ -35,11 +36,12 @@
 
     <link rel="icon" type="image/x-icon" href="{% static 'hp/lgo.ico' %}" />
 
+   
     <!-- <link rel="stylesheet" href="base.css" /> -->
   </head>
   <body>
     <!-- nav bar -->
-    <nav class="navbar d-flex justify-content-between navbar">
+    <nav class="navbar navbar-expand-lg  d-flex justify-content-between navbar">
       <div class="d-flex justify-content-between" style="align-items: center">
         <a
           data-bs-toggle="offcanvas"
@@ -98,7 +100,7 @@
             </div>
             <div class="result-box"></div>
           </div>
-          <button class="btn btn-outline-dark" type="submit">Search</button>
+          <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div>
       {% endif%}
