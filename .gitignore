@@ -8,6 +8,8 @@ __pycache__/
 # C extensions
 *.so
 
+workOrderReports\static\workOrderReports\autocomplete.js
+
 # Distribution / packaging
 .Python
 build/
