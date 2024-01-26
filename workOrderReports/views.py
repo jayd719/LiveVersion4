@@ -4,6 +4,7 @@ from .getData import isWorkOrderValid, getWorkOrderDetails
 from LiveVersion4.functions import writeStatus
 from django.contrib import messages
 
+
 @login_required
 def workOrderReport(requests):
     data={}
