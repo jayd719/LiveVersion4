@@ -15,8 +15,15 @@ def workOrderReport(requests):
     if 'search-for-work-order' in requests.GET:
         workOrder = requests.GET.get('search-for-work-order')        
         if(isWorkOrderValid(workOrder)):
+            try:
+                i = workOrders.index(workOrder)
+            except:
+                i=1
+
             data = {'title':workOrder,
-                    'workOrder':getWorkOrderDetails(workOrder)}
+                    'workOrder':getWorkOrderDetails(workOrder),
+                    'next':workOrders[i+1],
+                    'prev':workOrders[i-1]}
             writeStatus(f"1:Job Detial: {workOrder}:printed")  
             return render(requests, 'workOrderReports/reportdata.html', context=data)
         

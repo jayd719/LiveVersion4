@@ -72,3 +72,16 @@ pre{
  
 }
 
+.next-button{
+  opacity: 20%;
+  width: 150px;
+  transform: translateY(-410px);
+}
+
+.next-button:hover{
+  opacity: 100%;
+}
+
+.nextcontainer{
+  position: fixed;
+}
