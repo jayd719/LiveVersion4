@@ -129,7 +129,7 @@
     {% endfor%} {% endif%} {% if user.is_authenticated %}
     <div
       class="offcanvas offcanvas-start"
-      style="width: 175px"
+      style="width: 225px"
       data-bs-backdrop="static"
       tabindex="-1"
       id="staticBackdrop"
@@ -149,10 +149,10 @@
         </button>
       </div>
       <div class="offcanvas-body">
-        <h1>
+        <h4 class="display-7">
           <small style="font-size: 14px">Logged In User <br /></small
-          >{{user.username}}
-        </h1>
+          >{{user.first_name}} {{user.last_name}} 
+        </h4>
 
         <div>
           <button class="btn btn-outline-dark" type="submit">Upate</button>
@@ -162,9 +162,7 @@
           </button>
           <br />
           <button class="btn btn-outline-dark" type="submit">Schedules</button>
-          <button class="btn btn-outline-dark" type="submit">FUNCTIONK</button>
-          <button class="btn btn-outline-dark" type="submit">FUNCTION!</button>
-        </div>
+          </div>
         <div>
           <button class="btn btn-outline-warning" type="submit">
             About Live
@@ -173,6 +171,9 @@
             {% csrf_token %}
             <button class="btn btn-outline-danger" type="submit">logout</button>
           </form>
+          <center>
+          <img src="{% static 'hp/qrCode.png'%}" alt="" style="width: 150px;">
+        </center>
         </div>
       </div>
     </div>

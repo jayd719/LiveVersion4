@@ -92,8 +92,9 @@
       <tr class="{{operation.status}}">
         <td>{{operation.stepNumber}}</td>
 
-        <td id="jobNumber" title="{{operation.des}}">
+        <td class="jobNumber-op">
           {{operation.workCenter}}
+          <div class="operationDetail"><pre >{{operation.des}}</pre></div>
         </td>
         <td></td>
         <td>{{operation.estimatedHours}}</td>
