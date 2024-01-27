@@ -53,7 +53,7 @@
           style="cursor: pointer"
         >
           <img
-            src="{% static 'hp/logo.jpg' %}"
+            src="{% static 'hp/logo.png' %}"
             alt="Logo"
             class="d-inline-block align-text-top"
         /></a>
@@ -149,10 +149,13 @@
         </button>
       </div>
       <div class="offcanvas-body">
-        <h4 class="display-7">
-          <small style="font-size: 14px">Logged In User <br /></small
-          >{{user.first_name}} {{user.last_name}} 
-        </h4>
+        <center>
+          <h4 class="display-7">
+            <small style="font-size: 14px">Logged In User</small>
+            <br />{{user.first_name}}
+            <span class="display-6">{{user.last_name}}</span>
+          </h4>
+        </center>
 
         <div>
           <button class="btn btn-outline-dark" type="submit">Upate</button>
@@ -162,7 +165,7 @@
           </button>
           <br />
           <button class="btn btn-outline-dark" type="submit">Schedules</button>
-          </div>
+        </div>
         <div>
           <button class="btn btn-outline-warning" type="submit">
             About Live
@@ -172,8 +175,12 @@
             <button class="btn btn-outline-danger" type="submit">logout</button>
           </form>
           <center>
-          <img src="{% static 'hp/qrCode.png'%}" alt="" style="width: 150px;">
-        </center>
+            <img
+              src="{% static 'hp/qrCode.png'%}"
+              alt=""
+              style="width: 150px"
+            />
+          </center>
         </div>
       </div>
     </div>
@@ -196,8 +203,8 @@
 
       <h1>s</h1>
     </div> -->
-      {% block contentlogout %} {% endblock %} {% block content %} 
-      {% endblock%} {% block contentt %} {% endblock %}
+      {% block contentlogout %} {% endblock %} {% block content %} {% endblock%}
+      {% block contentt %} {% endblock %}
     </div>
     <footer class="d-flex justify-content-center footer">
       <a href="http://jashandeep.co.uk"
@@ -216,8 +223,6 @@
         messageBox.remove();
       }
     </script>
-
-   
   </body>
 </html>
 <!--  -->

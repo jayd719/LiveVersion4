@@ -16,8 +16,12 @@ def workOrderReport(requests):
         if(isWorkOrderValid(workOrder)):
             try:
                 i = workOrders.index(workOrder)
+                if i== len(workOrders)-1:
+                    i=-1
             except:
                 i=1
+
+    
 
             data = {'title':workOrder,
                     'workOrder':getWorkOrderDetails(workOrder),

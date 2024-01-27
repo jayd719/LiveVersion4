@@ -22,7 +22,7 @@ nav {
 nav img {
   width: 150px;
   margin-left: 20px;
-  filter: brightness(0);
+  filter: brightness(1);
 }
 .main {
   position: fixed;
