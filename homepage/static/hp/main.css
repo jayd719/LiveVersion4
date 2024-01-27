@@ -36,7 +36,6 @@ table {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 h1 {
-  font-family: "Montserrat", sans-serif;
   color: #222;
   text-align: center;
   padding: 0;
@@ -72,6 +71,36 @@ footer p {
 .search-container input {
   width: 300px;
   outline: solid black 1px;
+  border-radius: 5px;
+}
+
+.result-box{
+  width: 300px;
+  position: absolute;
+  z-index: 100;
+  max-height: 500px;
+  overflow-y: scroll;
+  background-color: #ffffff;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  overflow-x: hidden;
+}
+
+
+
+.result-box ul li {
+  transform: translateX(-30px);
+  width: 122%;
+  font: inherit;
+  color: #17191a;
+  transition: 0.2s;
+  list-style: none;
+  border-radius: 3px;
+  padding: 10px 10px 10px 35px;
+  cursor: pointer;
+}
+.result-box ul li:hover {
+  box-shadow: inset 815px 0 0 0 #373a3c;
+  color: white;
 }
 
 .offcanvas-body {

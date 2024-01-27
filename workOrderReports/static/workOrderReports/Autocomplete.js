@@ -16,7 +16,12 @@ function display(result) {
   const content = result.map((list) => {
     return "<li onclick=selectInput(this)>" + list + "</li>";
   });
-  resultbox.innerHTML = "<ul>" + content + "<ul>";
+
+  text = "";
+  for (let i = 0; i < content.length; i++) {
+    text += content[i];
+  }
+  resultbox.innerHTML = "<ul>" + text + "</ul>";
 }
 
 function selectInput(list) {

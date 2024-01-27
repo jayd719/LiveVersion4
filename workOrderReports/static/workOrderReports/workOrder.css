@@ -1,23 +1,4 @@
-.result-box {
-  position: absolute;
-  background-color: aliceblue;
-  max-height: 500px;
-  overflow-y: scroll;
-  width: 300px;
-  z-index: 100;
-  align-items: center;
-}
-.result-box li {
-  color: #17191a;
-  transition: 0.2s;
-  list-style: none;
-  cursor: pointer;
-}
 
-.result-box ul li:hover {
-  background-color: rgba(64, 67, 67, 0.783);
-  color: white;
-}
 
 #Details {
   position: absolute;
