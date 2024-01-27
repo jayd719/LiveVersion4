@@ -1743,3 +1743,74 @@ jj,2024-01-23 15:49:51.318279
 0:Job Detial: Invalid WO,2024-01-26 15:36:26.387874
 0:Job Detial: Invalid WO,2024-01-26 15:36:27.914704
 1:Job Detial: 19142-01:printed,2024-01-26 15:36:31.349699
+0:Job Detial: Invalid WO,2024-01-27 00:59:54.458355
+0:Job Detial: Invalid WO,2024-01-27 01:01:18.225816
+0:Job Detial: Invalid WO,2024-01-27 01:01:35.949416
+0:Job Detial: Invalid WO,2024-01-27 01:02:09.540834
+0:Job Detial: Invalid WO,2024-01-27 01:03:31.653327
+0:Job Detial: Invalid WO,2024-01-27 01:03:54.939812
+0:Job Detial: Invalid WO,2024-01-27 01:04:03.842061
+0:Job Detial: Invalid WO,2024-01-27 01:04:43.662648
+0:Job Detial: Invalid WO,2024-01-27 01:04:45.590183
+0:Job Detial: Invalid WO,2024-01-27 01:05:29.600961
+0:Job Detial: Invalid WO,2024-01-27 01:05:30.277463
+0:Job Detial: Invalid WO,2024-01-27 01:05:30.495078
+0:Job Detial: Invalid WO,2024-01-27 01:05:30.655590
+0:Job Detial: Invalid WO,2024-01-27 01:05:30.848406
+0:Job Detial: Invalid WO,2024-01-27 01:06:50.965054
+0:Job Detial: Invalid WO,2024-01-27 01:06:52.224521
+0:Job Detial: Invalid WO,2024-01-27 01:06:52.598768
+0:Job Detial: Invalid WO,2024-01-27 01:06:52.823587
+0:Job Detial: Invalid WO,2024-01-27 01:06:52.985431
+0:Job Detial: Invalid WO,2024-01-27 01:06:53.141741
+0:Job Detial: Invalid WO,2024-01-27 01:06:53.301300
+0:Job Detial: Invalid WO,2024-01-27 01:06:53.458528
+0:Job Detial: Invalid WO,2024-01-27 01:06:53.595809
+0:Job Detial: Invalid WO,2024-01-27 01:06:53.916801
+0:Job Detial: Invalid WO,2024-01-27 01:06:55.532236
+0:Job Detial: Invalid WO,2024-01-27 01:06:55.700112
+0:Job Detial: Invalid WO,2024-01-27 01:06:55.843528
+0:Job Detial: Invalid WO,2024-01-27 01:06:55.997842
+0:Job Detial: Invalid WO,2024-01-27 01:06:56.140197
+0:Job Detial: Invalid WO,2024-01-27 01:07:00.593258
+0:Job Detial: Invalid WO,2024-01-27 01:07:02.940173
+0:Job Detial: Invalid WO,2024-01-27 01:07:03.177043
+0:Job Detial: Invalid WO,2024-01-27 01:07:03.363903
+0:Job Detial: Invalid WO,2024-01-27 01:07:03.548317
+0:Job Detial: Invalid WO,2024-01-27 01:07:03.723548
+0:Job Detial: Invalid WO,2024-01-27 01:07:03.900956
+0:Job Detial: Invalid WO,2024-01-27 01:07:04.046705
+0:Job Detial: Invalid WO,2024-01-27 01:07:04.208075
+0:Job Detial: Invalid WO,2024-01-27 01:07:04.350505
+0:Job Detial: Invalid WO,2024-01-27 01:07:04.508724
+0:Job Detial: Invalid WO,2024-01-27 01:07:04.650345
+0:Job Detial: Invalid WO,2024-01-27 01:07:04.809543
+0:Job Detial: Invalid WO,2024-01-27 01:08:03.415247
+0:Job Detial: Invalid WO,2024-01-27 01:08:04.281671
+0:Job Detial: Invalid WO,2024-01-27 01:08:07.211525
+0:Job Detial: Invalid WO,2024-01-27 01:08:07.463076
+1:Job Detial: 19130-03:printed,2024-01-27 01:08:17.178417
+1:Job Detial: 19343-01:printed,2024-01-27 01:08:58.805794
+1:Job Detial: 19343-01:printed,2024-01-27 01:11:22.454537
+0:Job Detial: Invalid WO,2024-01-27 01:11:46.394234
+1:Job Detial: 19096-01:printed,2024-01-27 01:11:51.961382
+1:Job Detial: 19096-03:printed,2024-01-27 01:12:10.252537
+1:Job Detial: 19096-05:printed,2024-01-27 01:12:12.736843
+1:Job Detial: 19130-01:printed,2024-01-27 01:12:15.279519
+1:Job Detial: 19130-03:printed,2024-01-27 01:12:19.107871
+1:Job Detial: 19130-05:printed,2024-01-27 01:12:21.280025
+1:Job Detial: 19142-01:printed,2024-01-27 01:12:23.936260
+0:Job Detial: Invalid WO,2024-01-27 01:17:09.300266
+1:Job Detial: 19217-01:printed,2024-01-27 01:17:25.909450
+1:Job Detial: 19217-02:printed,2024-01-27 01:17:32.499201
+1:Job Detial: 19217-03:printed,2024-01-27 01:17:34.090993
+1:Job Detial: 19217-04:printed,2024-01-27 01:17:35.501995
+1:Job Detial: 19217-05:printed,2024-01-27 01:17:36.928363
+1:Job Detial: 19217-06:printed,2024-01-27 01:17:38.156446
+1:Job Detial: 19217-07:printed,2024-01-27 01:17:39.530678
+1:Job Detial: 19217-08:printed,2024-01-27 01:17:40.898713
+1:Job Detial: 19217-09:printed,2024-01-27 01:17:42.297478
+1:Job Detial: 19223-01:printed,2024-01-27 01:17:43.693229
+1:Job Detial: 19243-01:printed,2024-01-27 01:17:45.084719
+1:Job Detial: 19262-03:printed,2024-01-27 01:17:46.557260
+1:Job Detial: 19272-01:printed,2024-01-27 01:17:48.192286

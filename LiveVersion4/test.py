@@ -10,16 +10,8 @@ def getListofAllOrders():
     number_list = []
     for wo in r:
         if wo['jobNumber'] is not None:
-            number_list.append(str(wo['jobNumber']))
+            number_list.append(wo['jobNumber'])
     return sorted(number_list)
 
-def listString(numberList):
-    template= open('workOrderReports\static\workOrderReports\AutocompleteTemp.js','r',encoding='utf-8').read()
-    new =''
-    for each in numberList:
-        new+=f'"{each}",'
-    new+=f'"{each}"'
-    open('workOrderReports\static\workOrderReports\Autocomplete.js','w',encoding='utf-8').write(template.replace("*LIST*",new))
-    return new
 
 
