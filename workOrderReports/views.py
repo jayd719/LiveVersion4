@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .getData import isWorkOrderValid, getWorkOrderDetails
 from LiveVersion4.functions import writeStatus
@@ -7,6 +7,8 @@ from django.contrib import messages
 from LiveVersion4.test import getListofAllOrders
 
 workOrders = getListofAllOrders()
+
+
 
 @login_required
 def workOrderReport(requests):
@@ -20,9 +22,6 @@ def workOrderReport(requests):
                     i=-1
             except:
                 i=1
-
-    
-
             data = {'title':workOrder,
                     'workOrder':getWorkOrderDetails(workOrder),
                     'next':workOrders[i+1],
@@ -39,10 +38,18 @@ def workOrderReport(requests):
             data ={'message':'Invalid Work Order',
                    'sList':workOrders}
             messages.warning(requests,f'{workOrder} Is Not A Valid Number!')
+            writeStatus("0:Job Detial: Invalid WO")    
 
-    writeStatus("0:Job Detial: Invalid WO")    
     return render(requests, 'workOrderReports/report.html', context=data)
 
+
+@login_required
+def list_on_tracker(requests):
+    wo=1
+    if requests.method=="POST":
+        data=requests.POST
+        wo=data.cleaned_data.get('workorder')
+    return render(requests, 'workOrderReports/report.html', context=data)
 
 
 

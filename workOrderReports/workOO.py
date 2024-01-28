@@ -90,6 +90,7 @@ class WorkOrder:
 
 
 class WorkOrderFormated(WorkOrder):
+    
 
     def daystat(self,days):
         status = 'ontime'
@@ -102,10 +103,16 @@ class WorkOrderFormated(WorkOrder):
     def __init__(self, lineHeader, woHeader, router, rawTickets):
         super().__init__(lineHeader, woHeader, router, rawTickets)
 
+        tags={'NOTPRINTED':'primary',
+              'CRICTIAL':'warning'}
+
+
         self.qoutedList = []
         self.actualList = []
         self.actualColors = []
         self.operationList =[]
+
+        self.label='warning'
 
         self.completedHours = 0
 
