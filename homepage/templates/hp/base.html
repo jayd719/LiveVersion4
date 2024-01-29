@@ -58,25 +58,6 @@
             class="d-inline-block align-text-top"
         /></a>
       </div>
-      <div class="d-flex justify-content-center">
-        <!-- <ul
-          class="nav justify-content-center"
-          style="visibility: visible; justify-content: end"
-        >
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Active</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li>
-        </ul> -->
-      </div>
 
       {% if user.is_authenticated %}
       <div
@@ -120,7 +101,15 @@
         />
         <strong class="message-heading">Live Alerts</strong>
         <small>{{ message.time}}</small>
-        <p type="button" class="exit-button" onclick="mclose();">X</p>
+        <p
+          type="button"
+          class="btn btn-outline-secondary"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+          onclick="mclose();"
+        >
+          X
+        </p>
       </div>
       <div class="toast-body">
         <div class="message-para">{{message}}</div>

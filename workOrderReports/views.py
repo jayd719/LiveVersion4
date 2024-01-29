@@ -6,6 +6,7 @@ from django.contrib import messages
 from LiveVersion4.test import getListofAllOrders
 from worderTracker.models import WorkOrderTracker
 
+
 workOrders = getListofAllOrders()
 
 
@@ -25,12 +26,19 @@ def workOrderReport(requests):
             except:
                 i=1
 
+            WO =getWorkOrderDetails(workOrder)
+            onLive=False
+            if(WorkOrderTracker.objects.filter(jobNumber=workOrder).exists()):
+                onLive =True
+                fromModel = WorkOrderTracker.objects.get(jobNumber=workOrder)
+                WO.dueDate=fromModel.dueDate.strftime("%Y-%m-%d")
+
             data = {'title':workOrder,
-                    'workOrder':getWorkOrderDetails(workOrder),
+                    'workOrder':WO,
                     'next':workOrders[i+1],
                     'prev':workOrders[i-1],
                     'sList':workOrders,
-                    'onLive':WorkOrderTracker.objects.filter(jobNumber=workOrder).exists()}
+                    'onLive':onLive}
             
 
             writeStatus(f"1:Job Detial: {workOrder}:printed")  
@@ -79,7 +87,9 @@ def updateDate(requests):
     if requests.method == 'POST':
         jobNumber = requests.POST.get('jobNumber')
         dueDate = requests.POST.get('dueDate')
-        print(dueDate,jobNumber)
+        fromModel =WorkOrderTracker.objects.get(jobNumber=jobNumber)
+        fromModel.dueDate = dueDate
+        fromModel.save()
         messages.info(requests,f'{jobNumber} Due Date Updated!')
         return redirect(f'/live/?search-for-work-order={jobNumber}')
     else:
