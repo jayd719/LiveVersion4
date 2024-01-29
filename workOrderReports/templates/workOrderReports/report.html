@@ -41,12 +41,22 @@
     style="margin-left: 5px"
     >{{prev}}</a
   >
+
+    {% if onLive %}
+    <form method="post" action="{% url 'removefromlive' %}">
+      <input type="text" name="jobNumber" value="{{workOrder.jobNumber}}" readonly style="display: none; visibility: hidden;">
+      {% csrf_token %}
+      <button type="check-box submit" class="btn btn-outline-danger">REMOVE FROM CBB LIVE</button>
+    </form>
+
+    {% else %}
     <form method="post" action="{% url 'addtolive' %}">
       <input type="text" name="jobNumber" value="{{workOrder.jobNumber}}" readonly style="display: none; visibility: hidden;">
       {% csrf_token %}
       <button type="check-box submit" class="btn btn-outline-primary">ADD TO CBB LIVE</button>
     </form>
 
+    {% endif %}
 
   <a
     href="?search-for-work-order={{next}}"
