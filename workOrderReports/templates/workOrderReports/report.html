@@ -26,7 +26,17 @@
       </td>
       <td>{{workOrder.customer}}</td>
       <td>{{workOrder.qty}}</td>
-      <td>{{workOrder.dueDate}}</td>
+      <td> 
+        <form method="post" action="{% url 'updatedate' %} " enctype='multipart/form-data' id="chooseDate"> 
+          <input type="hidden" name="jobNumber" value="{{workOrder.jobNumber}}" readonly> 
+        {% csrf_token %}
+       <input type="date" id="start" name="dueDate" value="{{workOrder.dueDate}}" style="background-color: transparent; border: none; outline: none;" oninput='chooseDate.submit()'/>
+      </form>
+      <noscript>
+        <input type="submit" value="Submit">
+    </noscript>
+    
+    </td>
       <td><span class="{{workOrder.daysStat}}">{{workOrder.dueIn}}</span></td>
       <td>{{workOrder.TA}}</td>
       <td>{{workOrder.status}}</td>
@@ -70,7 +80,7 @@
 
 <div
   class="container-fluid d-flex justify-content-center"
-  style="margin-top: 150px; gap: 15px; scale: 0.85"
+  style="margin-top: 50px; gap: 15px; scale: 0.85"
 >
   <span class="btn btn-dark" style="cursor: default"
     >Total Qouted: {{workOrder.totalEstimatedHours}}</span

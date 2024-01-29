@@ -122,7 +122,7 @@ class WorkOrderFormated(WorkOrder):
             self.dueIn = (self.dueDate - datetime.today()).days
             self.daysStat = self.daystat(self.dueIn)
             
-        self.dueDate = self.dueDate.strftime("%d-%B-%Y")
+        self.dueDate = self.dueDate.strftime("%Y-%m-%d")
 
         for operation in self.router:
             self.actualList.append(operation.actualHours)

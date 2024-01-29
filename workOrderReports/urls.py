@@ -17,11 +17,12 @@ Including another URLconf
 
 from django.urls import path
 
-from .views import addToLive,removeFormLive
+from .views import addToLive,removeFormLive,updateDate
 
 
 urlpatterns = [
     path('addtolive/', addToLive, name='addtolive'),
-    path('removeformlive/', removeFormLive, name='removefromlive')
+    path('removeformlive/', removeFormLive, name='removefromlive'),
+    path('upadtedate/', updateDate, name='updatedate')
     # path('w/', homepage2,name='home-main2'),
 ]

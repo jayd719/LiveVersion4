@@ -16,7 +16,7 @@ def writeStatus(operationPerformed):
 def TOKEN():
     global TK
     global TK_WRIGHT
-    if (datetime.today() - (TK_WRIGHT)).seconds > 3500:
+    if (datetime.today() - (TK_WRIGHT)).seconds > 3000:
         header = {'content-type': 'application/x-www-form-urlencoded', 'accept': 'text/plain'}
         TK = post('https://api-user.integrations.ecimanufacturing.com:443/oauth2/api-user/token', data=open(KEY,'r',encoding='utf-8').read(), headers=header).json()['access_token']
         TK_WRIGHT=datetime.today()

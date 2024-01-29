@@ -73,4 +73,16 @@ def removeFormLive(requests):
         return redirect(f'/live/?search-for-work-order={jobNumber}')
     else:
         return HttpResponse("Invalid request method.")
+    
+@login_required    
+def updateDate(requests):
+    if requests.method == 'POST':
+        jobNumber = requests.POST.get('jobNumber')
+        dueDate = requests.POST.get('dueDate')
+        print(dueDate,jobNumber)
+        messages.info(requests,f'{jobNumber} Due Date Updated!')
+        return redirect(f'/live/?search-for-work-order={jobNumber}')
+    else:
+        return HttpResponse("Invalid request method.")
+
    
