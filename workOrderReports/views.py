@@ -1,9 +1,10 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from .getData import isWorkOrderValid, getWorkOrderDetails
 from LiveVersion4.functions import writeStatus
 from django.contrib import messages
 
+from worderTracker.models import WorkOrderTracker
 from LiveVersion4.test import getListofAllOrders
 
 workOrders = getListofAllOrders()
@@ -44,12 +45,15 @@ def workOrderReport(requests):
 
 
 @login_required
-def list_on_tracker(requests):
-    wo=1
-    if requests.method=="POST":
-        data=requests.POST
-        wo=data.cleaned_data.get('workorder')
-    return render(requests, 'workOrderReports/report.html', context=data)
+def process_wo_entry(requests):
+    if requests.method == 'POST':
+        jobNumber = requests.POST.get('jobNumber')
+        WO = WorkOrderTracker(jobNumber=jobNumber,dueDate='2024-01-24')
+        WO.save()
+        messages.info(requests,f'{jobNumber} Added To Live!')
+        return redirect(f'/live/?search-for-work-order={jobNumber}')
+    else:
+        return HttpResponse("Invalid request method.")
 
 
 

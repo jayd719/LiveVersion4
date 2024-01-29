@@ -1,5 +1,3 @@
-
-
 #Details {
   position: absolute;
   z-index: 100;
@@ -51,21 +49,26 @@ pre {
   z-index: 200;
 }
 
-.next-button {
-  opacity: 20%;
-  width: 150px;
-  transform: translateY(-410px);
-}
-
-.next-button:hover {
-  opacity: 100%;
-}
-
 .nextcontainer {
   position: fixed;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.2px);
+  -webkit-backdrop-filter: blur(7.2px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+.nextcontainer .btn {
+  opacity: 20%;
+  width: 200px;
+  scale: 0.8;
+}
 
+.nextcontainer .btn:hover {
+  opacity: 100%;
+}
 
 .operationDetail {
   visibility: hidden;

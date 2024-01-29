@@ -34,9 +34,33 @@
     </tr>
   </tbody>
 </table>
+<div class="container-fluid d-flex justify-content-between nextcontainer" style="margin-top: 80px">
+  <a
+    href="?search-for-work-order={{prev}}"
+    class="btn btn-outline-primary next-button"
+    style="margin-left: 5px"
+    >{{prev}}</a
+  >
+    <form method="post" action="{% url 'addtolive' %}">
+      <input type="text" name="jobNumber" value="{{workOrder.jobNumber}}" readonly style="display: none; visibility: hidden;">
+      {% csrf_token %}
+      <button type="check-box submit" class="btn btn-outline-primary">ADD TO CBB LIVE</button>
+    </form>
+
+
+  <a
+    href="?search-for-work-order={{next}}"
+    class="btn btn-outline-primary next-button"
+    style="margin-right: 10px"
+    >{{next}}</a
+  >
+</div>
+
+
+
 <div
   class="container-fluid d-flex justify-content-center"
-  style="margin-top: 120px; gap: 15px; scale: 0.85"
+  style="margin-top: 150px; gap: 15px; scale: 0.85"
 >
   <span class="btn btn-dark" style="cursor: default"
     >Total Qouted: {{workOrder.totalEstimatedHours}}</span
@@ -55,20 +79,9 @@
   <canvas id="myChart" height="80%"></canvas>
 </section>
 
-<div class="container-fluid d-flex justify-content-between nextcontainer">
-  <a
-    href="?search-for-work-order={{prev}}"
-    class="btn btn-outline-primary next-button"
-    style="margin-left: 5px"
-    >{{prev}}</a
-  >
-  <a
-    href="?search-for-work-order={{next}}"
-    class="btn btn-outline-primary next-button"
-    style="margin-right: 10px"
-    >{{next}}</a
-  >
-</div>
+
+
+
 
 
 

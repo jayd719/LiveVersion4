@@ -17,11 +17,11 @@ Including another URLconf
 
 from django.urls import path
 
-from .views import list_on_tracker
+from .views import process_wo_entry
 
 
 urlpatterns = [
-    path('update/',list_on_tracker),
+    path('addtolive/', process_wo_entry, name='addtolive'),
     
     # path('w/', homepage2,name='home-main2'),
 ]
