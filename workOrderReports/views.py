@@ -13,6 +13,37 @@ workOrders= getListofAllOrders()
 
 
 
+def operations(wo):
+    try:
+        i = workOrders.index(wo)
+        if i== len(workOrders)-1:
+            i=-1
+    except:
+        i=1
+    return i
+
+
+def getData(jobNumber):
+    WO = cache.contains(jobNumber)
+    if  WO is None:
+        WO = getWorkOrderDetails(jobNumber)
+        cache.addtoStack(WO)
+
+    onLive =False
+    if(WorkOrderTracker.objects.filter(jobNumber=jobNumber).exists()):
+        onLive =True
+        fromModel = WorkOrderTracker.objects.get(jobNumber=jobNumber)
+        WO.dueDate=fromModel.dueDate.strftime("%Y-%m-%d")
+    
+    i = operations(jobNumber)
+    data = {'title':jobNumber,
+            'workOrder':WO,
+            'next':workOrders[i+1],
+            'prev':workOrders[i-1],
+            'sList':workOrders,
+            'onLive':onLive}
+    return data
+
 
 
 @login_required
@@ -21,33 +52,10 @@ def workOrderReport(requests):
     if 'search-for-work-order' in requests.GET:
         workOrder = requests.GET.get('search-for-work-order')        
         if(isWorkOrderValid(workOrder)):
-            try:
-                i = workOrders.index(workOrder)
-                if i== len(workOrders)-1:
-                    i=-1
-            except:
-                i=1
-
-            WO =getWorkOrderDetails(workOrder)
-            onLive=False
-            if(WorkOrderTracker.objects.filter(jobNumber=workOrder).exists()):
-                onLive =True
-                fromModel = WorkOrderTracker.objects.get(jobNumber=workOrder)
-                WO.dueDate=fromModel.dueDate.strftime("%Y-%m-%d")
-
-            data = {'title':workOrder,
-                    'workOrder':WO,
-                    'next':workOrders[i+1],
-                    'prev':workOrders[i-1],
-                    'sList':workOrders,
-                    'onLive':onLive}
-            
-            cache.addtoStack(WO)
-
+            data = getData(workOrder)
             writeStatus(f"1:Job Detial: {workOrder}:printed")  
             return render(requests, 'workOrderReports/reportdata.html', context=data)
         
-
         elif(len(workOrder)==0):
             data ={'message':'Blank Value',
                    'sList':workOrders}
@@ -67,9 +75,13 @@ def workOrderReport(requests):
 def addToLive(requests):
     if requests.method == 'POST':
         jobNumber = requests.POST.get('jobNumber')
-        # WO = WorkOrderTracker(cache.contains(jobNumber))
-        # WO.save()
+
+        dataObj = cache.contains(jobNumber)
+        WO = WorkOrderTracker(jobNumber= dataObj.jobNumber,dueDate = dataObj.dueDate)
+        WO.save()
         messages.info(requests,f'{jobNumber} Added To Live!')
+        data = getData(jobNumber)
+        writeStatus(f"1:Job Detial: {jobNumber}:printed")  
         return redirect(f'/live/?search-for-work-order={jobNumber}')
     else:
         return HttpResponse("Invalid request method.")
@@ -81,6 +93,8 @@ def removeFormLive(requests):
         jobNumber = requests.POST.get('jobNumber')
         WorkOrderTracker(jobNumber=jobNumber).delete()
         messages.info(requests,f'{jobNumber} Removed From Live!')
+        data = getData(jobNumber)
+        writeStatus(f"1:Job Detial: {jobNumber}:printed")  
         return redirect(f'/live/?search-for-work-order={jobNumber}')
     else:
         return HttpResponse("Invalid request method.")

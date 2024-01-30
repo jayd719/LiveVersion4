@@ -61,6 +61,8 @@ class WorkOrder:
         self.router = self.createRouter(router, self.processTickets(rawTickets))
 
         self.__updateQty()
+
+        self.createTime = datetime.today()
     
     def __updateQty(self):
         self.qty = f'{self.qtyOrdered}'
