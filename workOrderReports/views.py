@@ -5,7 +5,11 @@ from LiveVersion4.functions import writeStatus
 from django.contrib import messages
 from LiveVersion4.test import getListofAllOrders
 from worderTracker.models import WorkOrderTracker
-workOrders = getListofAllOrders()
+
+from LiveVersion4.settings import cache
+
+global workOrders 
+workOrders= getListofAllOrders()
 
 
 
@@ -38,6 +42,7 @@ def workOrderReport(requests):
                     'sList':workOrders,
                     'onLive':onLive}
             
+            cache.addtoStack(WO)
 
             writeStatus(f"1:Job Detial: {workOrder}:printed")  
             return render(requests, 'workOrderReports/reportdata.html', context=data)
@@ -62,8 +67,8 @@ def workOrderReport(requests):
 def addToLive(requests):
     if requests.method == 'POST':
         jobNumber = requests.POST.get('jobNumber')
-        WO = WorkOrderTracker(jobNumber=jobNumber,dueDate='2024-01-24')
-        WO.save()
+        # WO = WorkOrderTracker(cache.contains(jobNumber))
+        # WO.save()
         messages.info(requests,f'{jobNumber} Added To Live!')
         return redirect(f'/live/?search-for-work-order={jobNumber}')
     else:

@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from datetime import datetime
+from Datastructures.cacheStack import CacheStack
+
+global cache 
+cache= CacheStack()
 
 
 

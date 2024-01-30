@@ -147,7 +147,7 @@
         </center>
 
         <div>
-          <button class="btn btn-outline-dark" type="submit">Upate</button>
+          <a href="{% url 'updatelist' %}"><button class="btn btn-outline-dark" type="submit">Update</button></a>
           <button class="btn btn-outline-dark" type="submit">Home</button><br />
           <button class="btn btn-outline-dark" type="submit">
             Live Tracker
@@ -157,7 +157,7 @@
         </div>
         <div>
           <button class="btn btn-outline-warning" type="submit">
-            About Live
+            Support
           </button>
           <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}

@@ -21,6 +21,8 @@ from Logins.views import signUpPage
 from workOrderReports.views import workOrderReport
 from worderTracker.views import monthly_forcast
 from django.contrib.auth.views import LoginView, LogoutView
+
+from homepage.views import update
 # from django.views.generic.base import RedirectView
 # RedirectView.as_view(pattern_name='signIn', permanent=True)
 
@@ -34,6 +36,7 @@ urlpatterns = [
     path('logout/',LogoutView.as_view(template_name="login/logout.html"),name='logout'),
     path('',include('worderTracker.urls')),
     path('',include('workOrderReports.urls')),
+    path('update/', update, name='updatelist'),
     
     # path('w/', homepage2,name='home-main2'),
 ]
