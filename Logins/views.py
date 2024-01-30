@@ -12,7 +12,9 @@ def signUpPage(requests):
     if requests.method=="POST":
             form = CBBLiveUserReg(requests.POST)
             if form.is_valid():
-                form.save()
+                user = form.save()
+                user.is_active = False
+                user.save()
                 username=form.cleaned_data.get('username')
                 messages.success(requests,f'Account Created For {username}!')
                 
