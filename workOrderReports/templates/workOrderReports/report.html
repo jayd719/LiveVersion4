@@ -44,16 +44,13 @@
           {% csrf_token %}
           <input
             type="date"
-            id="start"
+            id="datepicker"
             name="dueDate"
             value="{{workOrder.dueDate}}"
             style="background-color: transparent; border: none; outline: none"
-            oninput="chooseDate.submit()"
+            onchange=" $('#chooseDate').submit()"
           />
         </form>
-        <noscript>
-          <input type="submit" value="Submit" />
-        </noscript>
         {%else%} {{workOrder.dueDate}} {% endif %}
       </td>
       <td><span class="{{workOrder.daysStat}}">{{workOrder.dueIn}}</span></td>
@@ -194,6 +191,17 @@
   });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+  $('#datepicker').datepicker({
+       onSelect : function (dateText, inst) {
+          $('#chooseDate').submit(); 
+  }});
+});
+</script>
 
 <script>
 

@@ -22,7 +22,7 @@ def getWorkOrderDetails(wo):
     router = get(f'https://api-jb2.integrations.ecimanufacturing.com:443/api/v1/order-routings?fields=vendorCode%2CstepNumber%2Cstatus%2CworkCenter%2Cdescription%2CworkCenterOrVendor%2CtotalActualHours%2CtotalEstimatedHours&sort=stepNumber&jobNumber={wo}', headers=headers).json()['Data']
     timeTicketsRaw = get(f'https://api-jb2.integrations.ecimanufacturing.com:443/api/v1/time-ticket-details?fields=ticketDate%2CemployeeCode%2CemployeeName%2CstepNumber%2CcycleTime&sort=stepNumber&jobNumber={wo}', headers=headers).json()['Data']
     
-    dump(workOrderHeader, open('../header.json','w',encoding='utf-8'))
+    # dump(workOrderHeader, open('../header.json','w',encoding='utf-8'))
     workOrder = WorkOrderFormated(workOrderHeader, orderHeader, router, timeTicketsRaw)
     return workOrder
 
