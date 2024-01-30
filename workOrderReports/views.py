@@ -5,8 +5,6 @@ from LiveVersion4.functions import writeStatus
 from django.contrib import messages
 from LiveVersion4.test import getListofAllOrders
 from worderTracker.models import WorkOrderTracker
-
-
 workOrders = getListofAllOrders()
 
 

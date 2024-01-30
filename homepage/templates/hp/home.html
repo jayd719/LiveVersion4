@@ -1,13 +1,4 @@
-{% extends 'hp/base.html' %} {% block content%}
-<h1>home page</h1>
-
-{% if messages %} {% for message in messages%}
-<div class="alert alert-{{ message.tags }}">{{message}}</div>
-{% endfor%} {% endif%}
-
-<a class="button" href="{% url 'signUpPage' %}">Sign up</a>
-<br>
-<a class="button" href="{% url 'signIn' %}">Sign In</a>
-<br>
-<a class="button" href="{% url 'workOrderReport' %}">Report</a>
+{% extends 'hp/base.html' %}
+{% block content%}
+<h1>CBB Live</h1>
 {% endblock %}
