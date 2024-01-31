@@ -5,6 +5,7 @@ from LiveVersion4.functions import writeStatus,checkStaffStatus
 from django.contrib import messages
 from LiveVersion4.test import getListofAllOrders
 from worderTracker.models import WorkOrderTracker
+from worderTracker.models import Operation
 from LiveVersion4.settings import cache
 
 global workOrders 
@@ -80,10 +81,14 @@ def addToLive(requests):
         jobNumber = requests.POST.get('jobNumber')
 
         dataObj = cache.contains(jobNumber)
-        WO = WorkOrderTracker(jobNumber= dataObj.jobNumber,dueDate = dataObj.dueDate)
+        WO = WorkOrderTracker(jobNumber= dataObj.jobNumber,customer=dataObj.customer,dueDate = dataObj.dueDate,qty=dataObj.qty,shippingThisMonth=False,TA=dataObj.TA,incomingInspection=False,rush= False)
         WO.save()
+
+        for operation in dataObj.router:
+            op=Operation(jobNumber=WO,workCenter = operation.workCenter,description= operation.des,estimatedHours= operation.estimatedHours, stepNumber=operation.stepNumber,status = 'pending')
+            op.save()
+
         messages.info(requests,f'{jobNumber} Added To Live!')
-        data = getData(jobNumber)
         writeStatus(f"1:Job Detial: {jobNumber}:printed")  
         return redirect(f'/live/?search-for-work-order={jobNumber}')
     else:
@@ -96,7 +101,6 @@ def removeFormLive(requests):
         jobNumber = requests.POST.get('jobNumber')
         WorkOrderTracker(jobNumber=jobNumber).delete()
         messages.info(requests,f'{jobNumber} Removed From Live!')
-        data = getData(jobNumber)
         writeStatus(f"1:Job Detial: {jobNumber}:printed")  
         return redirect(f'/live/?search-for-work-order={jobNumber}')
     else:
