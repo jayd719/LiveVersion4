@@ -11,9 +11,8 @@ def home(requests):
     return render(requests,'hp/home.html',{'sList':workOrders})
 
 
-
+@login_required
 def update(requests):
-    workOrders
     workOrders=getListofAllOrders()
     messages.success(requests,f'Update Successful!')
     return render(requests,'hp/home.html',{'sList':workOrders})

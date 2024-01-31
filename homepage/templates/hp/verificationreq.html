@@ -1,0 +1,22 @@
+{% extends 'hp/base.html' %}
+{% block content%}
+
+<div class="content" style="text-align: center; margin-top: 10%;">
+    <h3 class="display-4">{{user.first_name}}, you not have permission to perform the specified task!</h3>
+
+    <h7 class="display-7">Before you can start enjoying CBB Live, your account is subject to undergo internal verification. This process ensures the security and integrity of our platform. We appreciate your understanding and cooperation.</h7>
+    <br/>
+    <h2 class="display-2" style="margin-top: 100px;">Thank you for choosing CBB Live!</h2>
+    <div class="border-top tp-3">
+      <small class="text-muted"
+        >Go Back <a class="ml-2" href="{% url 'home-main'%}">Home</a></small
+      >
+    </div>
+
+
+    <div class="border-top tp-3" style="margin-top: 100px;">
+      <small class="text-muted"><a class="ml-2" href="#">Submit A Verification Request?</a></small
+      >
+    </div>
+  </div>
+{% endblock %}

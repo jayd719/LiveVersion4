@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from datetime import datetime
 from requests import post
 
@@ -24,3 +25,8 @@ def TOKEN():
     return TK
 
 
+def checkStaffStatus(requests):
+    if requests.user.is_staff:
+        return
+    else:
+        return render(requests,'hp/verificationreq.html',{'title':'Verification Required'})

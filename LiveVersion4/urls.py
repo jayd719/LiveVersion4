@@ -30,6 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('dash/',monthly_forcast),
     path('',home,name='home-main'),
+    path('home/',home),
     path('sign-up/',signUpPage,name='signUpPage'),
     path('sign-in/',LoginView.as_view(template_name="login/signIn.html",redirect_authenticated_user=True),name='signIn'),
     path('live/', workOrderReport, name='workOrderReport'),

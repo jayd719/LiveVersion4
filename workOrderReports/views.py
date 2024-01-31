@@ -1,17 +1,19 @@
 from django.shortcuts import render,redirect, HttpResponse
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required,permission_required
 from .getData import isWorkOrderValid, getWorkOrderDetails
-from LiveVersion4.functions import writeStatus
+from LiveVersion4.functions import writeStatus,checkStaffStatus
 from django.contrib import messages
 from LiveVersion4.test import getListofAllOrders
 from worderTracker.models import WorkOrderTracker
-
 from LiveVersion4.settings import cache
 
 global workOrders 
 workOrders= getListofAllOrders()
 
 
+def notEnoughPerm(requests):
+    messages.error(requests,f'Verification Required!')
+    return render(requests,'hp/verificationreq.html',{'title':'No No NO','sList':workOrders})
 
 def operations(wo):
     try:
@@ -47,7 +49,9 @@ def getData(jobNumber):
 
 
 @login_required
+@permission_required("Wordertracker.can_view",login_url="permissiondenied")
 def workOrderReport(requests):
+    checkStaffStatus(requests)
     data={'sList':workOrders}
     if 'search-for-work-order' in requests.GET:
         workOrder = requests.GET.get('search-for-work-order')        
