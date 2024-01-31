@@ -49,7 +49,6 @@ def getData(jobNumber):
 
 
 @login_required
-@permission_required("Wordertracker.can_view",login_url="permissiondenied")
 def workOrderReport(requests):
     checkStaffStatus(requests)
     data={'sList':workOrders}
