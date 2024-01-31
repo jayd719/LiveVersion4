@@ -1,26 +1,19 @@
-{% extends 'hp/base.html' %} {% load static %} 
-{%block content %}
+{% extends 'hp/base.html' %} {% load static %} {% block content %}
+<table class="table table-hover">
+  {%for WO in WORKORDERS%}
+  <tr>
+    <td class="jobNumber-op">
+      {{WO.jobNumber}}
+      <div class="operationDetail"><pre>{{WO.des}}</pre></div>
+    </td>
+    <td>{{WO.customer}}</td>
+    <td>{{WO.qty}}</td>
+    <td>{{WO.dueDate}}</td>
+    <td>{{WO.dueDate}}</td>
 
-{%for WO in WORKORDERS%}
-<div class="card text-white bg-primary {{WO.label}} mb-3" style="max-width: 20rem;">
-  <div class="card-header">{{WO.customer}}</div>
-  <div class="card-body">
-    <h4 class="card-title">{{WO.jobNumber}}</h4>
-    <p class="card-text">{{WO.dueDate}}</p>
-
-    <form method="POST">
-      {% csrf_token %}
-      <input type="text" name="textfield">
-      <button type="submit">Upload text</button>
-      </form>
-  </div>
-
-</div>
-{% endfor%}
-
-
-
-
+  </tr>
+  {% endfor%}
+</table>
 
 <script></script>
 

@@ -5,6 +5,7 @@ from django.db import models
 class WorkOrderTracker(models.Model):
     jobNumber =models.CharField(max_length=8,primary_key = True)
     customer = models.CharField(max_length=50)
+    des = models.TextField()
     qty= models.CharField(max_length=5)
     dueDate = models.DateField()
     shippingThisMonth = models.BooleanField(blank=True,null=True)
@@ -14,6 +15,8 @@ class WorkOrderTracker(models.Model):
     ME = models.CharField(blank=True,max_length=2,null=True)
     rush = models.BooleanField(blank=True,null=True)
     notes2 = models.TextField(blank=True,null=True)
+    estimatedHours = models.FloatField()
+    completedHours = models.FloatField()
 
 
 class Operation(models.Model):
