@@ -1,27 +1,34 @@
 {% extends 'hp/base.html' %} {% load static %} {% block content %}
-<table class="table-hover" style="font-size: 14px; text-align: center;"> 
-
+<table
+  class="table-hover"
+  style="font-size: 14px; text-align: center; border: solid 1px; color: black"
+>
   <thead>
-    <tr>
-      <th>a</th>
-      <th scope="col" style="width: 100px;">Work Order</th>
-      <th scope="col" style="width: 275px;">Customer</th>
-      <th scope="col" style="width: 50px;">QTY</th>
-      <th scope="col" style="width: 95px;">Due Date</th>
-      <th scope="col" style="width: 50px;">DUE IN</th>
+    <tr style="height: 50pt; font-weight: bold">
+      <td style="width: 100pt; background-color: #00b2ec">Work <br />Order</td>
+      <td style="width: 200pt; background-color: #00b2ec">Customer</td>
+      <td style="width: 55pt; background-color: #00b2ec">QTY</td>
+      <td style="width: 100pt; background-color: #00b2ec">Due Date</td>
+      <td style="width: 55pt; background-color: #00b2ec">Due In</td>
+      <td style="width: 55pt; background-color: #00b2ec">% Comp</td>
+      <td style="width: 55pt; background-color: #00b2ec; font-size: 80%;">Shipping This Month</td>
+      <td style="width: 65pt; background-color: #fffc47">TA</td>
+      <td style="width: 300pt; background-color: #ff2329; color: aliceblue">Notes</td>
+      <td style="width: 230pt; background-color: #fffc47">Incoming Inspection</td>
+      <td style="width: 35pt; background-color: #a9cf93">ME</td>
+      <td style="width: 35pt; background-color: #a9cf93">PR</td>
+      <td>OP10</td>
+      <td>OP20</td>
       <th>Work Order</th>
       <th>Work Order</th>
       <th>Work Order</th>
       <th>Work Order</th>
       <th>Work Order</th>
-
-
     </tr>
   </thead>
 
   {%for WO in WORKORDERS%}
   <tr>
-    <td>a</td>
     <td class="jobNumber-op">
       {{WO.jobNumber}}
       <div class="operationDetail"><pre>{{WO.des}}</pre></div>
@@ -30,7 +37,6 @@
     <td>{{WO.qty}}</td>
     <td>{{WO.dueDate}}</td>
     <td>10</td>
-
   </tr>
   {% endfor%}
 </table>
