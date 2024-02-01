@@ -1,7 +1,27 @@
 {% extends 'hp/base.html' %} {% load static %} {% block content %}
-<table class="table table-hover">
+<table class="table-hover" style="font-size: 14px; text-align: center;"> 
+
+  <thead>
+    <tr>
+      <th>a</th>
+      <th scope="col" style="width: 100px;">Work Order</th>
+      <th scope="col" style="width: 275px;">Customer</th>
+      <th scope="col" style="width: 50px;">QTY</th>
+      <th scope="col" style="width: 95px;">Due Date</th>
+      <th scope="col" style="width: 50px;">DUE IN</th>
+      <th>Work Order</th>
+      <th>Work Order</th>
+      <th>Work Order</th>
+      <th>Work Order</th>
+      <th>Work Order</th>
+
+
+    </tr>
+  </thead>
+
   {%for WO in WORKORDERS%}
   <tr>
+    <td>a</td>
     <td class="jobNumber-op">
       {{WO.jobNumber}}
       <div class="operationDetail"><pre>{{WO.des}}</pre></div>
@@ -9,7 +29,7 @@
     <td>{{WO.customer}}</td>
     <td>{{WO.qty}}</td>
     <td>{{WO.dueDate}}</td>
-    <td>{{WO.dueDate}}</td>
+    <td>10</td>
 
   </tr>
   {% endfor%}

@@ -9,6 +9,9 @@
   max-height: 600px;
   overflow-y: scroll;
   z-index: 100;
+  left: 175px;
+  top: 50px;
+  font-size: 85%;
 }
 .mbsc-range-label-clear {
   display: none;
@@ -74,6 +77,10 @@ pre {
   visibility: hidden;
   display: none;
 }
+
+.jobNumber-op:hover{
+  cursor: pointer;
+}
 .jobNumber-op:hover .operationDetail {
   visibility: visible;
   display: block;
@@ -84,5 +91,6 @@ pre {
   background: #ffff45;
   transition: 0.4s;
   text-align: left;
-  cursor: pointer;
+  left: 175px;
+  font-size: 85%;
 }
