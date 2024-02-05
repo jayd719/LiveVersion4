@@ -1,3 +1,22 @@
+table {
+  font-size: 14px; 
+  text-align: center; 
+  border: solid 1px; 
+  color: rgb(39, 36, 36);
+  overflow-x: scroll;
+  width: 100%;
+}
+
+
+
+.table-container{
+  width: auto;
+  overflow-x: scroll;
+  height: 92vh;
+}
+
+
+
 #Details {
   position: absolute;
   z-index: 100;
