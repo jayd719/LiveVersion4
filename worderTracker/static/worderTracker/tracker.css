@@ -27,42 +27,28 @@ section {
   background: #ffff45;
   transition: 0.4s;
   text-align: left;
-  left: 105px;
+  left: 450px;
   font-size: 85%;
-  z-index: 10000;
+  z-index: 10;
 }
 
 
 .table-container {
-  position: relative;
   max-height: 300px;
-  width: 500px;
+  width: 100%;
   overflow: scroll;
 }
 
 
-td,
-th {
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-  padding: 10px;
-  min-width: 200px;
-  background: white;
-  box-sizing: border-box;
-  text-align: left;
-}
-
 tbody {
     overflow: scroll;
-    height: 200px;
-  }
+}
   
 
 thead th {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background-color: aqua;
   z-index: 2;
 }
 
@@ -73,17 +59,22 @@ thead th:first-child {
 tr > :first-child {
   position: -webkit-sticky;
   position: sticky;
-  background: hsl(180, 50%, 70%);
   left: 0;
 }
 
 thead th:nth-child(2) {
-  left: 200px;
+  left: 95px;
   z-index: 3;
 }
 tr > :nth-child(2) {
   position: -webkit-sticky;
   position: sticky;
-  background: hsl(180, 50%, 70%);
-  left: 200px;
+  left: 95px;
+}
+td{
+  white-space: nowrap;
+}
+tr{
+  border-top: 1px solid;
+  border-bottom: 1px solid;
 }

@@ -18,11 +18,11 @@ Including another URLconf
 from django.urls import path
 from .views import lastFY
 
-from .views import LIVE
+from .views import live,updateShippingThisMonth
 
 
 urlpatterns = [
-    path('this/',LIVE.as_view(),name='LIVE'),
-    
+    path('this/',live,name='LIVE'),
+    path('updateShippingThisMonth/',updateShippingThisMonth,name='updateShippingThisMonth')
     # path('w/', homepage2,name='home-main2'),
 ]

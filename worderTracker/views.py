@@ -1,15 +1,14 @@
-from django.shortcuts import render
+from typing import Any
+from django.shortcuts import render,redirect,HttpResponse,HttpResponseRedirect
 from workOrderReports.views import workOrders
 from LiveVersion4.test import getListofAllOrders
 from workOrderReports.getData import getWorkOrderDetails
 from django.views.generic import ListView
-from .models import WorkOrderTracker
-from datetime import datetime
+from .models import WorkOrderTracker,Operation
+from django.contrib import messages
 
 
 
-def get_year_data(date):
-     return 
 
 
 
@@ -30,7 +29,34 @@ def lastFY(requests):
 
 
 
-class LIVE(ListView):
-     model = WorkOrderTracker
-     template_name='tracker/tracker.html'
-     context_object_name='WORKORDERS'
+# update shipping this month
+def updateShippingThisMonth(requests):
+    if requests.method == 'POST':
+        jobNumber = requests.POST.get('jobNumber')
+        shipping = requests.POST.get('shippingThisMonth')
+        JobData =WorkOrderTracker.objects.get(jobNumber=jobNumber)
+
+        if shipping:
+            JobData.shippingThisMonth = True
+            messages.info(requests,f'{jobNumber} Will be Shipped This Month!')
+        else:
+             JobData.shippingThisMonth = False
+             messages.info(requests,f'{jobNumber} Will Not Shipped This Month!')
+
+        JobData.save()  
+        
+        return HttpResponseRedirect(requests.META.get('HTTP_REFERER'))
+    else:
+        return HttpResponse("Invalid request method.")
+
+def live(requests):
+     WORKORDERS=[]
+     for wo in WorkOrderTracker.objects.all():
+          WORKORDERS.append(wo)
+         
+          
+
+
+     return render(requests,'tracker/tracker.html',{'title':'Livesssss','WORKORDERS': WORKORDERS,'sList':workOrders})
+
+

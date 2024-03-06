@@ -19,6 +19,7 @@ class WorkOrderTracker(models.Model):
     completedHours = models.FloatField()
 
 
+
 class Operation(models.Model):
     jobNumber= models.ForeignKey(WorkOrderTracker, on_delete=models.CASCADE)
     workCenter = models.CharField(max_length=25)
