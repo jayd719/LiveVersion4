@@ -120,3 +120,9 @@ def updateDate(requests):
         return HttpResponse("Invalid request method.")
 
    
+
+
+
+def clockedIn(requests):
+    data={'sList':workOrders}
+    return render(requests, 'workOrderReports/clockedIn.html',context=data)
