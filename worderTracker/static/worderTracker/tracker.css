@@ -33,11 +33,6 @@ section {
 }
 
 
-.table-container {
-  max-height: 300px;
-  width: 100%;
-  overflow: scroll;
-}
 
 
 tbody {
@@ -60,6 +55,8 @@ tr > :first-child {
   position: -webkit-sticky;
   position: sticky;
   left: 0;
+  z-index: 3;
+  
 }
 
 thead th:nth-child(2) {
@@ -70,11 +67,14 @@ tr > :nth-child(2) {
   position: -webkit-sticky;
   position: sticky;
   left: 95px;
+  z-index: 3;
+ 
 }
 td{
   white-space: nowrap;
+  border: 1px solid;
 }
-tr{
+/* tr{
   border-top: 1px solid;
   border-bottom: 1px solid;
-}
+} */
