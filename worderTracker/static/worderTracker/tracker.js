@@ -34,8 +34,38 @@ function updateValue(id,out) {
 }
 
 
+function updateData(workOrder,field,data) {
+  let dataValues ={}
+  dataValues['workOrder']=workOrder
+  dataValues['Field']=field
+  dataValues['data']=data
 
+}
 
+function updateData(workOrder,field,data) {
+  let dataValues ={}
+  dataValues['workOrder']=workOrder
+  dataValues['Field']=field
+  dataValues['data']=data
+  
+  // Convert data to JSON
+  var jsonData = JSON.stringify(dataValues);
+
+  // Send data to the server using AJAX
+  $.ajax({
+    type: 'POST',
+    url: '/handle_json_data/', // Replace with your server endpoint
+    data: jsonData,
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'json',
+    success: function (response) {
+      console.log('Data sent successfully:', response);
+    },
+    error: function (error) {
+     alert('COULD NOT SAVE DATA')
+    }
+  });
+}
 
 
 
@@ -77,7 +107,7 @@ function convertAndSend() {
       console.log('Data sent successfully:', response);
     },
     error: function (error) {
-      console.error('Error sending data:', error);
+     alert('COULD NOT SAVE DATA')
     }
   });
 }
