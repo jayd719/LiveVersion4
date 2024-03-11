@@ -6,13 +6,8 @@
 <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-<style>
-  .table-container span{
-    height:100%; width:100% ;display:block;overflow:auto;padding: 10px;
-  }
-</style>
-
 <button onclick="convertAndSend()">Save</button>
+
   <div class="table-container" >
     <table class="table table-hover" id="data-table">
       <thead class="table-dark" style="vertical-align: middle;">
@@ -27,9 +22,32 @@
           <th scope="col">TA</th>
           <th scope="col" style="min-width:200px;">Notes</th>
           <th >Incoming Inspection</th>
-          <th>ME</th>
-          <th >PR</th>
-          <th >OPS</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          <th>OP010</th>
+          
+
         </tr>
       </thead>
   
@@ -38,8 +56,8 @@
     
       {%for WO in WORKORDERS%}
       <tr>
-        <td style="padding: 0px;" class="jobNumbers" title="{{WO.des}}"> <span class="alert-success">{{WO.jobNumber}}</span> </td>
-        <td>{{WO.customer}}</td>
+        <td style="padding: 0px;" class="jobNumbers" title="{{WO.des}}"> <span class="alert-primary">{{WO.jobNumber}}</span> </td>
+        <td style="padding: 0px;"><span class="alert-primary">{{WO.customer}}</span></td>
         <td>{{WO.qty}}</td>
         <td>{{WO.dueDate}}</td>
         <td style="padding: 0px;"> <span id="due-in" class="bg-gradient" style="height:100%; width:100% ;display:block;overflow:auto;padding: 10px;">{{WO.dueDate}}</span></td>
