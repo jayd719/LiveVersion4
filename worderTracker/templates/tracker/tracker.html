@@ -12,9 +12,9 @@
   }
 </style>
 
-
+<button onclick="convertAndSend()">Save</button>
   <div class="table-container" >
-    <table class="table table-hover">
+    <table class="table table-hover" id="data-table">
       <thead class="table-dark" style="vertical-align: middle;">
         <tr style="height: 50pt; font-weight: bold">
           <th scope="col" style="width: 125px;">WorkOrder</th>
@@ -30,16 +30,6 @@
           <th>ME</th>
           <th >PR</th>
           <th >OPS</th>
-          <th>ME</th>
-          <th >PR</th>
-          <th >OPS</th>
-          <th>ME</th>
-          <th >PR</th>
-          <th >OPS</th>
-          <th>ME</th>
-          <th >PR</th>
-          <th >OPS</th>
-  
         </tr>
       </thead>
   
@@ -62,26 +52,22 @@
             {% endif%}
         </td>
         <td class="pl-2 pr-2">{{WO.TA}}</td>
-        <td style="padding: 0;"><input type="text" style="height:100%; width:100% ;display:block;overflow:auto;padding: 10px; text-align: center; border: none;"></td>
+        <td style="padding: 0;"><input id="{{WO.jobNumber}}-notes-in" type="text" style="height:100%; width:100% ;display:block;overflow:auto;padding: 10px; text-align: center; border: none;" oninput="updateValue('{{WO.jobNumber}}-notes-in','{{WO.jobNumber}}-notes-out')"><span id="{{WO.jobNumber}}-notes-out" style="display: none;"></span></td>
         <td>ETT</td>
-        <td style="padding-left: 20px; padding-right: 50px;">10</td>
-        <td style="padding-left: 20px; padding-right: 50px;">10</td>
-        <td style="padding-left: 20px; padding-right: 50px;">10</td>
-        <td style="padding-left: 20px; padding-right: 50px;">10</td>
-        <td style="padding-left: 20px; padding-right: 50px;">10</td>
-        <td style="padding-left: 20px; padding-right: 50px;">10</td>
-        <td style="padding-left: 20px; padding-right: 50px;">10</td>
-        <td style="padding-left: 20px; padding-right: 50px;">10</td>
-        <td style="padding-left: 20px; padding-right: 50px;">10</td>
-        <td style="padding-left: 20px; padding-right: 50px;">10</td>
-        <td style="padding-left: 20px; padding-right: 50px;">10</td>
-        <td style="padding-left: 20px; padding-right: 50px;">10</td>
-        <td style="padding-left: 20px; padding-right: 50px;">10</td>
-        <td style="padding-left: 20px; padding-right: 50px;">10</td>
-        <td style="padding-left: 20px; padding-right: 50px;">10</td>
-        <td style="padding-left: 20px; padding-right: 50px;">10</td>
-        <td style="padding-left: 20px; padding-right: 50px;">10</td>
-        <td style="padding-left: 20px; padding-right: 50px;">10</td>
+        <td style="padding-left: 20px; padding-right: 50px;">JD</td>
+        <td style="padding-left: 20px; padding-right: 50px;">-</td>
+        <td>10</td>
+        <td>10</td>
+        <td>10</td>
+        <td>10</td>
+        <td>10</td>
+        <td>10</td>
+        <td>10</td>
+        <td>10</td>
+        <td>10</td>
+        <td>10</td>
+        <td>10</td>
+    
       </tr>
       
       

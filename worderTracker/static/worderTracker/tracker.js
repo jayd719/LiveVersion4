@@ -23,3 +23,61 @@ function updateDate() {
     }
   }
 }
+
+
+
+
+function updateValue(id,out) {
+  var inputElement = document.getElementById(id);
+  var spanElement = document.getElementById(out);
+  spanElement.textContent = inputElement.value;
+}
+
+
+
+
+
+
+
+
+
+function convertAndSend() {
+  var tableData = [];
+  var headers = [];
+  
+  // Get table headers
+  $('#data-table th').each(function () {
+    headers.push($(this).text());
+  });
+
+  // Iterate over table rows
+  $('#data-table tbody tr').each(function () {
+    var rowData = {};
+    var currentRow = $(this);
+
+    // Iterate over each cell in the row
+    currentRow.find('td').each(function (index) {
+      rowData[headers[index]] = $(this).text();
+    });
+
+    tableData.push(rowData);
+  });
+
+  // Convert data to JSON
+  var jsonData = JSON.stringify(tableData);
+
+  // Send data to the server using AJAX
+  $.ajax({
+    type: 'POST',
+    url: '/handle_json_data/', // Replace with your server endpoint
+    data: jsonData,
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'json',
+    success: function (response) {
+      console.log('Data sent successfully:', response);
+    },
+    error: function (error) {
+      console.error('Error sending data:', error);
+    }
+  });
+}

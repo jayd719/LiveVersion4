@@ -18,11 +18,12 @@ Including another URLconf
 from django.urls import path
 from .views import lastFY
 
-from .views import live,updateShippingThisMonth
+from .views import live,updateShippingThisMonth,handle_json_data
 
 
 urlpatterns = [
     path('this/',live,name='LIVE'),
-    path('updateShippingThisMonth/',updateShippingThisMonth,name='updateShippingThisMonth')
+    path('updateShippingThisMonth/',updateShippingThisMonth,name='updateShippingThisMonth'),
+    path('handle_json_data/', handle_json_data, name='handle_json_data'),
     # path('w/', homepage2,name='home-main2'),
 ]
