@@ -23,7 +23,7 @@
           <th scope="col">TA</th>
           <th scope="col" style="min-width:350px;">Notes</th>
           <th scope="col" style="min-width:200px;" >Incoming Inspection</th>
-          <th scope="col">ME</th>
+          <th scope="col" style="min-width:40px;">ME</th>
           <th >PR</th>
           <th>OP010</th>
           <th>OP010</th>
@@ -61,7 +61,7 @@
         <td class="">{{WO.customer}}</td>
         <td>{{WO.qty}}</td>
         <td><input type="date" class="dueDate" value="{{WO.dueDate}}" id="{{WO.jobNumber}}-datepicker" name="dueDate" style="background-color: transparent; border: none; outline: none" onchange="writeDate('{{WO.jobNumber}}','{{WO.jobNumber}}-datepicker')"/></td>
-        <td style="padding: 0px;"> <span id="due-in" class="bg-gradient" style="height:100%; width:100% ;display:block;overflow:auto;padding: 10px;">{{WO.dueDate}}</span></td>
+        <td style="padding: 0px;"> <span id="due-in" class="bg-gradient" style="display:block;overflow:auto;padding: 10px;">{{WO.dueDate}}</span></td>
         <td>20%</td>
         <td  style="width: 10px;">
             {% if WO.shippingThisMonth %}
@@ -71,9 +71,9 @@
             {% endif%}
         </td>
         <td class="pl-2 pr-2">{{WO.TA}}</td>
-        <td style="padding: 0;"><input class="notes" id="{{WO.jobNumber}}-notes" type="text" style="height:100%; width:100% ;display:block;overflow:auto;padding: 12px; text-align: center; border: none;" onchange="updateNotes('{{WO.jobNumber}}-notes','{{WO.jobNumber}}')" value="{{WO.notes1}}"></td>
+        <td style="padding: 0;"><input class="notes" id="{{WO.jobNumber}}-notes" type="text" list="notes-options" style="height:100%; width:100% ;display:block;overflow:auto;padding: 10px; text-align: center; border: none;" onchange="updateNotes('{{WO.jobNumber}}-notes','{{WO.jobNumber}}')" value="{{WO.notes1}}"><datalist id="notes-options"><option value="Hold for Customer"> <option value="Waiting For Material"><option value="Outsourcred"></option></datalist></td>
         <td class="bg-warning">Incoming Inspection</td>
-        <td>JD</td>
+        <td style="padding:0px;"><input class="notes" id="" type="text" list="ME-options" style="height:100%; width:100% ;display:block;overflow:auto;padding: 10px; text-align: center; border: none;" value="{{WO.ME}}"><datalist id="ME-options"><option value="JB">Manufacturing Engineer</option><option value="JD">Manufacturing Engineer</option><option value="SA">Manufacturing Engineer</option><option value="GC">Manufacturing Engineer</option><option value="AS">Manufacturing Engineer</option><option value="MD">Manufacturing Engineer</option></datalist></td>
         <td >-</td>
         <td>10</td>
         <td>10</td>

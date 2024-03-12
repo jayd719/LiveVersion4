@@ -72,7 +72,6 @@ def updateNotes(userData):
 
 def updateShipping(userData):
     WO = WorkOrderTracker.objects.get(jobNumber=userData['workOrder'])
-    print(userData['data'])
     if userData['data']== 'true':
          WO.shippingThisMonth = True
     else:
