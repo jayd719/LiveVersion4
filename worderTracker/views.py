@@ -53,6 +53,7 @@ def updateShippingThisMonth(requests):
 def live(requests):
      WORKORDERS=[]
      for wo in WorkOrderTracker.objects.all().order_by('dueDate'):
+          wo.dueDate=wo.dueDate.strftime("%Y-%m-%d")
           WORKORDERS.append(wo)
          
      return render(requests,'tracker/tracker.html',{'title':'Livesssss','WORKORDERS': WORKORDERS,'sList':workOrders})
@@ -78,6 +79,12 @@ def updateShipping(userData):
         WO.shippingThisMonth=False
     WO.save()
 
+def updateDueDate(userData):
+    WO = WorkOrderTracker.objects.get(jobNumber=userData['workOrder'])
+    WO.dueDate=userData['data']
+    WO.save()
+    
+
 
 
 
@@ -91,9 +98,11 @@ def writeBackToDatabase(request):
                 updateNotes(userData)
             elif userData['field']=='stm':
                 updateShipping(userData)
+            elif userData['field']=='dueDate':
+                updateDueDate(userData)
+                
 
-            # print(userData)
-            # print(type(userData))
+            
 
 
             

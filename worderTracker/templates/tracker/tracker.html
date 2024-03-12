@@ -9,7 +9,7 @@
 <!-- <button onclick="convertAndSend()">Save</button> -->
 
   <div class="table-container" >
-    <table class="table table-hover" id="data-table">
+    <table class="table table-striped" id="data-table">
       {% csrf_token %}
       <thead class="table-dark" style="vertical-align: middle; font-size: 70%;">
         <tr style="height: 50pt; font-weight: bold">
@@ -24,7 +24,7 @@
           <th scope="col" style="min-width:350px;">Notes</th>
           <th scope="col" style="min-width:200px;" >Incoming Inspection</th>
           <th scope="col">ME</th>
-          <th style="border-right: solid 10px rgb(255, 255, 255);">PR</th>
+          <th >PR</th>
           <th>OP010</th>
           <th>OP010</th>
           <th>OP010</th>
@@ -57,10 +57,10 @@
     
       {%for WO in WORKORDERS%}
       <tr>
-        <td class="jobNumbers bg-primary" title="{{WO.des}}">{{WO.jobNumber}}</td>
-        <td class="bg-primary">{{WO.customer}}</td>
+        <td class="jobNumbers" title="{{WO.des}}">{{WO.jobNumber}}</td>
+        <td class="">{{WO.customer}}</td>
         <td>{{WO.qty}}</td>
-        <td>{{WO.dueDate}}</td>
+        <td><input type="date" class="dueDate" value="{{WO.dueDate}}" id="{{WO.jobNumber}}-datepicker" name="dueDate" style="background-color: transparent; border: none; outline: none" onchange="writeDate('{{WO.jobNumber}}','{{WO.jobNumber}}-datepicker')"/></td>
         <td style="padding: 0px;"> <span id="due-in" class="bg-gradient" style="height:100%; width:100% ;display:block;overflow:auto;padding: 10px;">{{WO.dueDate}}</span></td>
         <td>20%</td>
         <td  style="width: 10px;">
@@ -71,10 +71,10 @@
             {% endif%}
         </td>
         <td class="pl-2 pr-2">{{WO.TA}}</td>
-        <td style="padding: 0;"><input class="notes" id="{{WO.jobNumber}}-notes" type="text" style="height:100%; width:100% ;display:block;overflow:auto;padding: 10px; text-align: center; border: none;" onclick="updateNotes('{{WO.jobNumber}}-notes','{{WO.jobNumber}}','notes')" value="{{WO.notes1}}"></td>
-        <td>ETT</td>
+        <td style="padding: 0;"><input class="notes" id="{{WO.jobNumber}}-notes" type="text" style="height:100%; width:100% ;display:block;overflow:auto;padding: 12px; text-align: center; border: none;" onchange="updateNotes('{{WO.jobNumber}}-notes','{{WO.jobNumber}}')" value="{{WO.notes1}}"></td>
+        <td class="bg-warning">Incoming Inspection</td>
         <td>JD</td>
-        <td style="border-right: solid 10px rgb(255, 255, 255);">-</td>
+        <td >-</td>
         <td>10</td>
         <td>10</td>
         <td>10</td>

@@ -33,14 +33,11 @@ section {
 tbody {
   overflow: scroll;
 }
-/* tr{
-  filter: brightness(.75);
-}
 
 tr:hover{
-  filter: brightness(1);
   cursor: pointer;
-} */
+  z-index: 10;
+}
 
 thead th {
   position: -webkit-sticky;

@@ -9,17 +9,21 @@ function deleteNavBar() {
 function notesColor() {
   let notes = document.querySelectorAll(".notes");
   for (i = 0; i < notes.length; i++) {
-    if (notes[i].value.toLowerCase() == "none") {
+    if (notes[i].value.toLowerCase() == "none" || notes[i].value.length < 2) {
       notes[i].value = "";
+      // notes[i].style.backgroundColor = "#e0e0e0";
+    }else{
+      // notes[i].style.backgroundColor = "white";
     }
   }
 }
 
 // update due in
 function updateDate() {
+  let dueDates = document.querySelectorAll(".dueDate");
   let dates = document.querySelectorAll("#due-in");
   for (i = 0; i < dates.length; i++) {
-    const targetDate = new Date(dates[i].textContent);
+    const targetDate = new Date(dueDates[i].value);
     const currentDate = new Date();
     const dueIn = Math.ceil((targetDate - currentDate) / (1000 * 60 * 60 * 24));
     dates[i].innerHTML = dueIn;
@@ -36,7 +40,7 @@ function updateDate() {
 
 // function to write back to server
 function POST(data) {
-  var csrfToken = $('input[name=csrfmiddlewaretoken]').val();
+  var csrfToken = $("input[name=csrfmiddlewaretoken]").val();
   let jsonData = JSON.stringify(data);
   $.ajax({
     type: "POST",
@@ -45,7 +49,7 @@ function POST(data) {
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     headers: {
-      'X-CSRFToken': csrfToken  // Include the CSRF token in the request headers
+      "X-CSRFToken": csrfToken, // Include the CSRF token in the request headers
     },
     success: function (response) {
       console.log("Data sent successfully:", response);
@@ -56,10 +60,10 @@ function POST(data) {
   });
 }
 
-function updateNotes(elmID, wo, field) {
+function updateNotes(elmID, wo) {
   let dataValues = {};
   dataValues["workOrder"] = wo;
-  dataValues["field"] = field;
+  dataValues["field"] = "notes";
   dataValues["data"] = document.getElementById(elmID).value;
   POST(dataValues);
 }
@@ -70,6 +74,15 @@ function updateShippingThisMonth(wo, value) {
   dataValues["field"] = "stm";
   dataValues["data"] = value;
   POST(dataValues);
+}
+
+function writeDate(wo, elmID) {
+  let dataValues = {};
+  dataValues["workOrder"] = wo;
+  dataValues["field"] = "dueDate";
+  dataValues["data"] = document.getElementById(elmID).value;
+  POST(dataValues);
+  updateDate();
 }
 
 function convertAndSend() {
