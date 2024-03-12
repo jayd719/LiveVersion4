@@ -3,7 +3,6 @@ from django.shortcuts import render,redirect,HttpResponse,HttpResponseRedirect
 from workOrderReports.views import workOrders
 from LiveVersion4.test import getListofAllOrders
 from workOrderReports.getData import getWorkOrderDetails
-from django.views.generic import ListView
 from .models import WorkOrderTracker,Operation
 from django.contrib import messages
 from django.http import JsonResponse
@@ -53,7 +52,7 @@ def updateShippingThisMonth(requests):
 
 def live(requests):
      WORKORDERS=[]
-     for wo in WorkOrderTracker.objects.all():
+     for wo in WorkOrderTracker.objects.all().order_by('dueDate'):
           WORKORDERS.append(wo)
          
      return render(requests,'tracker/tracker.html',{'title':'Livesssss','WORKORDERS': WORKORDERS,'sList':workOrders})
@@ -65,20 +64,40 @@ def live(requests):
 
 
 
+def updateNotes(userData):
+    WO = WorkOrderTracker.objects.get(jobNumber=userData['workOrder'])
+    WO.notes1=userData['data']
+    WO.save()
+
+def updateShipping(userData):
+    WO = WorkOrderTracker.objects.get(jobNumber=userData['workOrder'])
+    print(userData['data'])
+    if userData['data']== 'true':
+         WO.shippingThisMonth = True
+    else:
+        WO.shippingThisMonth=False
+    WO.save()
 
 
 
-@csrf_exempt  # Use this decorator if you want to disable CSRF protection for this view (for simplicity in this example)
-def handle_json_data(request):
+
+
+def writeBackToDatabase(request):
     if request.method == 'POST':
         try:
-            json_data = json.loads(request.body.decode('utf-8'))
+            userData = json.loads(request.body.decode('utf-8'))
 
-            json.dump(json_data,open('test.json','w',encoding='utf-8'),ensure_ascii=False, indent=4)
-            # Process the JSON data as needed (e.g., save to the database)
-            # Example: assuming you have a model named 'Person'
-            # for data in json_data:
-            #     Person.objects.create(name=data['Name'], age=data['Age'], city=data['City'])
+            if userData['field']=='notes':
+                updateNotes(userData)
+            elif userData['field']=='stm':
+                updateShipping(userData)
+
+            # print(userData)
+            # print(type(userData))
+
+
+            
+            
 
             return JsonResponse({'success': True})
         except json.JSONDecodeError as e:

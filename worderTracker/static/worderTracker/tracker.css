@@ -33,12 +33,20 @@ section {
 tbody {
   overflow: scroll;
 }
+/* tr{
+  filter: brightness(.75);
+}
+
+tr:hover{
+  filter: brightness(1);
+  cursor: pointer;
+} */
 
 thead th {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 3;
 }
 
 thead th:first-child {
@@ -66,10 +74,7 @@ td {
   border: 1px solid rgba(0, 0, 0, 0.677);
   padding: 1px 2px;
 }
-/* tr{
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-} */
+
 
 .table-container span {
   height: 100%;

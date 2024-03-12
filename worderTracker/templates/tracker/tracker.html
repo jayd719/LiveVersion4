@@ -6,24 +6,25 @@
 <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-<button onclick="convertAndSend()">Save</button>
+<!-- <button onclick="convertAndSend()">Save</button> -->
 
   <div class="table-container" >
     <table class="table table-hover" id="data-table">
-      <thead class="table-dark" style="vertical-align: middle;">
+      {% csrf_token %}
+      <thead class="table-dark" style="vertical-align: middle; font-size: 70%;">
         <tr style="height: 50pt; font-weight: bold">
-          <th scope="col" style="width: 125px;">WorkOrder</th>
-          <th scope="col" style="width: 250px;">Customer</th>
+          <th scope="col" style="min-width: 125px;">WorkOrder</th>
+          <th scope="col" style="min-width: 350px;">Customer</th>
           <th scope="col" style="width: 20px;">QTY</th>
           <th scope="col" style="width: 10px;">Due Date</th>
-          <th scope="col" >Due In</th>
-          <th >% Comp</th>
-          <th style=" font-size: 40%">Shipp' This Month</td>
+          <th scope="col" style="max-width:20px;" >Due In</th>
+          <th scope="col" style="max-width:20px;font-size: 70%">Comp</th>
+          <th style="font-size: 40%">Shipp' This Month</td>
           <th scope="col">TA</th>
-          <th scope="col" style="min-width:200px;">Notes</th>
-          <th >Incoming Inspection</th>
-          <th>OP010</th>
-          <th>OP010</th>
+          <th scope="col" style="min-width:350px;">Notes</th>
+          <th scope="col" style="min-width:200px;" >Incoming Inspection</th>
+          <th scope="col">ME</th>
+          <th style="border-right: solid 10px rgb(255, 255, 255);">PR</th>
           <th>OP010</th>
           <th>OP010</th>
           <th>OP010</th>
@@ -56,24 +57,24 @@
     
       {%for WO in WORKORDERS%}
       <tr>
-        <td style="padding: 0px;" class="jobNumbers" title="{{WO.des}}"> <span class="alert-primary">{{WO.jobNumber}}</span> </td>
-        <td style="padding: 0px;"><span class="alert-primary">{{WO.customer}}</span></td>
+        <td class="jobNumbers bg-primary" title="{{WO.des}}">{{WO.jobNumber}}</td>
+        <td class="bg-primary">{{WO.customer}}</td>
         <td>{{WO.qty}}</td>
         <td>{{WO.dueDate}}</td>
         <td style="padding: 0px;"> <span id="due-in" class="bg-gradient" style="height:100%; width:100% ;display:block;overflow:auto;padding: 10px;">{{WO.dueDate}}</span></td>
         <td>20%</td>
         <td  style="width: 10px;">
             {% if WO.shippingThisMonth %}
-            <input class="form-check-input shipping" name="shippingThisMonth" type="checkbox" value="none" aria-label="..." onChange="this.form.submit()" style="width: 15px; height: 15px;" checked>
+            <input class="form-check-input shipping" name="shippingThisMonth" type="checkbox" value="none" aria-label="..."  style="width: 15px; height: 15px;" checked onclick="updateShippingThisMonth('{{WO.jobNumber}}','false')">
             {% else %}
-            <input class="form-check-input shipping" name="shippingThisMonth" type="checkbox"  value="True" aria-label="..." onChange="this.form.submit()" style="width: 15px; height: 15px;" >
+            <input class="form-check-input shipping" name="shippingThisMonth" type="checkbox"  value="True" aria-label="..." style="width: 15px; height: 15px;" onclick="updateShippingThisMonth('{{WO.jobNumber}}','true')">
             {% endif%}
         </td>
         <td class="pl-2 pr-2">{{WO.TA}}</td>
-        <td style="padding: 0;"><input id="{{WO.jobNumber}}-notes" type="text" style="height:100%; width:100% ;display:block;overflow:auto;padding: 10px; text-align: center; border: none;" oninput="updateData('this','that','where')"></td>
+        <td style="padding: 0;"><input class="notes" id="{{WO.jobNumber}}-notes" type="text" style="height:100%; width:100% ;display:block;overflow:auto;padding: 10px; text-align: center; border: none;" onclick="updateNotes('{{WO.jobNumber}}-notes','{{WO.jobNumber}}','notes')" value="{{WO.notes1}}"></td>
         <td>ETT</td>
-        <td style="padding-left: 20px; padding-right: 50px;">JD</td>
-        <td style="padding-left: 20px; padding-right: 50px;">-</td>
+        <td>JD</td>
+        <td style="border-right: solid 10px rgb(255, 255, 255);">-</td>
         <td>10</td>
         <td>10</td>
         <td>10</td>
