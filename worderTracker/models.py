@@ -28,3 +28,14 @@ class Operation(models.Model):
     status = models.CharField(max_length=15)
     stepNumber = models.IntegerField()
     customNotes = models.TextField(blank=True,null=True)
+
+
+
+class MEs(models.Model):
+    name=models.CharField(max_length=50)
+    intials = models.CharField(max_length=2)
+
+
+
+class JobNotes(models.Model):
+    reasonCode = models.TextField()
