@@ -18,7 +18,7 @@ function checkNote(elm){
   }else if(elm.value=='HOLD FOR TA'){
     elm.className='hold-for-ta'
   }else{
-    elm.className=''
+    elm.className='blank'
   }
   
 
@@ -29,7 +29,7 @@ function notesColor() {
   for (i = 0; i < notes.length; i++) {
     if (notes[i].value.toLowerCase() == "none" || notes[i].value.length < 2) {
       notes[i].value = "";
-      // className='alert-danger'
+      notes[i].className='blank'
     }else{
       checkNote(notes[i])
     }
