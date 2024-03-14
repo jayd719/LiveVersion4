@@ -6,14 +6,25 @@ function deleteNavBar() {
   document.body.removeChild(document.getElementById("nav-bar"));
 }
 
+function checkNote(elm){
+  if(elm.value=='HOLD FOR CUSTOMER'){
+    elm.className='alert-danger'
+    elm.style.color = "white";
+  }else{
+    elm.className=''
+  }
+  
+
+}
+
 function notesColor() {
   let notes = document.querySelectorAll(".notes");
   for (i = 0; i < notes.length; i++) {
     if (notes[i].value.toLowerCase() == "none" || notes[i].value.length < 2) {
       notes[i].value = "";
-      // notes[i].style.backgroundColor = "#e0e0e0";
+      // className='alert-danger'
     }else{
-      // notes[i].style.backgroundColor = "white";
+      checkNote(notes[i])
     }
   }
 }
@@ -66,6 +77,7 @@ function updateNotes(elmID, wo) {
   dataValues["field"] = "notes";
   dataValues["data"] = document.getElementById(elmID).value;
   POST(dataValues);
+  checkNote(document.getElementById(elmID))
 }
 
 function updateShippingThisMonth(wo, value) {

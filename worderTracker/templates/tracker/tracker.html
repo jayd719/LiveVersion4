@@ -3,7 +3,6 @@
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'worderTracker/tracker.css' %}" />
-<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
 <!-- <button onclick="convertAndSend()">Save</button> -->
@@ -56,13 +55,25 @@
         
     
       {%for WO in WORKORDERS%}
+
+      {% if WO == 1 %}
+      <tr style="height: 10px; background-color: brown;"></tr>
+      
+      {% else %}
       <tr>
         <td class="jobNumbers" title="{{WO.des}}">{{WO.jobNumber}}</td>
         <td class="">{{WO.customer}}</td>
         <td>{{WO.qty}}</td>
-        <td><input type="date" class="dueDate" value="{{WO.dueDate}}" id="{{WO.jobNumber}}-datepicker" name="dueDate" style="background-color: transparent; border: none; outline: none" onchange="writeDate('{{WO.jobNumber}}','{{WO.jobNumber}}-datepicker')"/></td>
+
+        <!-- Due Date -->
+        <td>
+          <input type="date" class="dueDate" value="{{WO.dueDate}}" id="{{WO.jobNumber}}-datepicker" name="dueDate" style="background-color: transparent; border: none; outline: none" onchange="writeDate('{{WO.jobNumber}}','{{WO.jobNumber}}-datepicker')"/>
+        </td>
+
         <td style="padding: 0px;"> <span id="due-in" class="bg-gradient" style="display:block;overflow:auto;padding: 10px;">{{WO.dueDate}}</span></td>
         <td>20%</td>
+
+        <!-- shipping This Month -->
         <td  style="width: 10px;">
             {% if WO.shippingThisMonth %}
             <input class="form-check-input shipping" name="shippingThisMonth" type="checkbox" value="none" aria-label="..."  style="width: 15px; height: 15px;" checked onclick="updateShippingThisMonth('{{WO.jobNumber}}','false')">
@@ -70,25 +81,43 @@
             <input class="form-check-input shipping" name="shippingThisMonth" type="checkbox"  value="True" aria-label="..." style="width: 15px; height: 15px;" onclick="updateShippingThisMonth('{{WO.jobNumber}}','true')">
             {% endif%}
         </td>
+
+        
         <td class="pl-2 pr-2">{{WO.TA}}</td>
-        <td style="padding: 0;"><input class="notes" id="{{WO.jobNumber}}-notes" type="text" list="notes-options" style="height:100%; width:100% ;display:block;overflow:auto;padding: 10px; text-align: center; border: none;" onchange="updateNotes('{{WO.jobNumber}}-notes','{{WO.jobNumber}}')" value="{{WO.notes1}}"><datalist id="notes-options"><option value="Hold for Customer"> <option value="Waiting For Material"><option value="Outsourcred"></option></datalist></td>
+
+        <!-- job NOTES -->
+        <td style="padding: 0;">
+            <input class="notes" id="{{WO.jobNumber}}-notes" type="text" list="notes-options" style="height:100%; width:100% ;display:block;overflow:auto;padding: 11px; text-align: center; border: none;" onchange="updateNotes('{{WO.jobNumber}}-notes','{{WO.jobNumber}}')" value="{{WO.notes1}}">
+                <datalist id="notes-options">
+                  {% for NOTE in jobNotes %}
+                    <option value="{{NOTE.reasonCode}}">
+                  {% endfor %}
+                </datalist>
+        </td>
+
         <td class="bg-warning">Incoming Inspection</td>
-        <td style="padding:0px;"><input class="notes" id="" type="text" list="ME-options" style="height:100%; width:100% ;display:block;overflow:auto;padding: 10px; text-align: center; border: none;" value="{{WO.ME}}"><datalist id="ME-options"><option value="JB">Manufacturing Engineer</option><option value="JD">Manufacturing Engineer</option><option value="SA">Manufacturing Engineer</option><option value="GC">Manufacturing Engineer</option><option value="AS">Manufacturing Engineer</option><option value="MD">Manufacturing Engineer</option></datalist></td>
+
+        <!-- MES -->
+        <td style="padding:0px;">
+          <input class="notes" id="" type="text" list="ME-options" style="height:100%; width:100% ;display:block;overflow:auto;padding: 10px; text-align: center; border: none;" value="{{WO.ME}}">
+              <datalist id="ME-options">
+                {% for me in MEs %}
+                <option value="{{me.intials}}">{{me.name}}</option>
+                {% endfor %}
+              </datalist>
+        </td>
         <td >-</td>
-        <td>10</td>
-        <td>10</td>
-        <td>10</td>
-        <td>10</td>
-        <td>10</td>
-        <td>10</td>
-        <td>10</td>
-        <td>10</td>
-        <td>10</td>
-        <td>10</td>
-        <td>10</td>
-    
+        <!-- OPERATIONS -->
+        {% for op in WO.ops %}
+          <td title="{{op.workCenter}}    {{op.stepNumber}} 
+
+{{op.description}}
+
+Est. Hours:   {{op.estimatedHours}}">
+            {{op.workCenter}}</td>
+        {% endfor %}
       </tr>
-      
+      {% endif %}
       
       {% endfor%}
     </tbody>
@@ -96,17 +125,6 @@
   </div>
 </div>
   
-
-
-
-
-
-
-
-
-
-
-
 
 
 <script src="{% static 'worderTracker/tracker.js' %}"></script>

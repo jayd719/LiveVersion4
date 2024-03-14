@@ -1,12 +1,13 @@
-from typing import Any
 from django.shortcuts import render,redirect,HttpResponse,HttpResponseRedirect
 from workOrderReports.views import workOrders
 from LiveVersion4.test import getListofAllOrders
 from workOrderReports.getData import getWorkOrderDetails
-from .models import WorkOrderTracker,Operation
+from .models import WorkOrderTracker
+from .models import Operation
+from .models import MEs
+from .models import JobNotes
 from django.contrib import messages
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 import json
 
 
@@ -52,11 +53,24 @@ def updateShippingThisMonth(requests):
 
 def live(requests):
      WORKORDERS=[]
-     for wo in WorkOrderTracker.objects.all().order_by('dueDate'):
+     for wo in WorkOrderTracker.objects.filter(notes1='HOLD FOR CUSTOMER').order_by('dueDate'):
           wo.dueDate=wo.dueDate.strftime("%Y-%m-%d")
+          wo.ops = Operation.objects.filter(jobNumber =wo.jobNumber)
           WORKORDERS.append(wo)
+
+     WORKORDERS.append(1)
+     for wo in WorkOrderTracker.objects.exclude(notes1 ='HOLD FOR CUSTOMER').order_by('dueDate'):
+        wo.dueDate=wo.dueDate.strftime("%Y-%m-%d")
+        wo.ops = Operation.objects.filter(jobNumber =wo.jobNumber)
+        WORKORDERS.append(wo)
+    
          
-     return render(requests,'tracker/tracker.html',{'title':'Livesssss','WORKORDERS': WORKORDERS,'sList':workOrders})
+     data= {'title':'CBB Live',
+            'WORKORDERS': WORKORDERS,
+            'sList':workOrders,
+            'MEs':MEs.objects.all(),
+            'jobNotes':JobNotes.objects.all()}   
+     return render(requests,'tracker/tracker.html',data)
 
 
 

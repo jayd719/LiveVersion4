@@ -17,6 +17,8 @@ class WorkOrderTracker(models.Model):
     notes2 = models.TextField(blank=True,null=True)
     estimatedHours = models.FloatField()
     completedHours = models.FloatField()
+    ops = models.CharField(max_length=2,default='0')
+    onHold=models.BooleanField(blank=True,default=False)
 
 
 
@@ -32,7 +34,7 @@ class Operation(models.Model):
 
 
 class MEs(models.Model):
-    name=models.CharField(max_length=50)
+    name=models.CharField(max_length=50,primary_key=True)
     intials = models.CharField(max_length=2)
 
 
