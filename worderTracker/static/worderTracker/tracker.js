@@ -8,8 +8,15 @@ function deleteNavBar() {
 
 function checkNote(elm){
   if(elm.value=='HOLD FOR CUSTOMER'){
-    elm.className='alert-danger'
-    elm.style.color = "white";
+    elm.className='hold-for-customer'
+  }else if(elm.value=='WAITING FOR MATERIAL'){
+    elm.className='waiting-for-material'
+  }else if(elm.value=='CUSTOMER WITNESS'){
+    elm.className='customer-witness'
+  }else if(elm.value=='OUTSOURCED'){
+    elm.className='alert-secondary'
+  }else if(elm.value=='HOLD FOR TA'){
+    elm.className='hold-for-ta'
   }else{
     elm.className=''
   }

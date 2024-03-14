@@ -11,6 +11,7 @@ from LiveVersion4.settings import cache
 global workOrders 
 workOrders= getListofAllOrders()
 
+INCOMINGLIST=['INC QC B4','INC QC']
 
 def notEnoughPerm(requests):
     messages.error(requests,f'Verification Required!')
@@ -88,6 +89,10 @@ def addToLive(requests):
             op=Operation(jobNumber=WO,workCenter = operation.workCenter,description= operation.des,estimatedHours= operation.estimatedHours, stepNumber=operation.stepNumber,status = 'pending')
             op.save()
 
+            if op.workCenter in INCOMINGLIST:
+                WO.incomingInspection =True
+        
+        WO.save()
         messages.info(requests,f'{jobNumber} Added To Live!')
         writeStatus(f"1:Job Detial: {jobNumber}:printed")  
         return redirect(f'/live/?search-for-work-order={jobNumber}')

@@ -51,7 +51,7 @@
         </tr>
       </thead>
   
-      <tbody class="table-group-divider" style="font-size: 12px;">
+      <tbody class="table-group-divider" style="font-size: 11.5px;">
         
     
       {%for WO in WORKORDERS%}
@@ -95,7 +95,11 @@
                 </datalist>
         </td>
 
-        <td class="bg-warning">Incoming Inspection</td>
+        {% if WO.incomingInspection %}
+          <td class="bg-warning">Incoming Inspection</td>
+        {% else %}
+          <td class="bg-success"></td>
+        {% endif%}
 
         <!-- MES -->
         <td style="padding:0px;">
