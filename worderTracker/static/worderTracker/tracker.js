@@ -46,12 +46,12 @@ function updateDate() {
     const dueIn = Math.ceil((targetDate - currentDate) / (1000 * 60 * 60 * 24));
     dates[i].innerHTML = dueIn;
     if (dueIn < 0) {
-      dates[i].className = "alert-danger";
+      dates[i].className = "bg-danger";
       dates[i].style.color = "white";
     } else if (dueIn >= 0 && dueIn <= 7) {
-      dates[i].className = "alert-warning";
+      dates[i].className = "bg-warning";
     } else {
-      dates[i].className = "alert-success";
+      dates[i].className = "bg-success";
     }
   }
 }

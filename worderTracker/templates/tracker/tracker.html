@@ -7,10 +7,10 @@
 
 <!-- <button onclick="convertAndSend()">Save</button> -->
 
-  <div class="table-container" >
-    <table class="table table-striped" id="data-table">
+  <div class="table-container" style="height: 100%;" >
+    <table class="table table-striped table-hover" id="data-table" style="font-size: 18px;">
       {% csrf_token %}
-      <thead class="table-dark" style="vertical-align: middle; font-size: 70%;">
+      <thead class="table-dark" style="vertical-align: middle;">
         <tr style="height: 50pt; font-weight: bold">
           <th scope="col" style="min-width: 125px;">WorkOrder</th>
           <th scope="col" style="min-width: 350px;">Customer</th>
@@ -51,7 +51,7 @@
         </tr>
       </thead>
   
-      <tbody class="table-group-divider" style="font-size: 11.5px;">
+      <tbody class="table-group-divider">
         
     
       {%for WO in WORKORDERS%}
@@ -70,7 +70,7 @@
           <input type="date" class="dueDate" value="{{WO.dueDate}}" id="{{WO.jobNumber}}-datepicker" name="dueDate" style="background-color: transparent; border: none; outline: none" onchange="writeDate('{{WO.jobNumber}}','{{WO.jobNumber}}-datepicker')"/>
         </td>
 
-        <td style="padding: 0px;"> <span id="due-in" class="bg-gradient" style="display:block;overflow:auto;padding: 10px;">{{WO.dueDate}}</span></td>
+        <td id="due-in" class="bg-gradient"> {{WO.dueDate}}</td>
         <td>20%</td>
 
         <!-- shipping This Month -->
@@ -87,7 +87,7 @@
 
         <!-- job NOTES -->
         <td style="padding: 0;">
-            <input class="notes" id="{{WO.jobNumber}}-notes" type="text" list="notes-options" style="height:100%; width:100% ;display:block;overflow:auto;padding: 11px; text-align: center; border: none;" onchange="updateNotes('{{WO.jobNumber}}-notes','{{WO.jobNumber}}')" value="{{WO.notes1}}">
+            <input class="notes" id="{{WO.jobNumber}}-notes" type="text" list="notes-options" style="height:100%; width:100% ;display:block;overflow:auto;padding: 12px; text-align: center; border: none;" onchange="updateNotes('{{WO.jobNumber}}-notes','{{WO.jobNumber}}')" value="{{WO.notes1}}">
                 <datalist id="notes-options">
                   {% for NOTE in jobNotes %}
                     <option value="{{NOTE.reasonCode}}">
