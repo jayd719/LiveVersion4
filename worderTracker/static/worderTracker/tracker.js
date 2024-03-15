@@ -1,5 +1,6 @@
 updateDate();
 notesColor();
+updateAllCompleted();
 
 // Delete Nav var Not Used
 function deleteNavBar() {
@@ -115,19 +116,17 @@ function updateIncomingInspection(wo) {
   let dataValues = {};
   dataValues["workOrder"] = wo;
   dataValues["field"] = "inspection";
-  
 
-  if(info.innerText=='Incoming Inspection'){
-    info.innerText=''
-    info.className='bg-success'
-    dataValues["data"] = 'false'
-  }else{
-    info.innerText='Incoming Inspection'
-    info.className='bg-warning'
-    dataValues["data"] = 'true'
+  if (info.innerText == "Incoming Inspection") {
+    info.innerText = "";
+    info.className = "bg-success";
+    dataValues["data"] = "false";
+  } else {
+    info.innerText = "Incoming Inspection";
+    info.className = "bg-warning";
+    dataValues["data"] = "true";
   }
   POST(dataValues);
-  
 }
 
 function convertAndSend() {
@@ -169,4 +168,47 @@ function convertAndSend() {
       alert("COULD NOT SAVE DATA");
     },
   });
+}
+
+function updateStatus(wo, op) {
+  let cell = document.getElementById(`${wo}-${op}`);
+  let dataValues = {};
+  let statusLabel = document.getElementById(`${wo}-completed`);
+
+  dataValues["workOrder"] = wo;
+  dataValues["field"] = "operation";
+  dataValues["op"] = op;
+  if (cell.className == "pending") {
+    let compltedHours =
+      parseFloat(statusLabel.ariaPlaceholder) +
+      parseFloat(cell.ariaPlaceholder);
+    statusLabel.ariaPlaceholder = compltedHours;
+    cell.className = "completed";
+    dataValues["data"] = "completed";
+    dataValues["comp"] = compltedHours;
+  } else {
+    cell.className = "pending";
+    let compltedHours =
+      parseFloat(statusLabel.ariaPlaceholder) -
+      parseFloat(cell.ariaPlaceholder);
+    statusLabel.ariaPlaceholder = compltedHours;
+    dataValues["data"] = "pending";
+    dataValues["comp"] = compltedHours;
+  }
+
+  POST(dataValues);
+  updateCompleted(`${wo}-completed`);
+}
+
+function updateAllCompleted() {
+  nodes = document.querySelectorAll(".comp-per");
+  for (i = 0; i < nodes.length; i++) {
+    updateCompleted(nodes[i].id);
+  }
+}
+
+function updateCompleted(id) {
+  let textBox = document.getElementById(id);
+  textBox.innerText =
+    Math.round(((parseFloat(textBox.ariaPlaceholder) / parseFloat(textBox.ariaLabel))*100)) + "%";
 }

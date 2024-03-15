@@ -123,6 +123,13 @@ def updateInsp(userData):
         WO.incomingInspection=False
     WO.save()
 
+def updateOperation(userData):
+    WO = WorkOrderTracker.objects.get(jobNumber=userData['workOrder'])
+    WO.completedHours=userData['comp']
+    WO.save()
+    OP = Operation.objects.get(jobNumber=userData['workOrder'],stepNumber=userData['op'])
+    OP.status=userData['data']
+    OP.save()
 
 
 
@@ -130,7 +137,6 @@ def writeBackToDatabase(request):
     if request.method == 'POST':
         try:
             userData = json.loads(request.body.decode('utf-8'))
-
             if userData['field']=='notes':
                 updateNotes(userData)
             elif userData['field']=='stm':
@@ -141,13 +147,8 @@ def writeBackToDatabase(request):
                 updateME(userData)
             elif userData['field']=='inspection':
                 updateInsp(userData)
-                
-
-            
-
-
-            
-            
+            elif userData['field']=='operation':
+                updateOperation(userData)
 
             return JsonResponse({'success': True})
         except json.JSONDecodeError as e:

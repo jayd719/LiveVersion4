@@ -16,7 +16,7 @@
           <th scope="col" style="width: 20px;">QTY</th>
           <th scope="col" style="width: 10px;">Due Date</th>
           <th scope="col" style="max-width:20px;" >Due In</th>
-          <th scope="col" style="max-width:20px;font-size: 70%">Comp</th>
+          <th scope="col" style="max-width:40px;font-size: 70%">Comp</th>
           <th style="font-size: 40%">Shipp' This Month</td>
           <th scope="col">TA</th>
           <th scope="col" style="min-width:350px;">Notes</th>
@@ -140,17 +140,19 @@
       </tr>
       {% else %}
       <tr>
-        <td class="jobNumbers"> <div class="jobDetails"><pre>{{WO.des}}</pre></div>{{WO.jobNumber}}</td>
-        <td class="">{{WO.customer}}</td>
-        <td>{{WO.qty}}</td>
+        <td class="jobNumbers fw-bold"> <div class="jobDetails"><pre>{{WO.des}}</pre></div>{{WO.jobNumber}}</td>
+        <td class="fw-bold">{{WO.customer}}</td>
+        <td class="fw-bold">{{WO.qty}}</td>
 
         <!-- Due Date -->
         <td>
           <input type="date" class="dueDate" value="{{WO.dueDate}}" id="{{WO.jobNumber}}-datepicker" name="dueDate" style="background-color: transparent; border: none; outline: none" onchange="writeDate('{{WO.jobNumber}}','{{WO.jobNumber}}-datepicker')"/>
         </td>
 
-        <td id="due-in" class="bg-gradient"> {{WO.dueDate}}</td>
-        <td>20%</td>
+        <td id="due-in" class="bg-gradient fw-bold"> {{WO.dueDate}}</td>
+
+        <!-- completed -->
+        <td class="comp-per fw-bold" id="{{WO.jobNumber}}-completed" aria-label={{WO.estimatedHours}} aria-placeholder="{{WO.completedHours}}">20%</td>
 
         <!-- shipping This Month -->
         <td  style="width: 10px;">
@@ -192,7 +194,7 @@
         <td >-</td>
         <!-- OPERATIONS -->
         {% for op in WO.ops %}
-          <td title="{{op.workCenter}}    {{op.stepNumber}} 
+          <td id="{{WO.jobNumber}}-{{op.stepNumber}}" onclick="updateStatus('{{WO.jobNumber}}','{{op.stepNumber}}')" oncontextmenu="alert('heelo')" class="{{op.status}}" aria-placeholder="{{op.estimatedHours}}"  title="{{op.workCenter}}    {{op.stepNumber}} 
 
 {{op.description}}
 
@@ -208,7 +210,17 @@ Est. Hours:   {{op.estimatedHours}}">
   </div>
 </div>
   
-
+<script>
+  if (document.addEventListener) {
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  }, false);
+} else {
+  document.attachEvent('oncontextmenu', function() {
+    window.event.returnValue = false;
+  });
+}
+</script>
 
 <script src="{% static 'worderTracker/tracker.js' %}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
