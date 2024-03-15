@@ -6,22 +6,20 @@ function deleteNavBar() {
   document.body.removeChild(document.getElementById("nav-bar"));
 }
 
-function checkNote(elm){
-  if(elm.value=='HOLD FOR CUSTOMER'){
-    elm.className='hold-for-customer'
-  }else if(elm.value=='WAITING FOR MATERIAL'){
-    elm.className='waiting-for-material'
-  }else if(elm.value=='CUSTOMER WITNESS'){
-    elm.className='customer-witness'
-  }else if(elm.value=='OUTSOURCED'){
-    elm.className='alert-secondary'
-  }else if(elm.value=='HOLD FOR TA'){
-    elm.className='hold-for-ta'
-  }else{
-    elm.className='blank'
+function checkNote(elm) {
+  if (elm.value == "HOLD FOR CUSTOMER") {
+    elm.className = "hold-for-customer";
+  } else if (elm.value == "WAITING FOR MATERIAL") {
+    elm.className = "waiting-for-material";
+  } else if (elm.value == "CUSTOMER WITNESS") {
+    elm.className = "customer-witness";
+  } else if (elm.value == "OUTSOURCED") {
+    elm.className = "alert-secondary";
+  } else if (elm.value == "HOLD FOR TA") {
+    elm.className = "hold-for-ta";
+  } else {
+    elm.className = "blank";
   }
-  
-
 }
 
 function notesColor() {
@@ -29,9 +27,9 @@ function notesColor() {
   for (i = 0; i < notes.length; i++) {
     if (notes[i].value.toLowerCase() == "none" || notes[i].value.length < 2) {
       notes[i].value = "";
-      notes[i].className='blank'
-    }else{
-      checkNote(notes[i])
+      notes[i].className = "blank";
+    } else {
+      checkNote(notes[i]);
     }
   }
 }
@@ -84,7 +82,7 @@ function updateNotes(elmID, wo) {
   dataValues["field"] = "notes";
   dataValues["data"] = document.getElementById(elmID).value;
   POST(dataValues);
-  checkNote(document.getElementById(elmID))
+  checkNote(document.getElementById(elmID));
 }
 
 function updateShippingThisMonth(wo, value) {
@@ -104,7 +102,7 @@ function writeDate(wo, elmID) {
   updateDate();
 }
 
-function updateME(elmID,wo){
+function updateME(elmID, wo) {
   let dataValues = {};
   dataValues["workOrder"] = wo;
   dataValues["field"] = "ME";
@@ -112,8 +110,25 @@ function updateME(elmID,wo){
   POST(dataValues);
 }
 
+function updateIncomingInspection(wo) {
+  let info = document.getElementById(`${wo}-inc`);
+  let dataValues = {};
+  dataValues["workOrder"] = wo;
+  dataValues["field"] = "inspection";
+  
 
-
+  if(info.innerText=='Incoming Inspection'){
+    info.innerText=''
+    info.className='bg-success'
+    dataValues["data"] = 'false'
+  }else{
+    info.innerText='Incoming Inspection'
+    info.className='bg-warning'
+    dataValues["data"] = 'true'
+  }
+  POST(dataValues);
+  
+}
 
 function convertAndSend() {
   var tableData = [];
@@ -155,9 +170,3 @@ function convertAndSend() {
     },
   });
 }
-
-
-
-
-
-

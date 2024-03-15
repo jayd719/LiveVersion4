@@ -175,9 +175,9 @@
         </td>
 
         {% if WO.incomingInspection %}
-          <td class="bg-warning">Incoming Inspection</td>
+          <td class="bg-warning" id="{{WO.jobNumber}}-inc" onclick="updateIncomingInspection('{{WO.jobNumber}}')">Incoming Inspection</td>
         {% else %}
-          <td class="bg-success"></td>
+          <td class="bg-success"  id="{{WO.jobNumber}}-inc" onclick="updateIncomingInspection('{{WO.jobNumber}}')"></td>
         {% endif%}
 
         <!-- MES -->

@@ -115,6 +115,14 @@ def updateME(userData):
     WO.ME=userData['data']
     WO.save()
 
+def updateInsp(userData):
+    WO = WorkOrderTracker.objects.get(jobNumber=userData['workOrder'])
+    if userData['data']== 'true':
+         WO.incomingInspection = True
+    else:
+        WO.incomingInspection=False
+    WO.save()
+
 
 
 
@@ -131,6 +139,8 @@ def writeBackToDatabase(request):
                 updateDueDate(userData)
             elif userData['field']=='ME':
                 updateME(userData)
+            elif userData['field']=='inspection':
+                updateInsp(userData)
                 
 
             
