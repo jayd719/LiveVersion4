@@ -12,7 +12,10 @@ import json
 
 
 
-
+class tempWO:
+    def __init__(self,month):
+        self.jobNumber =2
+        self.month =month
 
 
 def monthly_forcast(requests):
@@ -59,9 +62,17 @@ def live(requests):
           WORKORDERS.append(wo)
 
      WORKORDERS.append(1)
+     
+     currMonth=None
      for wo in WorkOrderTracker.objects.exclude(notes1 ='HOLD FOR CUSTOMER').order_by('dueDate'):
-        wo.dueDate=wo.dueDate.strftime("%Y-%m-%d")
         wo.ops = Operation.objects.filter(jobNumber =wo.jobNumber)
+
+        if(currMonth is None or wo.dueDate.strftime("%b")!=currMonth):
+            WORKORDERS.append(tempWO(f'{wo.dueDate.strftime("%b")}'))
+
+        currMonth = wo.dueDate.strftime("%b")
+
+        wo.dueDate=wo.dueDate.strftime("%Y-%m-%d")
         WORKORDERS.append(wo)
     
          
