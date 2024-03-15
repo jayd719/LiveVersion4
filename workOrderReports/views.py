@@ -85,11 +85,12 @@ def addToLive(requests):
         WO = WorkOrderTracker(jobNumber= dataObj.jobNumber,customer=dataObj.customer,dueDate = dataObj.dueDate,qty=dataObj.qty,shippingThisMonth=False,TA=dataObj.TA,incomingInspection=False,rush= False, estimatedHours= dataObj.totalEstimatedHours,completedHours=0,des=dataObj.des)
         WO.save()
 
+        WO.incomingInspection =False
         for operation in dataObj.router:
             op=Operation(jobNumber=WO,workCenter = operation.workCenter,description= operation.des,estimatedHours= operation.estimatedHours, stepNumber=operation.stepNumber,status = 'pending')
             op.save()
 
-            if op.workCenter in INCOMINGLIST:
+            if WO.incomingInspection != True  and op.workCenter in INCOMINGLIST:
                 WO.incomingInspection =True
         
         WO.save()

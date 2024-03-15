@@ -104,6 +104,17 @@ function writeDate(wo, elmID) {
   updateDate();
 }
 
+function updateME(elmID,wo){
+  let dataValues = {};
+  dataValues["workOrder"] = wo;
+  dataValues["field"] = "ME";
+  dataValues["data"] = document.getElementById(elmID).value;
+  POST(dataValues);
+}
+
+
+
+
 function convertAndSend() {
   var tableData = [];
   var headers = [];

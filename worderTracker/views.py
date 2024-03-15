@@ -93,6 +93,8 @@ def live(requests):
 def updateNotes(userData):
     WO = WorkOrderTracker.objects.get(jobNumber=userData['workOrder'])
     WO.notes1=userData['data']
+    if WO.notes1=='HOLD FOR CUSTOMER':
+        WO.shippingThisMonth=False
     WO.save()
 
 def updateShipping(userData):
@@ -108,7 +110,10 @@ def updateDueDate(userData):
     WO.dueDate=userData['data']
     WO.save()
     
-
+def updateME(userData):
+    WO = WorkOrderTracker.objects.get(jobNumber=userData['workOrder'])
+    WO.ME=userData['data']
+    WO.save()
 
 
 
@@ -124,6 +129,8 @@ def writeBackToDatabase(request):
                 updateShipping(userData)
             elif userData['field']=='dueDate':
                 updateDueDate(userData)
+            elif userData['field']=='ME':
+                updateME(userData)
                 
 
             

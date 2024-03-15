@@ -4,7 +4,6 @@
 
 <link rel="stylesheet" href="{% static 'worderTracker/tracker.css' %}" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-<!-- <link rel="stylesheet" href="https://bootswatch.com/5/united/bootstrap.css"> -->
 <!-- <button onclick="convertAndSend()">Save</button> -->
 
   <div class="table-container" style="height: 100%; " >
@@ -59,7 +58,7 @@
       {% if WO == 1 %}
       <tr class="" style="height: 50px;"></tr>
       {% elif WO.jobNumber == 2 %}
-      <tr  class="table-dark" style="font-size: 80%; padding: 0; border-top: solid rgb(107, 110, 110) 3px; border-bottom: solid rgb(107, 110, 110) 3px;">
+      <tr  class="table-dark" style="font-size: 80%; padding: 0; border-top: solid rgb(107, 110, 110) 5px; border-bottom: solid rgb(107, 110, 110) 5px;">
         <td style=" padding: 0;"></td>
         <td id='splitter' style=" padding: 0;">{{WO.month}}</td>
         <td style=" padding: 0;"></td>
@@ -141,7 +140,7 @@
       </tr>
       {% else %}
       <tr>
-        <td class="jobNumbers"> <div class="jobDetails"><pre>{{WO.des}}</pre></div> {{WO.jobNumber}}</td>
+        <td class="jobNumbers"> <div class="jobDetails"><pre>{{WO.des}}</pre></div>{{WO.jobNumber}}</td>
         <td class="">{{WO.customer}}</td>
         <td>{{WO.qty}}</td>
 
@@ -167,7 +166,7 @@
 
         <!-- job NOTES -->
         <td style="padding: 0;">
-            <input class="notes" id="{{WO.jobNumber}}-notes" type="text" list="notes-options" style="height:100%; width:100% ;display:block;overflow:auto;padding: 12px; text-align: center; border: none; font-size: 90%;" onchange="updateNotes('{{WO.jobNumber}}-notes','{{WO.jobNumber}}')" value="{{WO.notes1}}">
+            <input class="notes" id="{{WO.jobNumber}}-notes" type="text" list="notes-options" style="height:100%; width:100% ;display:block;overflow:auto;padding: 12px; text-align: center; border: none;" onchange="updateNotes('{{WO.jobNumber}}-notes','{{WO.jobNumber}}')" value="{{WO.notes1}}">
                 <datalist id="notes-options">
                   {% for NOTE in jobNotes %}
                     <option value="{{NOTE.reasonCode}}">
@@ -183,7 +182,7 @@
 
         <!-- MES -->
         <td style="padding:0px;">
-          <input class="notes" id="" type="text" list="ME-options" style="height:100%; width:100% ;display:block;overflow:auto;padding: 10px; text-align: center; border: none; background: transparent;" value="{{WO.ME}}">
+          <input class="notes" id="{{WO.jobNumber}}-me" type="text" list="ME-options" style="height:100%; width:100% ;display:block;overflow:auto;padding: 10px; text-align: center; border: none; background: transparent;" value="{{WO.ME}}" onchange="updateME('{{WO.jobNumber}}-me','{{WO.jobNumber}}')">
               <datalist id="ME-options">
                 {% for me in MEs %}
                 <option value="{{me.intials}}">{{me.name}}</option>
