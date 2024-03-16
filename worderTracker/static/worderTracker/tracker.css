@@ -2,7 +2,7 @@ body {
   margin: 0;
 }
 .table-container {
-  zoom: 80.0%;
+  zoom: 80%;
 }
 
 .jobDetails {
@@ -61,6 +61,20 @@ tr > :nth-child(2) {
   left: 125px;
   z-index: 2;
 }
+
+
+
+@keyframes rightSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-600px);
+  }
+  to {
+    opacity: 100;
+    transform: translateX(0px);
+  }
+}
+
 td {
   white-space: nowrap;
   border: 1px solid rgba(120, 120, 120, 0.46);
@@ -94,9 +108,7 @@ td {
 .completed {
   /* filter: contrast(0) sepia(100%) hue-rotate(126deg) brightness(1.4)
     saturate(0.18); */
-
   opacity: 0;
   border-left: transparent;
   border-right: transparent;
 }
-

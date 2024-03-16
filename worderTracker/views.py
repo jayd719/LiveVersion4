@@ -68,7 +68,7 @@ def live(requests):
         wo.ops = Operation.objects.filter(jobNumber =wo.jobNumber)
 
         if(currMonth is None or wo.dueDate.strftime("%b")!=currMonth):
-            WORKORDERS.append(tempWO(f'{wo.dueDate.strftime("%b")}'))
+            WORKORDERS.append(tempWO(f'{wo.dueDate.strftime("%b").upper()}'))
 
         currMonth = wo.dueDate.strftime("%b")
 
