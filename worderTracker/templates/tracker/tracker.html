@@ -6,6 +6,10 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 <!-- <button onclick="convertAndSend()">Save</button> -->
 
+
+
+
+
   <div class="table-container" style="height: 100%; " >
     <table class="table table-striped table-hover" id="data-table" style="font-size: 14px; margin-bottom: 400px;">
       {% csrf_token %}
@@ -14,10 +18,10 @@
           <th scope="col" style="min-width: 125px;">WorkOrder</th>
           <th scope="col" style="min-width: 250px;">Customer</th>
           <th scope="col" style="width: 20px;">QTY</th>
-          <th scope="col" style="max-width:40px;font-size: 70%">Comp</th>
+          <th scope="col" style="max-width:40px">Comp</th>
           <th scope="col" style="width: 10px;">Due Date</th>
           <th scope="col" style="max-width:20px;" >Due In</th>
-          <th style="font-size: 40%">Shipp' This Month</td>
+          <th >Shipp' This Month</td>
           <th scope="col">TA</th>
           <th scope="col" style="min-width:350px;">Notes</th>
           <th scope="col" style="min-width:200px;" >Incoming Inspection</th>
@@ -194,7 +198,7 @@
         <td >-</td>
         <!-- OPERATIONS -->
         {% for op in WO.ops %}
-          <td id="{{WO.jobNumber}}-{{op.stepNumber}}" onclick="updateStatus('{{WO.jobNumber}}','{{op.stepNumber}}')" oncontextmenu="alert('heelo')" class="{{op.status}}" aria-placeholder="{{op.estimatedHours}}"  title="{{op.workCenter}}    {{op.stepNumber}} 
+          <td id="{{WO.jobNumber}}-{{op.stepNumber}}" onclick="updateStatus('{{WO.jobNumber}}','{{op.stepNumber}}')"  oncontextmenu="modal('{{WO.jobNumber}}','{{op.stepNumber}}')" class="{{op.status}}" aria-placeholder="{{op.estimatedHours}}"  title="{{op.workCenter}}    {{op.stepNumber}} 
 
 {{op.description}}
 

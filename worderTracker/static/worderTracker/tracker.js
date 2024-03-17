@@ -9,7 +9,7 @@ function deleteNavBar() {
 
 function checkNote(elm) {
   if (elm.value == "HOLD FOR CUSTOMER") {
-    elm.className = "hold-for-customer";
+    elm.className = "bg-danger hold-for-customer";
   } else if (elm.value == "WAITING FOR MATERIAL") {
     elm.className = "waiting-for-material";
   } else if (elm.value == "CUSTOMER WITNESS") {
@@ -210,5 +210,67 @@ function updateAllCompleted() {
 function updateCompleted(id) {
   let textBox = document.getElementById(id);
   textBox.innerText =
-    Math.round(((parseFloat(textBox.ariaPlaceholder) / parseFloat(textBox.ariaLabel))*100)) + "%";
+    Math.round(
+      (parseFloat(textBox.ariaPlaceholder) / parseFloat(textBox.ariaLabel)) *
+        100
+    ) + "%";
+}
+
+function removeButton() {
+  return button;
+}
+
+let MACHINELIST = [];
+
+function modal(wo, op) {
+  let modal = document.createElement("div");
+  modal.style.zIndex = "100";
+
+  modal.id = "modal";
+  modal.style.top = "25%";
+  modal.style.left = "37.5%";
+  modal.className = "pop-up-window h-50 w-25 position-absolute";
+
+  
+
+  modal.innerHTML=`<div class="card">
+  <div class="d-flex justify-content-between border-bottom align-items-center">
+    <span class="mx-2">Editing</span>
+    <button type="button" class="btn btn-danger" onclick="removeModal()" style="scale:.75">X</button>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">${wo}</h5>
+    <h6 class="card-title">Operation: ${op}</h6>
+
+    <p class="card-text fs-4"><pre>${document.getElementById(`${wo}-${op}`).title}</pre></p>
+    <a href="#" class="btn btn-primary mt-5">Save Changes</a>
+  </div>
+</div>`
+
+  document.body.appendChild(modal);
+  // alert(x);
+  // fetchMachineList;
+}
+
+function fetchMachineList() {
+  // Send a GET request to the server to retrieve JSON data
+  fetch("/get_machine_list/") // Update this URL to match your Django URL pattern
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Received data:", data["list"]);
+      
+      return ;
+    })
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
+    });
+}
+
+function removeModal() {
+  document.body.removeChild(document.getElementById("modal"));
 }

@@ -19,11 +19,13 @@ from django.urls import path
 from .views import lastFY
 
 from .views import live,updateShippingThisMonth,writeBackToDatabase
+from .views import get_machineList
 
 
 urlpatterns = [
     path('this/',live,name='LIVE'),
     path('updateShippingThisMonth/',updateShippingThisMonth,name='updateShippingThisMonth'),
     path('update_data/', writeBackToDatabase, name='update_data'),
+    path('get_machine_list/',get_machineList,name='machine-list')
     # path('w/', homepage2,name='home-main2'),
 ]

@@ -14,6 +14,7 @@
     <th>Due In</th>
     <th>TA</th>
     <th>Status</th>
+    <th>Notes</th>
     <th>Unit</th>
   </thead>
 
@@ -55,7 +56,14 @@
       </td>
       <td><span class="{{workOrder.daysStat}}">{{workOrder.dueIn}}</span></td>
       <td>{{workOrder.TA}}</td>
+
+      {% if onLive %}
+      <td>{{completed}}%</td>
+      <td>{{notes}}</td>
+      {% else %}
       <td>{{workOrder.status}}</td>
+      <td>-</td>
+      {% endif%}
       <td>{{workOrder.unit}}</td>
     </tr>
   </tbody>

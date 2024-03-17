@@ -41,3 +41,8 @@ class MEs(models.Model):
 
 class JobNotes(models.Model):
     reasonCode = models.TextField()
+
+
+class Machines(models.Model):
+    machineCode = models.CharField(max_length=20)
+    machineName= models.CharField(max_length = 100)

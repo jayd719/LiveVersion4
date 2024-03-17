@@ -79,7 +79,7 @@
             </div>
             <div class="result-box"></div>
           </div>
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button class="btn btn-success" type="submit">Search</button>
         </form>
       </div>
       {% endif%}
@@ -143,11 +143,11 @@
         </center>
 
         <div>
-          <a href="{% url 'LIVE' %}"><button class="btn btn-outline-dark" type="submit">CBB Live</button></a>
-          <a href="{% url 'home-main' %}"><button class="btn btn-outline-dark" type="submit">Home</button><br /></a>
-          <a href="{% url 'updatelist' %}"><button class="btn btn-outline-dark" type="submit">Update</button></a>
+          <a href="{% url 'LIVE' %}"><button class="btn btn-primary" type="submit">CBB Live</button></a>
+          <a href="{% url 'home-main' %}"><button class="btn btn-primary" type="submit">Home</button><br /></a>
+          <a href="{% url 'updatelist' %}"><button class="btn btn-primary" type="submit">Update</button></a>
           <div class="dropdown">
-              <button class="btn btn-outline-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</button>
+              <button class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</button>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Schedules</a></li>
                 <li><a class="dropdown-item" href="{% url 'clockedIn' %}">Not Clocked In</a></li>
@@ -157,10 +157,10 @@
         </div>
 
         <div>
-          <button class="btn btn-outline-warning" type="submit">Support</button>
+          <button class="btn btn-primary" type="submit">Support</button>
           <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
-            <button class="btn btn-outline-danger" type="submit">logout</button>
+            <button class="btn btn-danger" type="submit">logout</button>
           </form>
          
             <img

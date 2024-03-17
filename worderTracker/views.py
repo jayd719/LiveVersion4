@@ -6,6 +6,7 @@ from .models import WorkOrderTracker
 from .models import Operation
 from .models import MEs
 from .models import JobNotes
+from .models import Machines
 from django.contrib import messages
 from django.http import JsonResponse
 import json
@@ -159,6 +160,14 @@ def writeBackToDatabase(request):
 
 
 
+def get_machineList(request):
+    li = []
+    for machine in Machines.objects.all():
+        li.append(machine.machineName)
+    json_data = {
+        'list': li
+    }
+    return JsonResponse(json_data)
 
 
 
