@@ -231,21 +231,18 @@ function modal(wo, op) {
   modal.style.left = "37.5%";
   modal.className = "pop-up-window h-50 w-25 position-absolute";
 
-  
-
-  modal.innerHTML=`<div class="card">
+  modal.innerHTML = `<div class="card">
   <div class="d-flex justify-content-between border-bottom align-items-center">
-    <span class="mx-2">Editing</span>
+    <span class="mx-2">Editing ${wo}, Step Number:${op}</span>
     <button type="button" class="btn btn-danger" onclick="removeModal()" style="scale:.75">X</button>
   </div>
   <div class="card-body">
-    <h5 class="card-title">${wo}</h5>
-    <h6 class="card-title">Operation: ${op}</h6>
-
-    <p class="card-text fs-4"><pre>${document.getElementById(`${wo}-${op}`).title}</pre></p>
+    <p class="card-text fs-4"><pre>${
+      document.getElementById(`${wo}-${op}`).title
+    }</pre></p>
     <a href="#" class="btn btn-primary mt-5">Save Changes</a>
   </div>
-</div>`
+</div>`;
 
   document.body.appendChild(modal);
   // alert(x);
@@ -263,8 +260,8 @@ function fetchMachineList() {
     })
     .then((data) => {
       console.log("Received data:", data["list"]);
-      
-      return ;
+
+      return;
     })
     .catch((error) => {
       console.error("There was a problem with the fetch operation:", error);

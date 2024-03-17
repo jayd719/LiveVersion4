@@ -34,13 +34,14 @@ def getData(jobNumber):
         cache.addtoStack(WO)
 
     onLive =False
-    completed=None
+    completed=0
     notes=None
     if(WorkOrderTracker.objects.filter(jobNumber=jobNumber).exists()):
         onLive =True
         fromModel = WorkOrderTracker.objects.get(jobNumber=jobNumber)
         WO.dueDate=fromModel.dueDate.strftime("%Y-%m-%d")
-        completed=round((fromModel.completedHours/fromModel.estimatedHours)*100,2)
+        if(fromModel.estimatedHours!=0):
+            completed=round((fromModel.completedHours/fromModel.estimatedHours)*100,2)
         notes= fromModel.notes1
     
     i = operations(jobNumber)
