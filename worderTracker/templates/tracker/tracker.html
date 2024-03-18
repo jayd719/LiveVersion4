@@ -161,9 +161,9 @@
         <!-- shipping This Month -->
         <td  style="width: 10px;">
             {% if WO.shippingThisMonth %}
-            <input class="form-check-input shipping" name="shippingThisMonth" type="checkbox" value="none" aria-label="..."  style="width: 15px; height: 15px;" checked onclick="updateShippingThisMonth('{{WO.jobNumber}}','false')">
+            <input class="form-check-input shipping" name="shippingThisMonth" type="checkbox" value="none" aria-label="..."  style="width: 20px; height: 20px;" checked onclick="updateShippingThisMonth('{{WO.jobNumber}}','false')">
             {% else %}
-            <input class="form-check-input shipping" name="shippingThisMonth" type="checkbox"  value="True" aria-label="..." style="width: 15px; height: 15px;" onclick="updateShippingThisMonth('{{WO.jobNumber}}','true')">
+            <input class="form-check-input shipping" name="shippingThisMonth" type="checkbox"  value="True" aria-label="..." style="width: 20px; height: 20px;" onclick="updateShippingThisMonth('{{WO.jobNumber}}','true')">
             {% endif%}
         </td>
 

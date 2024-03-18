@@ -7,6 +7,18 @@ function deleteNavBar() {
   document.body.removeChild(document.getElementById("nav-bar"));
 }
 
+/*
+-------------------------------------------------------
+Checks the value of a note and assigns a corresponding 
+color class to the element.
+Use: checkNote(elm)
+-------------------------------------------------------
+Parameters:
+    elm - the HTML element representing the note (HTMLElement)
+Returns:
+    None
+-------------------------------------------------------
+*/
 function checkNote(elm) {
   if (elm.value == "HOLD FOR CUSTOMER") {
     elm.className = "bg-danger hold-for-customer";
@@ -23,6 +35,18 @@ function checkNote(elm) {
   }
 }
 
+/*
+-------------------------------------------------------
+Checks the notes for each work order and assigns a 
+corresponding color class.
+Use: notesColor()
+-------------------------------------------------------
+Parameters:
+    None
+Returns:
+    None
+-------------------------------------------------------
+*/
 function notesColor() {
   let notes = document.querySelectorAll(".notes");
   for (i = 0; i < notes.length; i++) {
@@ -35,7 +59,18 @@ function notesColor() {
   }
 }
 
-// update due in
+/*
+-------------------------------------------------------
+Updates the due dates and colors for each due date in
+the table based on the current date.
+Use: updateDate()
+-------------------------------------------------------
+Parameters:
+    None
+Returns:
+    None
+-------------------------------------------------------
+*/
 function updateDate() {
   let dueDates = document.querySelectorAll(".dueDate");
   let dates = document.querySelectorAll("#due-in");
@@ -55,7 +90,17 @@ function updateDate() {
   }
 }
 
-// function to write back to server
+/*
+-------------------------------------------------------
+Writes data back to the server using AJAX.
+Use: POST(data)
+-------------------------------------------------------
+Parameters:
+    data - the data to be sent to the server (Object)
+Returns:
+    None
+-------------------------------------------------------
+*/
 function POST(data) {
   var csrfToken = $("input[name=csrfmiddlewaretoken]").val();
   let jsonData = JSON.stringify(data);
@@ -77,6 +122,18 @@ function POST(data) {
   });
 }
 
+/*
+-------------------------------------------------------
+Updates the notes for a particular work order.
+Use: updateNotes(elmID, wo)
+-------------------------------------------------------
+Parameters:
+    elmID - the ID of the HTML element containing the notes (string)
+    wo - the work order number (string)
+Returns:
+    None
+-------------------------------------------------------
+*/
 function updateNotes(elmID, wo) {
   let dataValues = {};
   dataValues["workOrder"] = wo;
@@ -86,6 +143,18 @@ function updateNotes(elmID, wo) {
   checkNote(document.getElementById(elmID));
 }
 
+/*
+-------------------------------------------------------
+Updates the shipping status for a particular work order.
+Use: updateShippingThisMonth(wo, value)
+-------------------------------------------------------
+Parameters:
+    wo - the work order number (string)
+    value - the shipping status (boolean)
+Returns:
+    None
+-------------------------------------------------------
+*/
 function updateShippingThisMonth(wo, value) {
   let dataValues = {};
   dataValues["workOrder"] = wo;
@@ -94,6 +163,18 @@ function updateShippingThisMonth(wo, value) {
   POST(dataValues);
 }
 
+/*
+-------------------------------------------------------
+Writes the updated due date for a particular work order.
+Use: writeDate(wo, elmID)
+-------------------------------------------------------
+Parameters:
+    wo - the work order number (string)
+    elmID - the ID of the HTML element containing the due date (string)
+Returns:
+    None
+-------------------------------------------------------
+*/
 function writeDate(wo, elmID) {
   let dataValues = {};
   dataValues["workOrder"] = wo;
@@ -103,6 +184,19 @@ function writeDate(wo, elmID) {
   updateDate();
 }
 
+/*
+-------------------------------------------------------
+Updates the Manufacturing Engineer (ME) for a particular 
+work order.
+Use: updateME(elmID, wo)
+-------------------------------------------------------
+Parameters:
+    elmID - the ID of the HTML element containing the ME (string)
+    wo - the work order number (string)
+Returns:
+    None
+-------------------------------------------------------
+*/
 function updateME(elmID, wo) {
   let dataValues = {};
   dataValues["workOrder"] = wo;
@@ -111,6 +205,17 @@ function updateME(elmID, wo) {
   POST(dataValues);
 }
 
+/*
+-------------------------------------------------------
+Toggles the incoming inspection status for a work order.
+Use: updateIncomingInspection(wo)
+-------------------------------------------------------
+Parameters:
+    wo - the work order number (string)
+Returns:
+    None
+-------------------------------------------------------
+*/
 function updateIncomingInspection(wo) {
   let info = document.getElementById(`${wo}-inc`);
   let dataValues = {};
@@ -129,47 +234,19 @@ function updateIncomingInspection(wo) {
   POST(dataValues);
 }
 
-function convertAndSend() {
-  var tableData = [];
-  var headers = [];
-
-  // Get table headers
-  $("#data-table th").each(function () {
-    headers.push($(this).text());
-  });
-
-  // Iterate over table rows
-  $("#data-table tbody tr").each(function () {
-    var rowData = {};
-    var currentRow = $(this);
-
-    // Iterate over each cell in the row
-    currentRow.find("td").each(function (index) {
-      rowData[headers[index]] = $(this).text();
-    });
-
-    tableData.push(rowData);
-  });
-
-  // Convert data to JSON
-  var jsonData = JSON.stringify(tableData);
-
-  // Send data to the server using AJAX
-  $.ajax({
-    type: "POST",
-    url: "/update_data/", // Replace with your server endpoint
-    data: jsonData,
-    contentType: "application/json; charset=utf-8",
-    dataType: "json",
-    success: function (response) {
-      console.log("Data sent successfully:", response);
-    },
-    error: function (error) {
-      alert("COULD NOT SAVE DATA");
-    },
-  });
-}
-
+/*
+-------------------------------------------------------
+Updates the status of a particular operation for a work 
+order.
+Use: updateStatus(wo, op)
+-------------------------------------------------------
+Parameters:
+    wo - the work order number (string)
+    op - the operation number (string)
+Returns:
+    None
+-------------------------------------------------------
+*/
 function updateStatus(wo, op) {
   let cell = document.getElementById(`${wo}-${op}`);
   let dataValues = {};
@@ -200,6 +277,17 @@ function updateStatus(wo, op) {
   updateCompleted(`${wo}-completed`);
 }
 
+/*
+-------------------------------------------------------
+Updates the completed percentage for all work orders.
+Use: updateAllCompleted()
+-------------------------------------------------------
+Parameters:
+    None
+Returns:
+    None
+-------------------------------------------------------
+*/
 function updateAllCompleted() {
   nodes = document.querySelectorAll(".comp-per");
   for (i = 0; i < nodes.length; i++) {
@@ -207,6 +295,19 @@ function updateAllCompleted() {
   }
 }
 
+/*
+-------------------------------------------------------
+Updates the completed percentage for a specific work 
+order and operation.
+Use: updateCompleted(id)
+-------------------------------------------------------
+Parameters:
+    id - the ID of the HTML element containing the completed 
+    percentage (string)
+Returns:
+    None
+-------------------------------------------------------
+*/
 function updateCompleted(id) {
   let textBox = document.getElementById(id);
   textBox.innerText =
@@ -216,58 +317,122 @@ function updateCompleted(id) {
     ) + "%";
 }
 
-function removeButton() {
-  return button;
-}
-
-let MACHINELIST = [];
-
+/*
+-------------------------------------------------------
+Opens a modal window for editing the work center for a 
+specific operation.
+Use: modal(wo, op)
+-------------------------------------------------------
+Parameters:
+    wo - the work order number (string)
+    op - the operation number (string)
+Returns:
+    None
+-------------------------------------------------------
+*/
 function modal(wo, op) {
   let modal = document.createElement("div");
   modal.style.zIndex = "100";
 
+  let elm = document.getElementById(`${wo}-${op}`);
+
   modal.id = "modal";
   modal.style.top = "25%";
   modal.style.left = "37.5%";
-  modal.className = "pop-up-window h-50 w-25 position-absolute";
-
+  modal.className = "pop-up-window h-auto w-25 position-absolute";
   modal.innerHTML = `<div class="card">
   <div class="d-flex justify-content-between border-bottom align-items-center">
-    <span class="mx-2">Editing ${wo}, Step Number:${op}</span>
+    <span class="mx-2 text-primary">Editing Work Center</span>
     <button type="button" class="btn btn-danger" onclick="removeModal()" style="scale:.75">X</button>
   </div>
   <div class="card-body">
-    <p class="card-text fs-4"><pre>${
-      document.getElementById(`${wo}-${op}`).title
-    }</pre></p>
-    <a href="#" class="btn btn-primary mt-5">Save Changes</a>
+    <input id='list1' class="w-100 text-center ml-5 mr-5" value="${elm.innerText}" type="text" list="opertaion-options">
+    <figcaption class="fs-7 mt-3 text-muted">
+    For Work Order <cite title="Source Title" id='wo-txt'>${wo}</cite>, Step Number <cite title="Source Title" id='wo-op'>${op}</cite>
+   </figcaption>
+    <br>
+    <a class="btn btn-primary mt-2" onclick="saveChanges()">Save Changes</a>
   </div>
 </div>`;
-
   document.body.appendChild(modal);
+
+  let selectList = document.createElement("datalist");
+  selectList.id = "opertaion-options";
+  // Loop through the list items
+  getMachines().forEach(function (item) {
+    // Create a new option element
+    var option = document.createElement("option");
+    // Set the text of the option to the current item in the set
+    option.text = item;
+    option.value = item;
+    // Append the option to the select element
+    selectList.appendChild(option);
+  });
+
+  let inputBox = document.getElementById("list1");
+  inputBox.appendChild(selectList);
   // alert(x);
   // fetchMachineList;
 }
 
-function fetchMachineList() {
-  // Send a GET request to the server to retrieve JSON data
-  fetch("/get_machine_list/") // Update this URL to match your Django URL pattern
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log("Received data:", data["list"]);
+/*
+-------------------------------------------------------
+Saves the changes made in the modal window.
+Use: saveChanges()
+-------------------------------------------------------
+Parameters:
+    None
+Returns:
+    None
+-------------------------------------------------------
+*/
+function saveChanges() {
+  let dataValues = {};
+  let wo = document.getElementById("wo-txt").innerText;
+  let op = document.getElementById("wo-op").innerText;
+  let newWorkCenter = document.getElementById("list1").value;
 
-      return;
-    })
-    .catch((error) => {
-      console.error("There was a problem with the fetch operation:", error);
-    });
+  dataValues["workOrder"] = wo;
+  dataValues["op"] = op;
+  dataValues["field"] = "updateOperation";
+  dataValues["data"] = newWorkCenter;
+  // update table
+  document.getElementById(`${wo}-${op}`).innerText = newWorkCenter;
+  POST(dataValues);
+  removeModal();
 }
 
+/*
+-------------------------------------------------------
+Retrieves a list of machines available for operation.
+Use: getMachines()
+-------------------------------------------------------
+Parameters:
+    None
+Returns:
+    A set containing the list of machines (Set)
+-------------------------------------------------------
+*/
+function getMachines() {
+  let operations = document.querySelectorAll(".pending");
+  let opsFinal = new Set();
+  for (i = 0; i < operations.length; i++) {
+    opsFinal.add(operations[i].innerText);
+  }
+  return opsFinal;
+}
+
+/*
+-------------------------------------------------------
+Removes the modal window from the DOM.
+Use: removeModal()
+-------------------------------------------------------
+Parameters:
+    None
+Returns:
+    None
+-------------------------------------------------------
+*/
 function removeModal() {
   document.body.removeChild(document.getElementById("modal"));
 }

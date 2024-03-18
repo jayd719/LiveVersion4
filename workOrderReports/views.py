@@ -14,10 +14,37 @@ workOrders= getListofAllOrders()
 INCOMINGLIST=['INC QC B4','INC QC']
 
 def notEnoughPerm(requests):
+    """
+    -------------------------------------------------------
+    View function for displaying a page indicating not enough 
+    permissions. Renders 'verificationreq.html' template with 
+    an error message.
+    Use: notEnoughPerm(request)
+    -------------------------------------------------------
+    Parameters:
+        request - the HTTP request object (HttpRequest)
+    Returns:
+        HTTP response containing the rendered template (HttpResponse)
+    -------------------------------------------------------
+    """
     messages.error(requests,f'Verification Required!')
     return render(requests,'hp/verificationreq.html',{'title':'No No NO','sList':workOrders})
 
+
+
 def operations(wo):
+    """
+    -------------------------------------------------------
+    Helper function to determine the index of a work order 
+    in the global workOrders list.
+    Use: operations(wo)
+    -------------------------------------------------------
+    Parameters:
+        wo - the work order number (string)
+    Returns:
+        Index of the work order in the workOrders list (int)
+    -------------------------------------------------------
+    """
     try:
         i = workOrders.index(wo)
         if i== len(workOrders)-1:
@@ -28,6 +55,19 @@ def operations(wo):
 
 
 def getData(jobNumber):
+    """
+    -------------------------------------------------------
+    Helper function to get data associated with a specific 
+    work order from the cache or the database.
+    Use: getData(jobNumber)
+    -------------------------------------------------------
+    Parameters:
+        jobNumber - the work order number (string)
+    Returns:
+        Dictionary containing data associated with the work order (dict)
+    -------------------------------------------------------
+    """
+
     WO = cache.contains(jobNumber)
     if  WO is None:
         WO = getWorkOrderDetails(jobNumber)
@@ -59,6 +99,20 @@ def getData(jobNumber):
 
 @login_required
 def workOrderReport(requests):
+    """
+    -------------------------------------------------------
+    View function for displaying the work order report page.
+    Requires users to be authenticated. Retrieves data based 
+    on the provided work order number, performs validation, 
+    and renders the appropriate template.
+    Use: workOrderReport(request)
+    -------------------------------------------------------
+    Parameters:
+        request - the HTTP request object (HttpRequest)
+    Returns:
+        HTTP response containing the rendered template (HttpResponse)
+    -------------------------------------------------------
+    """
     checkStaffStatus(requests)
     data={'sList':workOrders}
     if 'search-for-work-order' in requests.GET:
@@ -85,6 +139,20 @@ def workOrderReport(requests):
 
 @login_required
 def addToLive(requests):
+    """
+    -------------------------------------------------------
+    View function for adding a work order to the live 
+    version. Requires users to be authenticated. Retrieves 
+    data from the cache and saves it to the database, then 
+    redirects to the live version page.
+    Use: addToLive(request)
+    -------------------------------------------------------
+    Parameters:
+        request - the HTTP request object (HttpRequest)
+    Returns:
+        HTTP response redirecting to the live version page (HttpResponseRedirect)
+    -------------------------------------------------------
+    """
     if requests.method == 'POST':
         jobNumber = requests.POST.get('jobNumber')
 
@@ -110,6 +178,20 @@ def addToLive(requests):
 
 @login_required
 def removeFormLive(requests):
+    """
+    -------------------------------------------------------
+    View function for removing a work order from the live 
+    version. Requires users to be authenticated. Deletes 
+    the specified work order from the database and redirects 
+    to the live version page.
+    Use: removeFormLive(request)
+    -------------------------------------------------------
+    Parameters:
+        request - the HTTP request object (HttpRequest)
+    Returns:
+        HTTP response redirecting to the live version page (HttpResponseRedirect)
+    -------------------------------------------------------
+    """
     if requests.method == 'POST':
         jobNumber = requests.POST.get('jobNumber')
         WorkOrderTracker(jobNumber=jobNumber).delete()
@@ -121,6 +203,20 @@ def removeFormLive(requests):
     
 @login_required    
 def updateDate(requests):
+    """
+    -------------------------------------------------------
+    View function for updating the due date of a work order. 
+    Requires users to be authenticated. Retrieves the 
+    specified work order from the database, updates its due 
+    date, and redirects to the live version page.
+    Use: updateDate(request)
+    -------------------------------------------------------
+    Parameters:
+        request - the HTTP request object (HttpRequest)
+    Returns:
+        HTTP response redirecting to the live version page (HttpResponseRedirect)
+    -------------------------------------------------------
+    """
     if requests.method == 'POST':
         jobNumber = requests.POST.get('jobNumber')
         dueDate = requests.POST.get('dueDate')
@@ -137,5 +233,17 @@ def updateDate(requests):
 
 
 def clockedIn(requests):
+    """
+    -------------------------------------------------------
+    View function for displaying the clocked-in page.
+    Renders 'clockedIn.html' template.
+    Use: clockedIn(request)
+    -------------------------------------------------------
+    Parameters:
+        request - the HTTP request object (HttpRequest)
+    Returns:
+        HTTP response containing the rendered template (HttpResponse)
+    -------------------------------------------------------
+    """
     data={'sList':workOrders}
     return render(requests, 'workOrderReports/clockedIn.html',context=data)

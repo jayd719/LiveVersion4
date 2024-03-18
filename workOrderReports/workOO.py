@@ -3,8 +3,60 @@ from datetime import datetime
 
 
 class WorkOrder:
+    """
+    -------------------------------------------------------
+    Class representing a work order.
+    Stores information about customer, PO number, TA, currency
+    code, job number, description, status, unit price, unit,
+    quantity ordered, quantity for stock, foreign unit price,
+    total estimated hours, total actual hours, due date, 
+    quantity, router, and create time.
+    -------------------------------------------------------
+    Attributes:
+        customer: Customer (string)
+        PO: PO number (string)
+        TA: TA (string)
+        currencyCode: Currency code (string)
+        jobNumber: Job number (string)
+        des: Description (string)
+        status: Status (string)
+        unitPrice: Unit price (float)
+        unit: Unit (string)
+        qtyOrdered: Quantity ordered (int)
+        qtyForStock: Quantity for stock (int)
+        forcur: Foreign unit price (string)
+        totalEstimatedHours: Total estimated hours (float)
+        totalActualHours: Total actual hours (float)
+        dueDate: Due date (datetime)
+        qty: Quantity (string)
+        router: List of operations (list)
+        createTime: Create time (datetime)
+    -------------------------------------------------------
+    """
+
     
     class Opertaion:
+        """
+        -------------------------------------------------------
+        Class representing a work order operation.
+        Stores information about work center, status, step number,
+        estimated hours, actual hours, description, and time 
+        tickets.
+        -------------------------------------------------------
+        Attributes:
+            workCenter: Work center (string)
+            status: Status (string)
+            stepNumber: Step number (int)
+            estimatedHours: Estimated hours (float)
+            actualHours: Actual hours (float)
+            des: Description (string)
+            timeTickets: List of time tickets (list)
+            displayTicket1: Display format for ticket employee codes (string)
+            displayTicket2: Display format for ticket employee names (string)
+            displayTicket3: Display format for ticket dates (string)
+            displayTicket4: Display format for ticket cycle times (string)
+        -------------------------------------------------------
+        """
         def __init__(self, dataSetOne, tickets):
             self.workCenter = dataSetOne['workCenter']
             if self.workCenter is None:
@@ -23,6 +75,19 @@ class WorkOrder:
             self.displayTicket4 = ''
 
     class TimeTicket:
+        """
+        -------------------------------------------------------
+        Class representing a work order operation time ticket.
+        Stores information about employee code, name, cycle 
+        time, and ticket date.
+        -------------------------------------------------------
+        Attributes:
+            empCode: Employee code (string)
+            empName: Employee name (string)
+            cycleTime: Cycle time (float)
+            date: Ticket date (string)
+        -------------------------------------------------------
+        """
         def __convertDate(self, x):
             x = (x.split('T')[0]).split('-')
             return datetime(int(x[0]), int(x[1]), int(x[2])).strftime("%d-%B-%Y")
@@ -38,6 +103,9 @@ class WorkOrder:
 
         def htmlTag(self):
             return f'{self.empCode:4d}  {self.empName:25s}  {round(self.cycleTime,2):5f}    {self.date}\n'
+        
+        
+        
 
     def __init__(self, lineHeader, woHeader, router, rawTickets):
         
@@ -94,7 +162,27 @@ class WorkOrder:
 
 
 class WorkOrderFormated(WorkOrder):
-    
+    """
+    -------------------------------------------------------
+    Class representing a formatted work order.
+    Inherits from the WorkOrder class and adds additional 
+    attributes and methods for formatting and processing 
+    data for display.
+    -------------------------------------------------------
+    Attributes:
+        qoutedList: List of estimated hours for each operation (list)
+        actualList: List of actual hours for each operation (list)
+        actualColors: List of colors for actual hours visualization (list)
+        operationList: List of operation step numbers (list)
+        label: Label color for status (string)
+        completedHours: Total completed hours (float)
+        dueIn: Due in days (int)
+        daysStat: Status based on due in days (string)
+    -------------------------------------------------------
+    Methods:
+        daystat(days): Determines the status based on due in days (string)
+    -------------------------------------------------------
+    """
 
     def daystat(self,days):
         status = 'ontime'
