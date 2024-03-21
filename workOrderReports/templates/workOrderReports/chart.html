@@ -1,0 +1,79 @@
+{% extends 'hp/base.html' %} 
+{% load static %} 
+{%block content %}
+
+<section class="container mt-5" id="chart" style="height: 250px">
+  <canvas></canvas>
+</section>
+<div class="container d-flex justify-content-center">
+  <ul class="nav nav-pills" style="gap: 10px; transform: scale(.7)">
+    <li class="nav-item">
+      <a href="" type="button" class="btn btn-outline-dark">Last FY</a>
+    </li>
+    <li class="nav-item">
+      <button type="button" class="btn btn-outline-dark" >3 FY</button>
+    </li>
+    <li class="nav-item">
+      <button type="button" class="btn btn-outline-dark">5 FY</button>
+    </li>
+    <li class="nav-item">
+      <button type="button" class="btn btn-outline-dark">ALL Time</button>
+    </li>
+  </ul>  
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.1.1/Chart.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script>
+  (function ($) {
+    var currentChart;
+
+    function setChartDimensions() {
+      var width = $("section").width(),
+        height = $("section").height();
+      if (currentChart) {
+        currentChart.chart.aspectRatio = width / height;
+      } else {
+        $("canvas").attr("width", width);
+        $("canvas").attr("height", height);
+      }
+    }
+
+    function drawChart() {
+      var data = {
+        labels: {{labels|safe}},
+        datasets: [
+          {
+            label: "Work Orders",
+            fillColor: "#ccddd39b",
+            strokeColor: "#BED8D4",
+            pointColor: "#8F95D3",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: {{data|safe}},
+          }
+          ],
+      };
+      setChartDimensions();
+      var ctx = $("canvas")[0].getContext("2d");
+      currentChart = new Chart(ctx).Line(data, {
+        animation: false,
+        responsive: false,
+      });
+    }
+
+    window.onload = function () {
+      drawChart();
+      $(window).resize(function () {
+        if (currentChart) {
+          setChartDimensions();
+          currentChart.stop();
+          currentChart.resize(currentChart.render, true);
+        }
+      });
+    };
+  })(jQuery);
+</script>
+
+{% endblock%}

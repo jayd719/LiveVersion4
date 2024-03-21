@@ -1,5 +1,5 @@
 from requests import get,post
-from datetime import datetime
+from datetime import datetime, date,timedelta
 from .workOO import WorkOrderFormated
 from LiveVersion4.functions import TOKEN
 
@@ -52,4 +52,28 @@ def getWorkOrderDetails(wo):
     return workOrder
 
 
+
+def getTimeTicketsData():
+    headers = {'accept': 'application/json', 'Authorization': f'Bearer {TOKEN()}'}
+    timeDelta_ =date.today()-timedelta(days=7)
+    l=200
+    data=[]
+    skip=0
+    while(l>199):
+        url=f"https://api-jb2.integrations.ecimanufacturing.com:443/api/v1/time-tickets?sort=-ticketDate&ticketDate%5Bgt%5D={timeDelta_}T12%3A19%3A27.0000000%2B00%3A00&skip={skip}&take=200"
+        timeTicketData=get(url, headers=headers).json()["Data"]
+        data=data+timeTicketData
+        skip+=200
+        l=len(timeTicketData)
+
+
+    daySlit={}
+    for item in data:
+        value = item['ticketDate'].split("T")[0]
+        if value in daySlit:
+            daySlit[value]+=1
+        else:
+         daySlit[value]=1
+    print(daySlit)     
+    return daySlit
 

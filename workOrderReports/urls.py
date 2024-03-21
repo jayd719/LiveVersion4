@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.urls import path
 
-from .views import addToLive,removeFormLive,updateDate,notEnoughPerm,clockedIn
+from .views import addToLive,removeFormLive,updateDate,notEnoughPerm,clockedIn,timeTimeData
 
 
 urlpatterns = [
@@ -25,6 +25,7 @@ urlpatterns = [
     path('removeformlive/', removeFormLive, name='removefromlive'),
     path('upadtedate/', updateDate, name='updatedate'),
     path('permissiondenied/',notEnoughPerm,name='permissiondenied'),
-    path('clockedIn/',clockedIn,name='clockedIn')
+    path('clockedIn/',clockedIn,name='clockedIn'),
+    path('test/',timeTimeData,name='test')
     # path('w/', homepage2,name='home-main2'),
 ]

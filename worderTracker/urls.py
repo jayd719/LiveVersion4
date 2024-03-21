@@ -23,7 +23,7 @@ from .views import get_machineList
 
 
 urlpatterns = [
-    path('this/',live,name='LIVE'),
+    path('work-order-tracker/',live,name='LIVE'),
     path('updateShippingThisMonth/',updateShippingThisMonth,name='updateShippingThisMonth'),
     path('update_data/', writeBackToDatabase, name='update_data'),
     path('get_machine_list/',get_machineList,name='machine-list')

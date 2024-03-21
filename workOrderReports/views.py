@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, HttpResponse
 from django.contrib.auth.decorators import login_required,permission_required
-from .getData import isWorkOrderValid, getWorkOrderDetails
+from .getData import isWorkOrderValid, getWorkOrderDetails, getTimeTicketsData
 from LiveVersion4.functions import writeStatus,checkStaffStatus
 from django.contrib import messages
 from LiveVersion4.test import getListofAllOrders
@@ -247,3 +247,18 @@ def clockedIn(requests):
     """
     data={'sList':workOrders}
     return render(requests, 'workOrderReports/clockedIn.html',context=data)
+
+
+
+
+def timeTimeData(requests):
+    info = getTimeTicketsData()
+    print(len(info))
+
+    data={
+        'labels':list(info.keys()),
+        'data': list(info.values()),
+    }
+
+
+    return render(requests, 'workOrderReports/chart.html',data)
