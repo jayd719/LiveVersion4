@@ -16,27 +16,12 @@
     <!-- Bootstrap CSS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"/>
     <link rel="stylesheet" href="{% static 'hp/main.css' %}" />
-    <link
-      rel="stylesheet"
-      href="{% static 'workOrderReports/workOrder.css' %}"
-    />
-
+    <link rel="stylesheet" href="{% static 'workOrderReports/workOrder.css' %}"/>
     <link rel="icon" type="image/x-icon" href="{% static 'hp/lgo.ico' %}" />
-
-    <!-- <link rel="stylesheet" href="base.css" /> -->
   </head>
   <body>
     <!-- nav bar -->
@@ -149,7 +134,7 @@
           <div class="dropdown">
               <button class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Schedules</a></li>
+                <li><a class="dropdown-item" href="{% url 'scd-home' %}">Schedules</a></li>
                 <li><a class="dropdown-item" href="{% url 'clockedIn' %}">Not Clocked In</a></li>
                 <li><a class="dropdown-item" href="#">Something</a></li>
               </ul>
@@ -174,31 +159,17 @@
 
     {% else %} {% block login %} {% endblock %} {% endif%}
 
-    <div class="continer-fluid main">
-      <!-- <h1 class="displ">
-        Live <br />
-        V4
-      </h1>
-      <div class="container d-flex justify-content-center" style="height: 55vh">
-        <a href="https://moderntemplate.site" target="_blank" rel="noopener"
-          >WebSite</a
-        >
-        <a href="https://moderntemplate.site" target="_blank" rel="noopener"
-          >WebSite1</a
-        >
-      </div>
-
-      <h1>s</h1>
-    </div> -->
+    <div class="continer-fluid main" style="height: 100vh; overflow-y: scroll; overflow-x: hidden;">
       {% block contentlogout %} {% endblock %} {% block content %} {% endblock%}
       {% block contentt %} {% endblock %}
     </div>
+
+
     <footer class="d-flex justify-content-center footer">
-      <a href="http://jashandeep.co.uk"
-        >© 2024. All rights reserved jashandeep.co.uk</a
-      >
+      <a href="http://jashandeep.co.uk">© 2024. All rights reserved jashandeep.co.uk</a>
     </footer>
-    <!-- form container -->
+
+
     <script>
       let workorders={{sList|safe}}
     </script>
@@ -212,4 +183,4 @@
     </script>
   </body>
 </html>
-<!--  -->
+

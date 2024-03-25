@@ -55,7 +55,7 @@ def getWorkOrderDetails(wo):
 
 def getTimeTicketsData():
     headers = {'accept': 'application/json', 'Authorization': f'Bearer {TOKEN()}'}
-    timeDelta_ =date.today()-timedelta(days=7)
+    timeDelta_ =date.today()-timedelta(days=30)
     l=200
     data=[]
     skip=0

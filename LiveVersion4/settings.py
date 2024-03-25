@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'homepage.apps.HomepageConfig',
     'workOrderReports.apps.WorkorderreportsConfig',
     'worderTracker.apps.WordertrackerConfig',
-
+    'schedules.apps.SchedulesConfig',
     'Logins.apps.LoginsConfig',
     'crispy_forms',
     'crispy_bootstrap4',
@@ -69,7 +69,7 @@ ROOT_URLCONF = 'LiveVersion4.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        "DIRS": [BASE_DIR / "files/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,7 +136,13 @@ TK_WRIGHT =datetime.strptime('09/11/00 10:10:10','%m/%d/%y %H:%M:%S')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'templates/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "files/static",
+]
+
+
 CRISPY_TEMPLATE_PACK ='bootstrap4'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 

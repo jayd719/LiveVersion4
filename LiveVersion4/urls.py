@@ -37,6 +37,7 @@ urlpatterns = [
     path('logout/',LogoutView.as_view(template_name="login/logout.html"),name='logout'),
     path('',include('worderTracker.urls')),
     path('',include('workOrderReports.urls')),
+    path('schedules/',include('schedules.urls')),
     path('update/', update, name='updatelist'),
     
     # path('w/', homepage2,name='home-main2'),
