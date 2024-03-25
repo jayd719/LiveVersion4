@@ -4,13 +4,16 @@
     <span class="fs-4">Work Centers</span>
     </a>
     <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-        <li><a href="#" class="nav-link link-body-emphasis">MACHINE 1</a></li>
-        <li><a href="#" class="nav-link link-body-emphasis">MACHINE 2</a></li>
-        <li><a href="#" class="nav-link link-body-emphasis">MACHINE 3</a></li>
-        <li><a href="#" class="nav-link link-body-emphasis active">MACHINE 4</a></li>
-        <li><a href="#" class="nav-link link-body-emphasis">MACHINE 5</a></li>
-        <li><a href="#" class="nav-link link-body-emphasis">MACHINE 6</a></li>
-        <li><a href="#" class="nav-link link-body-emphasis">MACHINE 6</a></li>
+    <ul class="list-group border-bottom p-1"  style="overflow-y: scroll; height: 80vh;">
+        {% for WC in workCenters %}
+        <li class="list-group-item list-group-item-action py-3 mb-2 lh-sm rounded-2"><a href="?shd-for-workCenter={{WC}}" class="nav-link link-body-emphasis">{{WC}}</a></li>
+        {% endfor%}
     </ul>
 </div>
+
+
+
+{% if workCenter %}
+{% include 'schedules/shd-jobs.html'%}
+{% endif%}
+

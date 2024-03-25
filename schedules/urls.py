@@ -1,8 +1,8 @@
 
 from django.urls import path
-from .views import shd_home
+from .views import shd_home,post_shd
 
 urlpatterns = [
     path('home-main/', shd_home, name='scd-home'),
-    # path('w/', homepage2,name='home-main2'),
+    path('shd-for-workCenter/',post_shd)
 ]
