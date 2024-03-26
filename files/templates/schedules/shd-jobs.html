@@ -13,8 +13,11 @@
                 <strong class="mb-1">{{job.jobNumber.jobNumber}}</strong>
                 <small>{{job.jobNumber.dueDate}}</small>
             </div>
-            <div class="col-12 mb-1 small">{{job.description}}</div>
-            <div class="col-12 mb-1 small d-flex justify-content-end"><button class="btn btn-success" style="scale: .75;">Mark Complete</button></div>
+            <div class="col-12 mb-1 small"><p>{{job.description}}</p></div>
+            <div class="col-12 mb-1 small d-flex justify-content-between align-items-center">
+                <strong class="mb-1">Step Number: {{job.stepNumber}}</strong>
+                <button class="btn btn-success" style="scale: .75;">Mark Complete</button>
+            </div>
         </a>
         {% endfor%}
     </div>

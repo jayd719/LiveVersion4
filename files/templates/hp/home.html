@@ -1,43 +1,7 @@
-{% extends 'hp/base.html' %} {% block content%}
+{% extends 'hp/base.html' %} 
+{% load static%}
+{% block content%}
 
-<style>
-  .card {
-    width: 200px;
-    height: 200px;
-    border-radius: 30px;
-    background: #fefefe;
-    box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
-    overflow: hidden;
-    margin: 20px;
-    transition: 0.5s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-  }
-  .card:hover {
-    scale: 1.025;
-    cursor: pointer;
-  }
-</style>
 
-<div
-  class="container d-flex justify-content-center"
-  style="align-items: center; margin-top: 20px"
->
-  <div class="card bg-image hover-zoom">
-    <img
-      src="https://jayd719.github.io/assets/images/machines/machines_resized/MatsuuraHPlus630.jpeg"
-      class="w-100"
-      alt="..."
-    />
-  </div>
-  <div class="card">
-    <img
-      src="https://jayd719.github.io/assets/images/machines/machines_resized/DMGEcomill.png"
-      class="w-100"
-      alt="..."
-    />
-  </div>
-</div>
+
 {% endblock %}
