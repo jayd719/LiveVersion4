@@ -250,6 +250,13 @@ def clockedIn(requests):
 
 
 
+def incomingInspect(requests):
+    data={'sList':workOrders,
+          'workOrders':WorkOrderTracker.objects.filter(incomingInspection=True),
+          'title':'LIVE | Orders For Incoming Inspection'}
+    return render(requests, 'workOrderReports/incoming.html',context=data)
+
+
 
 def timeTimeData(requests):
     info = getTimeTicketsData()

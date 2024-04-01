@@ -1,0 +1,35 @@
+{% extends 'hp/base.html' %} 
+{% load static%}
+{% block content%}
+<link rel="stylesheet" href="{% static 'worderTracker/tracker.css' %}" />
+<div class="container my-2" style="height: 90vh; overflow-y: scroll;">
+  <table class="table table-hover mb-5">
+    <thead class="table-dark sticky-top">
+      <tr>
+        <th scope="col" style="max-width:105px;">WorkOrder</th>
+        <th scope="col">Customer</th>
+        <th scope="col">QTY</th>
+        <th scope="col">TA</th>
+        <th scope="col">Due Date</th>
+      </tr>
+    </thead>
+    <tbody>  
+      {% for wo in workOrders %}
+      <tr>
+        <td class="jobNumbers"> <div class="jobDetails"><pre>{{wo.des}}</pre></div>{{wo.jobNumber}}</td>
+        <td>{{wo.customer}}</td>
+        <td>{{wo.qty}}</td>
+        <td>{{wo.TA}}</td>
+        <td>{{wo.dueDate}}</td>
+      </tr>
+      {% endfor%}
+    
+    </tbody>
+  </table>
+</div>
+  
+
+
+
+
+{% endblock %}

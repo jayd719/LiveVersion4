@@ -18,6 +18,7 @@ Including another URLconf
 from django.urls import path
 
 from .views import addToLive,removeFormLive,updateDate,notEnoughPerm,clockedIn,timeTimeData
+from .views import incomingInspect
 
 
 urlpatterns = [
@@ -26,6 +27,7 @@ urlpatterns = [
     path('upadtedate/', updateDate, name='updatedate'),
     path('permissiondenied/',notEnoughPerm,name='permissiondenied'),
     path('clockedIn/',clockedIn,name='clockedIn'),
+    path('orders-for-incoming-inspection/',incomingInspect,name='incomingInspection'),
     path('test/',timeTimeData,name='test')
     # path('w/', homepage2,name='home-main2'),
 ]
