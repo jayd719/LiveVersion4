@@ -16,16 +16,16 @@ Including another URLconf
 """
 
 from django.urls import path
-from .views import lastFY
-
 from .views import live,updateShippingThisMonth,writeBackToDatabase
 from .views import get_machineList
+from .views import testinh
 
 
 urlpatterns = [
     path('work-order-tracker/',live,name='LIVE'),
     path('updateShippingThisMonth/',updateShippingThisMonth,name='updateShippingThisMonth'),
     path('update_data/', writeBackToDatabase, name='update_data'),
-    path('get_machine_list/',get_machineList,name='machine-list')
+    path('get_machine_list/',get_machineList,name='machine-list'),
+    path('21/',testinh,name='machine-list')
     # path('w/', homepage2,name='home-main2'),
 ]

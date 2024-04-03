@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <title>{{title}}</title> -->
     {% if title%}
-    <title>{{title}}</title>
+    <title>LIVE | {{title}}</title>
     {% elif message%}
     <title>Invalid Work Order</title>
     {% else %}
@@ -74,7 +74,7 @@
     </nav>
 
     {% if messages %} {% for message in messages%}
-    <div class="position-fixed bottom-0 end-0 p-3 tc" id="toast">
+    <div class="position-fixed bottom-0 end-0 p-3 tc shadow-lg m-3 border border-dark" id="toast">
       <div class="toast-header">
         <img
           src="{% static 'hp/lgo.png' %}"

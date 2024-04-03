@@ -98,7 +98,8 @@ def live(requests):
             'WORKORDERS': WORKORDERS,
             'sList':workOrders,
             'MEs':MEs.objects.all(),
-            'jobNotes':JobNotes.objects.all()}   
+            'jobNotes':JobNotes.objects.all()} 
+     messages.success(requests,f'the testing data, Does not accurately reflect the current status of work orders')  
      return render(requests,'tracker/tracker.html',data)
  
  
@@ -282,5 +283,5 @@ def monthly_forcast(requests):
     return render(requests,'tracker/tracker.html',{'title':'Live','WORKORDERS':workorders})
 
 
-def lastFY(requests):
-     return render(requests,'tracker/tracker.html',{'title':'Livesssss','sList':workOrders})
+def testinh(requests):
+     return render(requests,'tracker/this.html',{'title':'testing','sList':None})

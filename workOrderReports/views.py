@@ -246,6 +246,7 @@ def clockedIn(requests):
     -------------------------------------------------------
     """
     data={'sList':workOrders}
+    messages.success(requests,f'the testing data, Does not accurately reflect the current status of clockind Employees')
     return render(requests, 'workOrderReports/clockedIn.html',context=data)
 
 
@@ -253,7 +254,8 @@ def clockedIn(requests):
 def incomingInspect(requests):
     data={'sList':workOrders,
           'workOrders':WorkOrderTracker.objects.filter(incomingInspection=True).order_by('dueDate').exclude(notes1 ='HOLD FOR CUSTOMER'),
-          'title':'LIVE | Orders For Incoming Inspection'}
+          'title':'Orders For Incoming Inspection'}
+    messages.success(requests,f'the testing data, Does not accurately reflect the current status of work orders')
     return render(requests, 'workOrderReports/incoming.html',context=data)
 
 

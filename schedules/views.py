@@ -1,6 +1,6 @@
 from django.shortcuts import render,HttpResponse
 from worderTracker.models import Operation
-
+from django.contrib import messages
 def shd_home(requests):
     workCenters=Operation.objects.values_list('workCenter', flat=True).order_by('workCenter').distinct()
 
@@ -14,6 +14,7 @@ def shd_home(requests):
         'workCenter':workCenter,
         'jobList':jobList
     }
+    messages.success(requests,f'the testing data, Does not accurately reflect the current status of work orders')
     return render(requests,'homepage.html',data)
 
 
