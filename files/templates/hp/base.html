@@ -86,7 +86,7 @@
         <small>{{ message.time}}</small>
         <p
           type="button"
-          class="btn btn-outline-secondary"
+          class="btn btn-sm btn-outline-secondary"
           data-bs-dismiss="offcanvas"
           aria-label="Close"
           onclick="mclose();"
@@ -113,7 +113,7 @@
       >
         <button
           type="button"
-          class="btn btn-outline-danger"
+          class="btn btn-sm btn-outline-danger"
           data-bs-dismiss="offcanvas"
           aria-label="Close"
         >
@@ -161,7 +161,7 @@
 
     {% else %} {% block login %} {% endblock %} {% endif%}
 
-    <div class="continer-fluid main" style="height: 95vh; overflow-y: hidden; overflow-x: hidden;">
+    <div class="continer-fluid main" style="height: 95vh; overflow-y: hidden;; overflow-x: hidden;">
       {% block contentlogout %} {% endblock %} {% block content %} {% endblock%}
       {% block contentt %} {% endblock %}
     </div>
