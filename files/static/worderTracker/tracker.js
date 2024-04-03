@@ -341,17 +341,22 @@ function modal(wo, op) {
   modal.style.left = "37.5%";
   modal.className = "pop-up-window h-auto w-25 position-absolute";
   modal.innerHTML = `<div class="card">
-  <div class="d-flex justify-content-between border-bottom align-items-center">
-    <span class="mx-2 text-primary">Editing Work Center</span>
-    <button type="button" class="btn btn-danger" onclick="removeModal()" style="scale:.75">X</button>
+  <div class="d-flex justify-content-between border-bottom align-items-center bg-dark">
+    <span class="mx-2 text-white">Editing Work Center</span>
+    <button type="button" class="btn btn-danger btn-sm" onclick="removeModal()" style="scale:.75">X</button>
   </div>
-  <div class="card-body">
-    <input id='list1' class="w-100 text-center ml-5 mr-5" value="${elm.innerText}" type="text" list="opertaion-options">
-    <figcaption class="fs-7 mt-3 text-muted">
-    For Work Order <cite title="Source Title" id='wo-txt'>${wo}</cite>, Step Number <cite title="Source Title" id='wo-op'>${op}</cite>
-   </figcaption>
-    <br>
-    <a class="btn btn-primary mt-2" onclick="saveChanges()">Save Changes</a>
+  <div class="card-body py-2">
+    <div class='mx-3 my-2'>
+        <input id='list1' class="w-100 text-center mt-3" value="${elm.innerText}" type="text" list="opertaion-options">
+        <figcaption class="fs-7 mt-3 text-muted">
+        For Work Order <cite title="Source Title" id='wo-txt'>${wo}</cite>, Step Number <cite title="Source Title" id='wo-op'>${op}</cite>
+      </figcaption>
+    </div>
+    
+    <div class="d-flex justify-content-end gap-2 px-2 mt-3 mb-2">
+      <a class="btn btn-primary btn-sm mt-2 mb-1" onclick="saveChanges()">Save Changes</a>
+      <a class="btn btn-sm btn-danger mt-2 mb-1" onclick="removeModal()">Discard</a>
+    </div>  
   </div>
 </div>`;
   document.body.appendChild(modal);
@@ -435,4 +440,66 @@ Returns:
 */
 function removeModal() {
   document.body.removeChild(document.getElementById("modal"));
+}
+
+
+
+
+
+
+/*
+-------------------------------------------------------
+Opens a modal window for editing the work center for a 
+specific operation.
+Use: modal(wo, op)
+-------------------------------------------------------
+Parameters:
+    wo - the work order number (string)
+    op - the operation number (string)
+Returns:
+    None
+-------------------------------------------------------
+*/
+function workOrderOptions(wo) {
+  let modal = document.createElement("div");
+  modal.style.zIndex = "100";
+
+  let elm = document.getElementById(`${wo}`);
+
+  modal.id = "modal";
+  modal.style.top = "25%";
+  modal.style.left = "37.5%";
+  modal.className = "pop-up-window h-auto w-25 position-absolute";
+  modal.innerHTML = `<div class="card">
+  <div class="d-flex justify-content-between border-bottom align-items-center bg-dark">
+    <span class="mx-2 text-white">${wo}</span>
+    <button type="button" class="btn btn-danger btn-sm" onclick="removeModal()" style="scale:.75">X</button>
+  </div>
+  <div class="card-body px-1">
+        <div class='mx-3 my-2'>
+              <div class='mt-2'>
+              <input type="checkbox" id="label1" name="label1"/>
+              <label for="label1">Label Printed</label>
+                </div>
+
+              <div class='mt-2'>
+                <input type="checkbox" id="released" name="fl"/>
+                <label for="released">Released</label>
+              </div>
+
+              <div class='mt-2'>
+                <input type="checkbox" id="released" name="fl"/>
+                <label for="released">Released</label>
+              </div>
+        </div>
+    <div class="d-flex justify-content-end gap-2 mx-2">
+      <a class="btn btn-sm btn-primary mt-2" onclick="removeModal()">Save Changes</a>
+      <a class="btn btn-sm btn-danger mt-2" onclick="removeModal()">Discard</a>
+    </div>  
+  </div>
+</div>`;
+  document.body.appendChild(modal);
+
+  // alert(x);
+  // fetchMachineList;
 }
