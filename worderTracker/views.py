@@ -292,7 +292,6 @@ def fetchNewOrders(requests):
      for newWorkOrder in newOrders[:10]:
          writeToTracker(getWorkOrderDetails(newWorkOrder))
          print(f'\tAdded:\t{newWorkOrder}')
-     messages.success(requests,f'Added {newWorkOrder}')
      return redirect(f'/work-order-tracker/')
 
 def testinh(requests):

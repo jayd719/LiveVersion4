@@ -488,6 +488,16 @@ function workOrderOptions(wo) {
               </div>
 
               <div class='mt-2'>
+                <input type="checkbox" id="completed" name="fl"/>
+                <label for="completed">completed</label>
+              </div>
+
+              <div class='mt-2'>
+                <input type="checkbox" id="drop" name="fl"/>
+                <label for="drop">Drop From CBB Live</label>
+              </div>
+
+              <div class='mt-2'>
                 <input type="checkbox" id="released" name="fl"/>
                 <label for="released">Released</label>
               </div>
