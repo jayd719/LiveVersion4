@@ -19,6 +19,7 @@ from django.urls import path
 from .views import live,updateShippingThisMonth,writeBackToDatabase
 from .views import get_machineList
 from .views import testinh
+from .views import fetchNewOrders
 
 
 urlpatterns = [
@@ -26,6 +27,7 @@ urlpatterns = [
     path('updateShippingThisMonth/',updateShippingThisMonth,name='updateShippingThisMonth'),
     path('update_data/', writeBackToDatabase, name='update_data'),
     path('get_machine_list/',get_machineList,name='machine-list'),
+    path('add-new-orders/',fetchNewOrders,name='fetchNewOrders'),
     path('21/',testinh,name='machine-list')
     # path('w/', homepage2,name='home-main2'),
 ]

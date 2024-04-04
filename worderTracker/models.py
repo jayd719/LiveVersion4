@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 # Create your models here.
 
@@ -28,7 +29,7 @@ class WorkOrderTracker(models.Model):
     """
     jobNumber =models.CharField(max_length=8,primary_key = True)
     customer = models.CharField(max_length=50)
-    des = models.TextField()
+    des = models.TextField(null=True)
     qty= models.CharField(max_length=5)
     dueDate = models.DateField()
     shippingThisMonth = models.BooleanField(blank=True,null=True)
@@ -62,7 +63,7 @@ class Operation(models.Model):
     """
     jobNumber= models.ForeignKey(WorkOrderTracker, on_delete=models.CASCADE)
     workCenter = models.CharField(max_length=25)
-    description = models.TextField()
+    description = models.TextField(null=True)
     estimatedHours = models.CharField(max_length=5)
     status = models.CharField(max_length=15)
     stepNumber = models.IntegerField()
@@ -109,3 +110,21 @@ class Machines(models.Model):
     """
     machineCode = models.CharField(max_length=20)
     machineName= models.CharField(max_length = 100)
+
+
+
+
+class CompltedOrders(models.Model):
+    jobNumber =models.CharField(max_length=8,primary_key = True)
+    customer = models.CharField(max_length=50)
+    des = models.TextField()
+    qty= models.CharField(max_length=5)
+    dueDate = models.DateField()
+    TA = models.CharField(max_length=5)
+    estimatedHours = models.FloatField()
+    actualHours = models.FloatField()
+    completedDate = models.DateField(("Date"), auto_now_add=True)
+
+class Dropped(models.Model):
+    jobNumber =models.CharField(max_length=8,primary_key = True)
+    

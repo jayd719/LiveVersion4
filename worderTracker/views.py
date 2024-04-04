@@ -1,13 +1,16 @@
-from django.shortcuts import render,HttpResponse,HttpResponseRedirect
+from django.shortcuts import render,HttpResponse,HttpResponseRedirect, redirect
 from django.contrib.auth.decorators import login_required
 from workOrderReports.views import workOrders
 from LiveVersion4.test import getListofAllOrders
 from workOrderReports.getData import getWorkOrderDetails
+from workOrderReports.views import writeToTracker
 from .models import WorkOrderTracker
 from .models import Operation
 from .models import MEs
 from .models import JobNotes
 from .models import Machines
+from .models import Dropped
+from .models import CompltedOrders
 from django.contrib import messages
 from django.http import JsonResponse
 import json
@@ -283,5 +286,15 @@ def monthly_forcast(requests):
     return render(requests,'tracker/tracker.html',{'title':'Live','WORKORDERS':workorders})
 
 
+def fetchNewOrders(requests):
+     acknowledgedOrders =WorkOrderTracker.objects.values_list('jobNumber', flat=True).union(CompltedOrders.objects.values_list('jobNumber', flat=True),Dropped.objects.values_list('jobNumber', flat=True))
+     newOrders  = [value for value in getListofAllOrders() if value  not in acknowledgedOrders]
+     for newWorkOrder in newOrders[:10]:
+         writeToTracker(getWorkOrderDetails(newWorkOrder))
+         print(f'\tAdded:\t{newWorkOrder}')
+     messages.success(requests,f'Added {newWorkOrder}')
+     return redirect(f'/work-order-tracker/')
+
 def testinh(requests):
+    
      return render(requests,'tracker/this.html',{'title':'testing','sList':None})

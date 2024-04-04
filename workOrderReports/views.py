@@ -137,6 +137,20 @@ def workOrderReport(requests):
     return render(requests, 'workOrderReports/report.html', context=data)
 
 
+
+
+def writeToTracker(dataObj):
+    WO = WorkOrderTracker(jobNumber= dataObj.jobNumber,customer=dataObj.customer,dueDate = dataObj.dueDate,qty=dataObj.qty,shippingThisMonth=False,TA=dataObj.TA,incomingInspection=False,rush= False, estimatedHours= dataObj.totalEstimatedHours,completedHours=0,des=dataObj.des)
+    WO.save()
+    WO.incomingInspection =False
+    for operation in dataObj.router:
+        op=Operation(jobNumber=WO,workCenter = operation.workCenter,description= operation.des,estimatedHours= operation.estimatedHours, stepNumber=operation.stepNumber,status = 'pending')
+        op.save()
+
+        if WO.incomingInspection != True  and op.workCenter in INCOMINGLIST:
+            WO.incomingInspection =True
+    WO.save()
+
 @login_required
 def addToLive(requests):
     """
@@ -155,20 +169,8 @@ def addToLive(requests):
     """
     if requests.method == 'POST':
         jobNumber = requests.POST.get('jobNumber')
-
         dataObj = cache.contains(jobNumber)
-        WO = WorkOrderTracker(jobNumber= dataObj.jobNumber,customer=dataObj.customer,dueDate = dataObj.dueDate,qty=dataObj.qty,shippingThisMonth=False,TA=dataObj.TA,incomingInspection=False,rush= False, estimatedHours= dataObj.totalEstimatedHours,completedHours=0,des=dataObj.des)
-        WO.save()
-
-        WO.incomingInspection =False
-        for operation in dataObj.router:
-            op=Operation(jobNumber=WO,workCenter = operation.workCenter,description= operation.des,estimatedHours= operation.estimatedHours, stepNumber=operation.stepNumber,status = 'pending')
-            op.save()
-
-            if WO.incomingInspection != True  and op.workCenter in INCOMINGLIST:
-                WO.incomingInspection =True
-        
-        WO.save()
+        writeToTracker(dataObj)
         messages.info(requests,f'{jobNumber} Added To Live!')
         writeStatus(f"1:Job Detial: {jobNumber}:printed")  
         return redirect(f'/live/?search-for-work-order={jobNumber}')
