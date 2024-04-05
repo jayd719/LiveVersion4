@@ -349,6 +349,7 @@ function modal(wo, op) {
     <div class='mx-3 my-2'>
         <input id='list1' class="w-100 text-center mt-3" value="${elm.innerText}" type="text" list="opertaion-options">
         <figcaption class="fs-7 mt-3 text-muted">
+        <textarea name="notes1" cols="50" rows="10" class="vLargeTextField w-100 p-3" id="id_notes1" style='height:auto; outline:none;'>${elm.title}</textarea>
         For Work Order <cite title="Source Title" id='wo-txt'>${wo}</cite>, Step Number <cite title="Source Title" id='wo-op'>${op}</cite>
       </figcaption>
     </div>
@@ -396,11 +397,12 @@ function saveChanges() {
   let wo = document.getElementById("wo-txt").innerText;
   let op = document.getElementById("wo-op").innerText;
   let newWorkCenter = document.getElementById("list1").value;
-
+  let des = document.getElementById('id_notes1').value;
   dataValues["workOrder"] = wo;
   dataValues["op"] = op;
   dataValues["field"] = "updateOperation";
   dataValues["data"] = newWorkCenter;
+  dataValues['des']= des
   // update table
   document.getElementById(`${wo}-${op}`).innerText = newWorkCenter;
   POST(dataValues);
@@ -512,4 +514,26 @@ function workOrderOptions(wo) {
 
   // alert(x);
   // fetchMachineList;
+}
+
+
+
+
+
+
+function fetchData(url) {
+  return fetch(url)  
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      return data;
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+      throw error;
+    });
 }

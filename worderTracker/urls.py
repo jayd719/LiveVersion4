@@ -20,6 +20,7 @@ from .views import live,updateShippingThisMonth,writeBackToDatabase
 from .views import get_machineList
 from .views import testinh
 from .views import fetchNewOrders
+from .views import getWorkOrderDes
 
 
 urlpatterns = [
@@ -28,6 +29,7 @@ urlpatterns = [
     path('update_data/', writeBackToDatabase, name='update_data'),
     path('get_machine_list/',get_machineList,name='machine-list'),
     path('add-new-orders/',fetchNewOrders,name='fetchNewOrders'),
+    path('op-des/',getWorkOrderDes,name='fetchNewOrders'),
     path('21/',testinh,name='machine-list')
     # path('w/', homepage2,name='home-main2'),
 ]

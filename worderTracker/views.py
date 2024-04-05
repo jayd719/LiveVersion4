@@ -267,7 +267,21 @@ def updateWorkCenter(userData):
     """
     OP = Operation.objects.get(jobNumber=userData['workOrder'],stepNumber=userData['op'])
     OP.workCenter=userData['data']
+    # OP.description=userData['des']
     OP.save()
+
+def getWorkOrderDes(requests):
+
+    if 'work-order' in requests.GET:
+        workOrder = requests.GET.get('work-order')
+        op = requests.GET.get('op')
+        print('res')
+        # /?shd-for-workCenter=ACUGRO
+    json_data = {
+            'list': 1
+        }
+    return JsonResponse(json_data)
+
 
 def get_machineList(request):
     li = []
