@@ -3,6 +3,7 @@ from django.contrib import messages
 from workOrderReports.views import workOrders
 from django.contrib.auth.decorators import login_required
 from LiveVersion4.test import getListofAllOrders
+from .functions import userInfo
 
 @login_required
 def home(requests):
@@ -20,6 +21,7 @@ def home(requests):
     -------------------------------------------------------
     """
     messages.success(requests,f'Hello {requests.user.first_name}!  ')
+    userInfo(requests)
     return render(requests,'hp/home.html',{'sList':workOrders})
 
 
