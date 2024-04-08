@@ -4,6 +4,7 @@ from workOrderReports.views import workOrders
 from django.contrib.auth.decorators import login_required
 from LiveVersion4.test import getListofAllOrders
 from .functions import userInfo
+from worderTracker.models import WorkOrderTracker
 
 @login_required
 def home(requests):
@@ -21,8 +22,15 @@ def home(requests):
     -------------------------------------------------------
     """
     messages.success(requests,f'Hello {requests.user.first_name}!  ')
+
+    completedHours=WorkOrderTracker.objects.values_list('completedHours', flat=True).order_by('jobNumber')
+    estimatedHours=WorkOrderTracker.objects.values_list('estimatedHours', flat=True).order_by('jobNumber')
+    
+    data={'sList':workOrders,
+          'labels':WorkOrderTracker.objects.values_list('jobNumber', flat=True).order_by('jobNumber')[::1],
+          'data':WorkOrderTracker.objects.values_list('estimatedHours', flat=True).order_by('jobNumber')[::1]}
     userInfo(requests)
-    return render(requests,'hp/home.html',{'sList':workOrders})
+    return render(requests,'hp/home.html',data)
 
 
 @login_required

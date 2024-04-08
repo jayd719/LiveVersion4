@@ -1,11 +1,9 @@
-{% extends 'hp/base.html' %} 
-{% load static %} 
-{%block content %}
 
-<section class="container mt-5" id="chart" style="height: 250px">
+{% load static %} 
+<section class="container-fluid px-2" id="chart" style="height: 350px">
   <canvas></canvas>
 </section>
-<div class="container d-flex justify-content-center">
+<!-- <div class="container d-flex justify-content-center">
   <ul class="nav nav-pills" style="gap: 10px; transform: scale(.7)">
     <li class="nav-item">
       <a href="" type="button" class="btn btn-outline-dark">Last FY</a>
@@ -20,7 +18,7 @@
       <button type="button" class="btn btn-outline-dark">ALL Time</button>
     </li>
   </ul>  
-</div>
+</div> -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.1.1/Chart.min.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -75,5 +73,3 @@
     };
   })(jQuery);
 </script>
-
-{% endblock%}

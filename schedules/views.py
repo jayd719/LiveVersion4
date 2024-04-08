@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django.views.static import serve
 from .functions import createExcelSheet
+from workOrderReports.views import workOrders
 import json
 import os
 
@@ -17,9 +18,11 @@ def shd_home(requests):
         workCenter = requests.GET.get('shd-for-workCenter')
         jobList = Operation.objects.filter(workCenter=workCenter,status='pending').order_by('jobNumber')
     data={
+        'title':f"Schedule For {workCenter}",
         'workCenters':workCenters,
         'workCenter':workCenter,
-        'jobList':jobList
+        'jobList':jobList,
+        'sList':workOrders
     }
     userInfo(requests)
     return render(requests,'homepage.html',data)
