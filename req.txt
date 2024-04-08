@@ -4,8 +4,10 @@ charset-normalizer==3.3.2
 crispy-bootstrap4==2023.1
 Django==5.0.1
 django-crispy-forms==2.1
+et-xmlfile==1.1.0
 greenlet==3.0.3
 idna==3.6
+openpyxl==3.1.2
 playwright==1.41.1
 pyee==11.0.1
 requests==2.31.0
