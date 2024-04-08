@@ -4,6 +4,7 @@ from workOrderReports.views import workOrders
 from LiveVersion4.test import getListofAllOrders
 from workOrderReports.getData import getWorkOrderDetails
 from workOrderReports.views import writeToTracker
+from homepage.functions import userInfo
 from .models import WorkOrderTracker
 from .models import Operation
 from .models import MEs
@@ -102,7 +103,8 @@ def live(requests):
             'sList':workOrders,
             'MEs':MEs.objects.all(),
             'jobNotes':JobNotes.objects.all()} 
-     messages.success(requests,f'the testing data, Does not accurately reflect the current status of work orders')  
+     messages.success(requests,f'the testing data, Does not accurately reflect the current status of work orders')
+     userInfo(requests)  
      return render(requests,'tracker/tracker.html',data)
  
  
@@ -137,7 +139,7 @@ def writeBackToDatabase(request):
                 updateOperation(userData)
             elif userData['field']=='updateOperation':
                 updateWorkCenter(userData)
-
+            userInfo(request)
             return JsonResponse({'success': True})
         except json.JSONDecodeError as e:
             return JsonResponse({'error': 'Invalid JSON format'}, status=400)
@@ -306,6 +308,7 @@ def fetchNewOrders(requests):
      for newWorkOrder in newOrders[:10]:
          writeToTracker(getWorkOrderDetails(newWorkOrder))
          print(f'\tAdded:\t{newWorkOrder}')
+     userInfo(requests)
      return redirect(f'/work-order-tracker/')
 
 def testinh(requests):

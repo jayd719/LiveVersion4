@@ -7,6 +7,7 @@ from LiveVersion4.test import getListofAllOrders
 from worderTracker.models import WorkOrderTracker
 from worderTracker.models import Operation
 from LiveVersion4.settings import cache
+from homepage.functions import userInfo
 
 global workOrders 
 workOrders= getListofAllOrders()
@@ -119,7 +120,8 @@ def workOrderReport(requests):
         workOrder = requests.GET.get('search-for-work-order')        
         if(isWorkOrderValid(workOrder)):
             data = getData(workOrder)
-            writeStatus(f"1:Job Detial: {workOrder}:printed")  
+            writeStatus(f"1:Job Detial: {workOrder}:printed")
+            userInfo(requests)
             return render(requests, 'workOrderReports/reportdata.html', context=data)
         
         elif(len(workOrder)==0):
@@ -132,8 +134,9 @@ def workOrderReport(requests):
             data ={'message':'Invalid Work Order',
                    'sList':workOrders}
             messages.warning(requests,f'{workOrder} Is Not A Valid Number!')
-            writeStatus("0:Job Detial: Invalid WO")    
-
+            writeStatus("0:Job Detial: Invalid WO")  
+       
+    userInfo(requests)
     return render(requests, 'workOrderReports/report.html', context=data)
 
 
@@ -172,7 +175,8 @@ def addToLive(requests):
         dataObj = cache.contains(jobNumber)
         writeToTracker(dataObj)
         messages.info(requests,f'{jobNumber} Added To Live!')
-        writeStatus(f"1:Job Detial: {jobNumber}:printed")  
+        writeStatus(f"1:Job Detial: {jobNumber}:printed")
+        userInfo(requests)  
         return redirect(f'/live/?search-for-work-order={jobNumber}')
     else:
         return HttpResponse("Invalid request method.")
@@ -198,7 +202,8 @@ def removeFormLive(requests):
         jobNumber = requests.POST.get('jobNumber')
         WorkOrderTracker(jobNumber=jobNumber).delete()
         messages.info(requests,f'{jobNumber} Removed From Live!')
-        writeStatus(f"1:Job Detial: {jobNumber}:printed")  
+        writeStatus(f"1:Job Detial: {jobNumber}:printed")
+        userInfo(requests)  
         return redirect(f'/live/?search-for-work-order={jobNumber}')
     else:
         return HttpResponse("Invalid request method.")
@@ -226,6 +231,7 @@ def updateDate(requests):
         fromModel.dueDate = dueDate
         fromModel.save()
         messages.info(requests,f'{jobNumber} Due Date Updated!')
+        userInfo(requests)
         return redirect(f'/live/?search-for-work-order={jobNumber}')
     else:
         return HttpResponse("Invalid request method.")
