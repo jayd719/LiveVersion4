@@ -23,7 +23,7 @@ function downloadShd(workCenter) {
   let dataValues = {};
   dataValues["workCenter"] = workCenter;
   POST(dataValues);
-  window.open('/templates/excel/Scheduling Format.xlsx')
+  window.open(`/templates/excel/${workCenter}.xlsx`)
   
 //   downloadBox()
 }

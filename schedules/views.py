@@ -1,8 +1,10 @@
 from django.shortcuts import render,HttpResponse
 from worderTracker.models import Operation
+from homepage.functions import userInfo
 from django.contrib import messages
 from django.http import JsonResponse
 from django.views.static import serve
+from .functions import createExcelSheet
 import json
 import os
 
@@ -19,6 +21,7 @@ def shd_home(requests):
         'workCenter':workCenter,
         'jobList':jobList
     }
+    userInfo(requests)
     return render(requests,'homepage.html',data)
 
 
@@ -35,10 +38,8 @@ def download_shd(requests):
         try:
             userData = json.loads(requests.body.decode('utf-8'))
             workCenter = userData['workCenter']
-            # jobList = Operation.objects.filter(workCenter=workCenter,status='pending').order_by('jobNumber')
-            print(workCenter)
-
-            
+            createExcelSheet(Operation.objects.filter(workCenter=workCenter,status='pending').order_by('jobNumber'),workCenter)
+            userInfo(requests)
             return JsonResponse({'success': True})
         except json.JSONDecodeError as e:
             return JsonResponse({'error': 'Invalid JSON format'}, status=400)
