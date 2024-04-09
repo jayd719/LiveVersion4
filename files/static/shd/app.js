@@ -23,38 +23,26 @@ function downloadShd(workCenter) {
   let dataValues = {};
   dataValues["workCenter"] = workCenter;
   POST(dataValues);
-  window.open(`/templates/excel/${workCenter}.xlsx`)
+  loader()
+  setTimeout(()=>{
+    removeLoader()
+    window.open(`/templates/excel/${workCenter}.xlsx`)
+  }, 3000);
   
-//   downloadBox()
 }
 
-function downloadBox() {
+function loader() {
   let modal = document.createElement("div");
-  modal.style.zIndex = "100";
   modal.id = "modal";
-  modal.style.top = "25%";
-  modal.style.left = "37.5%";
-  modal.className = "pop-up-window h-auto w-25 position-absolute";
-  modal.innerHTML = `<div class="card">
-    <div class="d-flex justify-content-between border-bottom align-items-center bg-dark">
-      <span class="mx-2 text-white">Download Report Data</span>
-      <button type="button" class="btn btn-danger btn-sm" onclick="removeModal()" style="scale:.75">X</button>
-    </div>
-    <div class="card-body px-1 shadow-lg">
-            
-
-          <div class='mx-3 my-2'>
-                <a href="/templates/excel/Scheduling Format.xlsx" onclick="removeModal()">get</a>
-          </div>
-      <div class="d-flex justify-content-end gap-2 mx-2">
-        <a class="btn btn-sm btn-danger mt-2" onclick="removeModal()">Discard</a>
-      </div>  
-    </div>
-  </div>`;
+  modal.className = "cover-container d-flex w-100 h-100 p-3 flex-column d-flex justify-content-center align-items-center position-absolute gd";
+  modal.innerHTML = `
+    <div class="loader border rounded-5"></div>
+    <div class="loader2"></div>`;
   document.body.appendChild(modal);
 }
-function removeModal() {
+function removeLoader() {
     document.body.removeChild(document.getElementById("modal"));
+    
   }
   
   

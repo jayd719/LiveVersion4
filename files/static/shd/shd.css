@@ -1,0 +1,34 @@
+.gd {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.8px);
+  -webkit-backdrop-filter: blur(6.8px);
+}
+
+/* HTML: <div class="loader"></div> */
+.loader2 {
+    width: fit-content;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 30px;
+    color: black;
+    clip-path: inset(0 3ch 0 0);
+    animation: l4 1s steps(4) infinite;
+  }
+  .loader2:before {
+    content:"Generating Report Data..."
+  }
+  @keyframes l4 {to{clip-path: inset(0 -1ch 0 0)}}
+
+.loader {
+  width: 520px;
+  height: 20px;
+  background: linear-gradient(#0d6efd 0 0) 0/0% no-repeat #ddd;
+  animation: l1 3s infinite linear;
+}
+@keyframes l1 {
+  100% {
+    background-size: 100%;
+  }
+}
