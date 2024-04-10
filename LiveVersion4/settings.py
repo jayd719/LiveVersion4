@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'worderTracker.apps.WordertrackerConfig',
     'schedules.apps.SchedulesConfig',
     'Logins.apps.LoginsConfig',
+    'purchaseOrders.apps.PurchaseordersConfig',
     'crispy_forms',
     'crispy_bootstrap4',
 ]
