@@ -1,38 +1,51 @@
 {% extends 'hp/base.html' %} 
 {% load static%}
 {% block content%}
+<style>
+  td{
+    border: 1px solid gray;
+  }
+</style>
 
 <div class="container-fluid p-0" style="height: 92vh; overflow-y: scroll; ">
-    <table class="table table-striped m-0" >
+    <table class="table m-0 table-hover" >
         <thead class="table-dark sticky-top" style="height: 50px;">
           <tr>
-            <th scope="col">Inquiry Number</th>
+            <th scope="col">Inquiry #</th>
             <th scope="col">Quote #</th>
+            <th scope="col">Line #</th>
             <th scope="col">Sent Date</th>
             <th scope="col">Customer Name</th>
             <th scope="col">Total Quote Amount</th>
             <th scope="col">Currency</th>
+            <th scope="col">Sales ID</th>
             <th scope="col">Remarks / Opportunity Description</th>
             <th scope="col">Follow Up Date</th>
             <th scope="col">Next Follow Up</th>
+            <th scope="col">s</th>
             <th scope="col">STATUS</th>
             <th scope="col">Opportunity Status</th>
+           
           </tr>
         </thead>
         <tbody>
           {% for PO in lineItems %}  
-          <tr class="{{PO.status}}">
-            <td>Mark</td>
+          <tr class="{{PO.status}} border-bottom">
+            <td> </td>
             <td title="{{PO.description}}">{{PO.quoteNumber}}</td>
             <td>{{PO.itemNumber}}</td>
-            <td>Mark</td>
-            <td>Mark</td>
+            <td>{{PO.dateEntered}}</td>
+            <td>{{PO.customerName}}</td>
+            <td>{{PO.price1}}</td>
+            <td>{{PO.itemNumber}}</td>
+            <td>{{PO.salesID}}</td>
             <td>Mark</td>
             <td>Mark</td>
             <td>Mark</td>
             <td>Mark</td>
             <td >{{PO.status}}</td>
             <td>@mdo</td>
+            
           </tr>
 
           {%endfor%}

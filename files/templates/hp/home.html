@@ -1,8 +1,8 @@
 {% extends 'hp/base.html' %} 
 {% load static%}
 {% block content%}
-<div class="d-flex gap-2 justify-content-center py-2 bg-light shadow-sm m-2 rounded-4 opacity-75">
-    <a  class="btn btn-outline-primary rounded-2 px-3 d-flex flex-columnalign-items-center " href="{% url 'LIVE'%}"><span>CBB LIVE</span></a>
+<div class="d-flex gap-2 justify-content-center py-2 bg-light shadow-sm m-2 rounded-4">
+    <a  class="btn btn-outline-primary rounded-2 px-3 d-flex flex-column align-items-center" href="{% url 'LIVE'%}" ><span>CBB LIVE</span></a>
     <a  class="btn btn-outline-primary rounded-2 px-3 d-flex flex-column align-items-center" href="{% url 'permissiondenied'%}"> <span >Estimates</span></a>
     <a  class="btn btn-outline-primary rounded-2 px-3 d-flex flex-column align-items-center" href="{% url 'purchaseOrders-home'%}"><span>Quotes</span></a>
     <a  class="btn btn-outline-primary rounded-2 px-3 d-flex flex-column align-items-center" href="{% url 'scd-home'%}"><span>Schedules</span></a>

@@ -1,5 +1,8 @@
 import requests
 from LiveVersion4.functions import TOKEN
+from Datastructures.BinarySearch import binarySearch
+
+
 
 class PurchaseOrderItem():
     def __init__(self):
@@ -32,6 +35,7 @@ def getPurchaseOrderData(dateRange):
         data +=tempData
     
     lastElement = data[-1]['quoteNumber']
+    print(f'LAST ELM: {lastElement}')
     checkElement = lastElement
     lineItems = []
     skip=0
@@ -41,9 +45,16 @@ def getPurchaseOrderData(dateRange):
         # print(len(tempData))
         skip+=200
         checkElement = tempData[-1]['quoteNumber']
-        # print(checkElement)
+        print(checkElement)
   
     return data,lineItems
 
 
 
+
+def processPO(headerData,lineData):
+    for PO in lineData:
+       tempData = binarySearch(headerData,PO['quoteNumber'])
+       if tempData is not None:
+           PO.update(tempData)
+    return lineData
