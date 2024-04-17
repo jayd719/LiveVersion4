@@ -1,7 +1,65 @@
 {% extends 'hp/base.html' %} 
 {% load static%}
 {% block content%}
-<h1>hellllllliii</h1>
+
+<div class="container-fluid p-0" style="height: 92vh; overflow-y: scroll; ">
+    <table class="table table-striped m-0" >
+        <thead class="table-dark sticky-top" style="height: 50px;">
+          <tr>
+            <th scope="col">Inquiry Number</th>
+            <th scope="col">Quote #</th>
+            <th scope="col">Sent Date</th>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Total Quote Amount</th>
+            <th scope="col">Currency</th>
+            <th scope="col">Remarks / Opportunity Description</th>
+            <th scope="col">Follow Up Date</th>
+            <th scope="col">Next Follow Up</th>
+            <th scope="col">STATUS</th>
+            <th scope="col">Opportunity Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for PO in lineItems %}  
+          <tr class="{{PO.status}}">
+            <td>Mark</td>
+            <td title="{{PO.description}}">{{PO.quoteNumber}}</td>
+            <td>{{PO.itemNumber}}</td>
+            <td>Mark</td>
+            <td>Mark</td>
+            <td>Mark</td>
+            <td>Mark</td>
+            <td>Mark</td>
+            <td>Mark</td>
+            <td >{{PO.status}}</td>
+            <td>@mdo</td>
+          </tr>
+
+          {%endfor%}
+          
+        </tbody>
+      </table>
+
+
+</div>
+
+
+
+
+<script>
+updateColorRow(document.querySelectorAll('.WON'),'table-success')
+updateColorRow(document.querySelectorAll('.EXP'),'table-danger')
+function updateColorRow(elements,val){
+    for(i =0;i<elements.length;i++){
+        elements[i].className=val
+    }
+}
+
+
+
+
+
+</script>
 
 
 {% endblock %}

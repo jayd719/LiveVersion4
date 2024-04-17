@@ -23,15 +23,27 @@ def getPurchaseOrderData(dateRange):
     print(dateRange)
     headers = {'accept': 'application/json', 'Authorization': f'Bearer {TOKEN()}'}
     data=[]
-    limit =200
-    skip=0
+    limit,skip =200,0
     while(limit>199):
         tempData = requests.get(f'https://api-jb2.integrations.ecimanufacturing.com:443/api/v1/quotes?sort=-quoteNumber&dateEntered%5Bgt%5D={dateRange[1]}T00%3A00%3A00Z&dateEntered%5Blt%5D={dateRange[0]}T00%3A00%3A00Z&skip={skip}&take=200',headers=headers).json()["Data"]
         limit = len(tempData)
-        print(limit)
+        # print(limit)
         skip+=200
         data +=tempData
-    return data
+    
+    lastElement = data[-1]['quoteNumber']
+    checkElement = lastElement
+    lineItems = []
+    skip=0
+    while(checkElement>=lastElement):
+        tempData = requests.get(f'https://api-jb2.integrations.ecimanufacturing.com:443/api/v1/quote-line-items?sort=-quoteNumber&skip={skip}&take=200',headers=headers).json()["Data"]
+        lineItems+=tempData
+        # print(len(tempData))
+        skip+=200
+        checkElement = tempData[-1]['quoteNumber']
+        # print(checkElement)
+  
+    return data,lineItems
 
 
 
