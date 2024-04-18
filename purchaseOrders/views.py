@@ -14,6 +14,6 @@ def purchaseOrderReports(requests):
 
     headerData,lineData = getPurchaseOrderData(dateRa)
     lineItems =processPO(headerData,lineData)
-    data={'title':"Purchase Order Tracker" ,'lineItems':lineItems}
+    data={'title':"Purchase Order Tracker" ,'lineItems':lineItems[3:]}
     print(datetime.now()-start) 
     return render(requests,'PO/index.html',data)

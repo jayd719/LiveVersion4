@@ -30,6 +30,8 @@
         </thead>
         <tbody>
           {% for PO in lineItems %}  
+
+          {% if PO.salesID %}
           <tr class="{{PO.status}} border-bottom">
             <td> </td>
             <td title="{{PO.description}}">{{PO.quoteNumber}}</td>
@@ -47,7 +49,7 @@
             <td>@mdo</td>
             
           </tr>
-
+          {%endif%}
           {%endfor%}
           
         </tbody>
