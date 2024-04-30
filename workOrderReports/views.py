@@ -202,8 +202,6 @@ def removeFormLive(requests):
         jobNumber = requests.POST.get('jobNumber')
         WorkOrderTracker(jobNumber=jobNumber).delete()
         messages.info(requests,f'{jobNumber} Removed From Live!')
-        writeStatus(f"1:Job Detial: {jobNumber}:printed")
-        userInfo(requests)  
         return redirect(f'/live/?search-for-work-order={jobNumber}')
     else:
         return HttpResponse("Invalid request method.")
@@ -231,7 +229,7 @@ def updateDate(requests):
         fromModel.dueDate = dueDate
         fromModel.save()
         messages.info(requests,f'{jobNumber} Due Date Updated!')
-        userInfo(requests)
+
         return redirect(f'/live/?search-for-work-order={jobNumber}')
     else:
         return HttpResponse("Invalid request method.")
